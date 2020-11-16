@@ -46,8 +46,6 @@ public class SemaineActivity extends AppCompatActivity {
             Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
-
-
         Intent versActiviteSemaine = new Intent();
         versActiviteSemaine.setClass(this, RecetteActivity.class);
 
