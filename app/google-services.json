@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "118888282620",
+    "firebase_url": "https://cuistocs-a3af8.firebaseio.com",
+    "project_id": "cuistocs-a3af8",
+    "storage_bucket": "cuistocs-a3af8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118888282620:android:d8a221f9dd819045f5da79",
+        "android_client_info": {
+          "package_name": "com.example.cuistocs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118888282620-g4ors6bn91vup88thiosp3o4qchte6rn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJnKdPoEVLfY3l4vhL7fYlRP5FfIPrFMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118888282620-g4ors6bn91vup88thiosp3o4qchte6rn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
