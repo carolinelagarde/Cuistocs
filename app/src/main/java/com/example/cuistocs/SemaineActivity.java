@@ -2,6 +2,7 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,9 +46,10 @@ public class SemaineActivity extends AppCompatActivity {
             Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
+
         /*
         Intent versAvtivitéSemaine = new Intent();
-        versAvtivitéSemaine.setClass(this, ChoixJoursAtivity.class);
+        versAvtivitéSemaine.setClass(this, RecetteActivity.class);
 
         versAvtivitéSemaine.putExtra("indiceSemaine", numeroSemaine);
         startActivity(versAvtivitéSemaine);
