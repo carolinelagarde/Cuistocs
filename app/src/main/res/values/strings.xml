@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Cuistocs</string>
+    <string name="semaine_1">semaine_1</string>
+    <string name="semaine_2">semaine_2</string>
+    <string name="semaine_3">semaine_3</string>
+    <string name="semaine_4">semaine_4</string>
+    <string name="quelle_semaine">quelle_semaine</string>
 </resources>
