@@ -54,6 +54,8 @@ public class SemaineActivity extends AppCompatActivity {
         versAvtivitéSemaine.putExtra("indiceSemaine", numeroSemaine);
         startActivity(versAvtivitéSemaine);
         */
+
+
     }
 
 }
