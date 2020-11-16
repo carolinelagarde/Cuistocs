@@ -30,6 +30,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
 
         // recuperation des entiers numeroSemaine et numeroJour qui servent à indexer les recettes dans la matrice des recettes
+
+        //on récupère des deux activités précédentes les numéros du jour et de la semaine dans laquelle on est
+
         Intent messagedeChoixJoursActivity = getIntent();
 
         numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
@@ -38,7 +41,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
         String[][] matriceRecette;
-
+        TextView textViewRecette=findViewById(R.id.textView2);  //on crée le textview dans lequel la recette va être affichée
 
         //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
 

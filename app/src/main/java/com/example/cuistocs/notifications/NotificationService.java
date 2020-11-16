@@ -24,7 +24,7 @@ public class NotificationService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         if (remoteMessage.getNotification() != null) {
             String message = remoteMessage.getNotification().getBody();
-            // 8 - Show notification after received message
+            //on affiche le message après reception via une méthode spéciale
             this.sendVisualNotification(message);
         }
     }
@@ -33,19 +33,19 @@ public class NotificationService extends FirebaseMessagingService {
 
     private void sendVisualNotification(String messageBody) {
 
-        // 1 - Create an Intent that will be shown when user will click on the Notification
+        // On créé l'intent de redirection de notification
         Intent intent = new Intent(this, AccueilActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        // 2 - Create a Style for the Notification
+        // On change le style de notification
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         inboxStyle.setBigContentTitle(getString(R.string.notification_title));
         inboxStyle.addLine(messageBody);
 
-        // 3 - Create a Channel (Android 8)
+        // Pour android 8 : creation d'un channel
         String channelId = getString(R.string.default_notification_channel_id);
 
-        // 4 - Build a Notification object
+        // Création de la notification
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_launcher_background)
@@ -56,10 +56,10 @@ public class NotificationService extends FirebaseMessagingService {
                         .setContentIntent(pendingIntent)
                         .setStyle(inboxStyle);
 
-        // 5 - Add the Notification to the Notification Manager and show it.
+        //Ajout de la notification dans le manager
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        // 6 - Support Version >= Android 8
+        // Au cas où la version d'android est supérieure à 8
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence channelName = "Message provenant de Firebase";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -67,7 +67,7 @@ public class NotificationService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(mChannel);
         }
 
-        // 7 - Show notification
+        //affichage de la notification
         notificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notificationBuilder.build());
     }
 }
