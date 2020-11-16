@@ -45,6 +45,8 @@ public class ChoixJoursActivity extends AppCompatActivity {
             jour = 6;
         }
 
+        //debloque le jour que si le jour précédent a été développé
+
         Intent messageVersRecetteActivity = new Intent();
         messageVersRecetteActivity.setClass(this, RecetteActivity.class);
         messageVersRecetteActivity.putExtra("numero jour", jour);
