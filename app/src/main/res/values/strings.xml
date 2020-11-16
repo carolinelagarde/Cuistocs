@@ -5,4 +5,6 @@
     <string name="semaine_3">semaine_3</string>
     <string name="semaine_4">semaine_4</string>
     <string name="quelle_semaine">quelle_semaine</string>
+    <string name="notification_title">CuistoCS</string>
+    <string name="default_notification_channel_id">0</string>
 </resources>
