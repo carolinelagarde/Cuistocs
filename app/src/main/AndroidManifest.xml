@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Cuistocs">
         <activity android:name=".SemaineActivity"></activity>
         <activity android:name=".MainActivity">
+        <activity android:name=".AccueilActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
