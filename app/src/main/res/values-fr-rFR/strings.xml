@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cuistocs</string>
+    <string name="semaine_1">semaine 1</string>
+    <string name="semaine_2">semaine 2</string>
+    <string name="semaine_3">semaine 3</string>
+    <string name="semaine_4">semaine 4</string>
+    <string name="quelle_semaine">A quelle semaine du challenge êtes-vous ?</string>
+</resources>

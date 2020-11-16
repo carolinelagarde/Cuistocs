@@ -71,6 +71,7 @@ public class SemaineActivity extends AppCompatActivity {
             Intent versActiviteSemaine = new Intent();
             versActiviteSemaine.setClass(this, RecetteActivity.class);
 
+
             versActiviteSemaine.putExtra("indiceSemaine", numeroSemaine);
             startActivity(versActiviteSemaine);
 
