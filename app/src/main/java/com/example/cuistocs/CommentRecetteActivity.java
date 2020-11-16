@@ -15,7 +15,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment_recette);
     }
 
-    public void enregistrer(View view){
+    public void enregistrer(View view){   //on récupère la note que l'utilisateur entre dans la rating bar
         RatingBar rb=findViewById(R.id.ratingBar);
         float note= rb.getRating();
         Toast.makeText(this, "note:"+ note, Toast.LENGTH_SHORT).show();
