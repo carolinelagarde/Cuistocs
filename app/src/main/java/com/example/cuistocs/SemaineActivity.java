@@ -70,8 +70,7 @@ public class SemaineActivity extends AppCompatActivity {
         if (numeroSemaine == 0 | debloque[numeroSemaine-2][6].equals("oui")) {
             Intent versActiviteSemaine = new Intent();
             versActiviteSemaine.setClass(this, RecetteActivity.class);
-        Intent versActiviteSemaine = new Intent();
-        versActiviteSemaine.setClass(this, RecetteActivity.class);
+
 
             versActiviteSemaine.putExtra("indiceSemaine", numeroSemaine);
             startActivity(versActiviteSemaine);
