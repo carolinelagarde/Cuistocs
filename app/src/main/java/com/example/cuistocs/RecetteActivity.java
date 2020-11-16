@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.Vector;
+
 
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -40,13 +42,20 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         Intent messagedeSemaineActivity=getIntent() ;
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
-        String[][] matriceRecette;
-        TextView textViewRecette=findViewById(R.id.textView2);  //on crée le textview dans lequel la recette va être affichée
-
-        //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
 
         SeekBar barre=findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
+
+        //////// accès à la matrice recette
+
+        //Recette recette=matriceRecette[numeroSemaine][numeroJour];
+       // int tempsDeCuisine=recette.getTempsdecuisine();
+       // Vector<Ingredient> ingrédients=recette.getIngredients();
+       // String instructions=recette.getInstructions();
+
+
+
+
 
 
     }
