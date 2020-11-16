@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewDebug;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -15,8 +16,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     public int points;
 
-    Button boutonFait;
-    Button boutonJoker;
+    Button boutonFini = findViewById(R.id.boutonFini);
+    Button boutonPasse = findViewById(R.id.boutonPasse);
 
     int numeroJour;
     int numeroSemaine;
@@ -37,7 +38,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
         String[][] matriceRecette;
-        TextView textViewRecette=findViewById(R.id.titreRecette);
+
 
         //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
 
@@ -62,9 +63,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     public void onStopTrackingTouch(SeekBar seekBar) {
 
     }
-}
+
     void finRecette(View view) {
-        if (view.equals(boutonFait)) {
+        if (view.equals(boutonFini)) {
             points += 1;
         }
         if (numeroJour < 7) {
