@@ -19,15 +19,17 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recette);
-        Intent messagedeChoixJoursActivity = getIntent();
 
+        //on récupère des deux activités précédentes les numéros du jour et de la semaine dans laquelle on est
+
+        Intent messagedeChoixJoursActivity = getIntent();
         numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
 
         Intent messagedeSemaineActivity=getIntent() ;
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
         String[][] matriceRecette;
-        TextView textViewRecette=findViewById(R.id.textView2);
+        TextView textViewRecette=findViewById(R.id.textView2);  //on crée le textview dans lequel la recette va être affichée
 
         //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
 
