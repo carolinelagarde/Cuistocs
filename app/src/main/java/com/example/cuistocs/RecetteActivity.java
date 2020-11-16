@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewDebug;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-
-public class RecetteActivity extends AppCompatActivity {
+public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     public int points;
 
@@ -30,7 +30,9 @@ public class RecetteActivity extends AppCompatActivity {
 
         // recuperation des entiers numeroSemaine et numeroJour qui servent à indexer les recettes dans la matrice des recettes
         Intent messagedeChoixJoursActivity = getIntent();
+
         numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
+
         Intent messagedeSemaineActivity=getIntent() ;
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
@@ -38,8 +40,29 @@ public class RecetteActivity extends AppCompatActivity {
         TextView textViewRecette=findViewById(R.id.titreRecette);
 
         //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
+
+        SeekBar barre=findViewById(R.id.seekBar); // barre de choix du nombre d'invités
+        barre.setOnSeekBarChangeListener(this);
+
+
     }
 
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        TextView NbInvites =findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
+        NbInvites.setText(Integer.toString(progress));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+}
     void finRecette(View view) {
         if (view.equals(boutonFait)) {
             points += 1;
