@@ -47,14 +47,12 @@ public class SemaineActivity extends AppCompatActivity {
         }
 
 
-        /*
-        Intent versAvtivitéSemaine = new Intent();
-        versAvtivitéSemaine.setClass(this, RecetteActivity.class);
 
-        versAvtivitéSemaine.putExtra("indiceSemaine", numeroSemaine);
-        startActivity(versAvtivitéSemaine);
-        */
+        Intent versActiviteSemaine = new Intent();
+        versActiviteSemaine.setClass(this, RecetteActivity.class);
 
+        versActiviteSemaine.putExtra("indiceSemaine", numeroSemaine);
+        startActivity(versActiviteSemaine);
 
     }
 

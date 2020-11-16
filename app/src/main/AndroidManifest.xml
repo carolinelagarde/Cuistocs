@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
-        <activity android:name=".SemaineActivity"></activity>
+        <activity android:name=".RecetteActivity"></activity>
+        <activity android:name=".ChoixJoursActivity" />
+        <activity android:name=".SemaineActivity" />
         <activity android:name=".AccueilActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
