@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.Vector;
 
 public class Menu {
-    private Vector<Recette> livreRecettes;
+    private static Vector<Recette> livreRecettes;
 
     Set listeJoursDebloques;
     Set calendrierRecettes;
@@ -46,10 +46,14 @@ public class Menu {
 
 
 }
-    public Vector<Recette> getMenu(){
-        Vector<Recette> Menu=new Vector<>();
-        Collections.shuffle(livreRecettes);
-        Vector<Recettes>
+    public static Vector<Recette> getMenu(){
+        Vector<Recette> Menu=new Vector<>(livreRecettes.size());
+        Collections.copy(Menu,livreRecettes);
+        Collections.shuffle(Menu);
+        for (int i=28;i<Menu.size();i++){
+            Menu.remove(i);
+        }
+        return Menu;
     }
 
 

@@ -18,9 +18,6 @@ public class Recette {
     // numéro recette
     private int numeroRecette;
 
-    /** creer une nouvelle recette
-     *
-     */
 
     public Recette(int numeroRecette, String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
         this.titre=titre;
@@ -33,7 +30,7 @@ public class Recette {
     public Vector<Recette> livreRecettes;
     private Vector<Ingredient> lesIngredientsdelaRecette;
 
-    private Vector<Recette> livreRecettes() {
+    private void livreRecettes() {
 
 
         lesIngredientsdelaRecette.add(new Ingredient(25,"g","mozarella"));
