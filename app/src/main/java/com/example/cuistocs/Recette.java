@@ -18,9 +18,6 @@ public class Recette {
     // numéro recette
     private int numeroRecette;
 
-    /** creer une nouvelle recette
-     *
-     */
 
     public Recette(int numeroRecette, String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
         this.titre=titre;
