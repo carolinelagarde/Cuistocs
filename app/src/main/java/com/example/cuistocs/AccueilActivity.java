@@ -29,10 +29,7 @@ public class AccueilActivity extends AppCompatActivity {
     }
 
     public void versSemaine(View view) {
-        Intent versSemaine=new Intent(this, SemaineActivity.class);
-        Log.i("click","bouton cliqué");
-        startActivity(versSemaine);
-        finish();
+
     }
 
     public void versConfirmation(View view) {
@@ -52,13 +49,23 @@ public class AccueilActivity extends AppCompatActivity {
                         }
 
                         editor.putStringSet("setOrdre",set);
+                        editor.commit();
                         Log.i("définition du set","effectuée");
+
+                        Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
+                        Log.i("click","bouton cliqué");
+                        startActivity(versSemaine);
+                        finish();
 
                     }
                 });
         builder.setNegativeButton("Non, je continue le même !", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
+                Log.i("click","bouton cliqué");
+                startActivity(versSemaine);
+                finish();
             }
         });
 
