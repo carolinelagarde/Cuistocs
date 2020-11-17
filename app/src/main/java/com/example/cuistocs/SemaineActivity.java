@@ -78,4 +78,11 @@ public class SemaineActivity extends AppCompatActivity {
         }
 
     }
+
+    public void ouvrirRecettesEffectuees(View view) {
+        Intent versRecettesEffectuees = new Intent();
+        versRecettesEffectuees.setClass(this, RecettesEffectuees.class);
+
+        startActivity(versRecettesEffectuees);
+    }
 }

@@ -33,12 +33,13 @@ public class RecettesEffectuees extends AppCompatActivity {
 
 
 
-    private void afficher() {
+    public void afficher() {
         LinearLayout lay = findViewById(R.id.recetteseffectuees);
         lay.removeAllViews();
 
         for (int i=0;i<30;i++) {
-            if (sharedPreferences.contains("r"+Integer.toString(i)+"finie")) {
+            String name = "r"+""+i+ ""+"finie";
+            if (sharedPreferences.contains(name)) {
 
                 Button button = new Button(getApplicationContext());
                 button.setText("Recette" + Integer.toString(i));
@@ -55,11 +56,8 @@ public class RecettesEffectuees extends AppCompatActivity {
         Button boutonClique = (Button)view;
         //On passe vers l'affichage des recettes
         Intent versAfficherRecette = new Intent();
-        versAfficherRecette.setClass(this, AfficherRecette.class);
+        versAfficherRecette.setClass(this, RecetteActivity.class);
         //on transfere les données de la recette séléctionnée
-        versAfficherRecette.putExtra("numéro", (Serializable) boutonClique.getTag() );
-        versAfficherRecette.putExtra("commentaire", (Serializable) sharedPreferences.getString("r"+ boutonClique.getTag()+"commentaire",""));
-        versAfficherRecette.putExtra("note", (Serializable) sharedPreferences.getString("r"+ boutonClique.getTag() + "commentaire",""));
 
         startActivity(versAfficherRecette);
     }

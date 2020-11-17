@@ -6,4 +6,5 @@
     <string name="semaine_3">semaine 3</string>
     <string name="semaine_4">semaine 4</string>
     <string name="quelle_semaine">A quelle semaine du challenge êtes-vous ?</string>
+    <string name="versRecettesEffectuees">Recettes effectuées</string>
 </resources>
