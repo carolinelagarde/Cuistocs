@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewDebug;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Recette recette;
     int numeroJour;
     int numeroSemaine;
+    Vector<Ingredient> lesIngrédients;
 
     SharedPreferences sp;
 
@@ -66,19 +69,38 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //////// accès à la matrice recette
 
 
-        //Recette recette=matriceRecette[numeroSemaine][numeroJour];
-      // int tempsDeCuisine=recette.getTempsdecuisine();
-      // Vector<Ingredient> ingrédients=recette.getIngredients();
-      // String instructions=recette.getInstructions();
+        Recette recette=matriceRecette[numeroSemaine][numeroJour];
+        int tempsDeCuisine=recette.getTempsdecuisine();
+        lesIngrédients = recette.getIngredients();
+        String instructions=recette.getInstructions();
+
+    TextView TempsDeCuisine=findViewById(R.id.tempsCuisine);
+    TextView Recette=findViewById(R.id.Recette);
 
 
-    }
+    TempsDeCuisine.setText(tempsDeCuisine);
+    Recette.setText(instructions);
+
+        }
+
+
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         TextView NbInvites =findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
         NbInvites.setText(Integer.toString(progress));
-    }
+        for (int i=0;i<lesIngrédients.size();i++){
+            LinearLayout ListeIngrédients=findViewById(R.id.Ingrédients);
+            ListeIngrédients.removeAllViewsInLayout();
+
+            Ingredient ingrédient=lesIngrédients.get(i);
+            String Quantité;
+            Quantité = Integer.toString(ingrédient.getQuantité(progress));
+            String TexteIngrédient=Quantité+" "+ingrédient.getUnite()+" "+ingrédient.getIngredient();
+            TextView tv=new TextView(this);
+            tv.setText(TexteIngrédient);
+            ListeIngrédients.addView(tv);
+    }}
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
