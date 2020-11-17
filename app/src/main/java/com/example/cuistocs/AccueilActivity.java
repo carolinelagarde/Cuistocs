@@ -17,7 +17,7 @@ import java.util.Vector;
 public class AccueilActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     SharedPreferences sp;
-    Set<String> set;
+
 
 
 
@@ -44,11 +44,12 @@ public class AccueilActivity extends AppCompatActivity {
 
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        editor=preferences.edit();
+
                         for (int i=0;i<2;i++) {
-                            set.add(""+LivreRecette.get(i).getNumeroRecette()+"");
+                            editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                         }
 
-                        editor.putStringSet("setOrdre",set);
                         editor.commit();
                         Log.i("définition du set","effectuée");
 

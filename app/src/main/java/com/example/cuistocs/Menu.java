@@ -41,8 +41,11 @@ public class Menu {
 
 }
     public static Vector<Recette> getMenu(){
-        Vector<Recette> Menu=new Vector<>(livreRecettes.size());
-        Collections.copy(Menu,livreRecettes);
+        Menu test= new Menu();
+        Vector<Recette> Menu=new Vector<>();
+        for(int i=0;i<test.livreRecettes.size();i++) {
+            Menu.add(test.livreRecettes.get(i));
+        }
         Collections.shuffle(Menu);
         //for (int i=28;i<Menu.size();i++){
             //Menu.remove(i);
