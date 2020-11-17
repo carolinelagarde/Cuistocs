@@ -20,7 +20,7 @@ import java.util.Vector;
 
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
-    public int points;
+    int points;
     // checker pourquoi il reconnait pas la variable, et push car j'ai modifie l'erreur
     Button boutonFini;
     Button boutonPasse;
@@ -28,7 +28,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     int numeroJour;
     int numeroSemaine;
     int numeroRecette;
-    Vector<Ingredient> lesIngrédients;
+    Vector<Ingredient> lesIngredients;
 
     SharedPreferences sp;
 
@@ -49,9 +49,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         SharedPreferences sp = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
         if (sp.contains("nombrePoints")) {
             points = sp.getInt("nombrePoints", -1);
-        } else {
-            points = 0;
-        }
+        } else { points = 0; }
 
 
         // recuperation des entiers numeroSemaine et numeroJour qui servent à indexer les recettes dans la matrice des recettes
@@ -86,7 +84,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         // Recette recette=matriceRecette[numeroSemaine][numeroJour];
         recette = livreRecettes.get(0);
         int tempsDeCuisine = recette.getTempsdecuisine();
-        lesIngrédients = recette.getIngredients();
+        lesIngredients = recette.getIngredients();
         String instructions = recette.getInstructions();
         String Titre = recette.getTitre();
 
@@ -104,22 +102,22 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
 
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         TextView NbInvites = findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
         NbInvites.setText(Integer.toString(progress));
-        LinearLayout ListeIngrédients = findViewById(R.id.Ingrédients);
-        ListeIngrédients.removeAllViewsInLayout();
-        for (int i = 0; i < lesIngrédients.size(); i++) {
-            Ingredient ingrédient = lesIngrédients.get(i);
-            String Quantité;
-            Quantité = Integer.toString(ingrédient.getQuantité(progress));
-            String TexteIngrédient = Quantité + " " + ingrédient.getUnite() + " " + ingrédient.getIngredient();
-            TextView tv = new TextView(this);
-            tv.setText(TexteIngrédient);
-            ListeIngrédients.addView(tv);
-        }
-    }
+        LinearLayout ListeIngredients=findViewById(R.id.Ingredients);
+        ListeIngredients.removeAllViewsInLayout();
+        for (int i = 0; i< lesIngredients.size(); i++){
+            Ingredient ingredient= lesIngredients.get(i);
+            String Quantite;
+            Quantite = Integer.toString(ingredient.getQuantité(progress));
+            String TexteIngredient=Quantite+" "+ingredient.getUnite()+" "+ingredient.getIngredient();
+            TextView tv=new TextView(this);
+            tv.setText(TexteIngredient);
+            ListeIngredients.addView(tv);
+    }}
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -182,6 +180,3 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         }
     }
 }
-
-
-

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
-        <activity android:name=".CommentRecetteActivity"></activity>
+        <activity android:name=".RecettesEffectuees" />
+        <activity android:name=".CommentRecetteActivity" />
         <activity android:name=".RecetteActivity" />
         <activity android:name=".ChoixJoursActivity" />
         <activity android:name=".SemaineActivity" />
@@ -20,14 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        //Service de reception de notification
-        <service
-            android:name=".notifications.NotificationService">
+
+        <service android:name=".notifications.NotificationService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
