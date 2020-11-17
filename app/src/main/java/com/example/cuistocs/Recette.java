@@ -33,7 +33,7 @@ public class Recette {
     public Vector<Recette> livreRecettes;
     private Vector<Ingredient> lesIngredientsdelaRecette;
 
-    private Vector<Recette> livreRecettes() {
+    private void livreRecettes() {
 
 
         lesIngredientsdelaRecette.add(new Ingredient(25,"g","mozarella"));
