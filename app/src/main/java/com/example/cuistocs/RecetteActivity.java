@@ -8,11 +8,15 @@ import android.os.Bundle;
 
 import android.content.Intent;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 
@@ -28,6 +32,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     int numeroRecette;
     Vector<Ingredient> lesIngredients;
 
+    SharedPreferences etatBouton;
     SharedPreferences spPoints;
 
     @Override
@@ -132,6 +137,17 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     public void finRecette(View view) {
 
         numeroRecette=recette.getNumeroRecette();  //on récupère le numéro de la recette faite
+
+        //on veut débloquer le bouton du jour suivant
+        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorBouton = etatBouton.edit();
+
+        Set<String> defaultvalueset = new HashSet<>();
+        defaultvalueset.add("");
+
+        Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
+        boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
+        editorBouton.commit();
 
         if (view.equals(boutonFini)) {
             points += 1;   // si bouton Fini clique : +1 point !

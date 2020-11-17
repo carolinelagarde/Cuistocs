@@ -39,6 +39,7 @@ public class SemaineActivity extends AppCompatActivity {
         Set<String> boutonDebloqueSet= new HashSet<>();
         boutonDebloqueSet.add("jour1semaine0");
         editor.putStringSet("boutonDebloque",boutonDebloqueSet);
+        editor.commit();
 
         Button semaine1 = findViewById(R.id.boutonSemaine1);
         Button semaine2 = findViewById(R.id.boutonSemaine2);
