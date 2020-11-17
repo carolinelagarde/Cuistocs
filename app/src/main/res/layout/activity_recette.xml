@@ -132,7 +132,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/Ingrédients"
+            android:id="@+id/Ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

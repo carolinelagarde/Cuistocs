@@ -48,6 +48,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
 
+    /*
     public void partageSMS(View view) {
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
@@ -61,5 +62,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
         startActivity(choixAppSMS);
     }
+    */
 
 }

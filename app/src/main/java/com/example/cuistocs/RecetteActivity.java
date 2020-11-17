@@ -7,11 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
-import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -27,7 +24,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Recette recette;
     int numeroJour;
     int numeroSemaine;
-    Vector<Ingredient> lesIngrédients;
+    Vector<Ingredient> lesIngredients;
 
     SharedPreferences sp;
 
@@ -83,7 +80,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
        // Recette recette=matriceRecette[numeroSemaine][numeroJour];
         Recette recette=livreRecettes.get(0);
         int tempsDeCuisine=recette.getTempsdecuisine();
-        lesIngrédients = recette.getIngredients();
+        lesIngredients = recette.getIngredients();
         String instructions=recette.getInstructions();
         String Titre=recette.getTitre();
 
@@ -107,16 +104,16 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         TextView NbInvites =findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
         NbInvites.setText(Integer.toString(progress));
-        LinearLayout ListeIngrédients=findViewById(R.id.Ingrédients);
-        ListeIngrédients.removeAllViewsInLayout();
-        for (int i=0;i<lesIngrédients.size();i++){
-            Ingredient ingrédient=lesIngrédients.get(i);
-            String Quantité;
-            Quantité = Integer.toString(ingrédient.getQuantité(progress));
-            String TexteIngrédient=Quantité+" "+ingrédient.getUnite()+" "+ingrédient.getIngredient();
+        LinearLayout ListeIngredients=findViewById(R.id.Ingredients);
+        ListeIngredients.removeAllViewsInLayout();
+        for (int i = 0; i< lesIngredients.size(); i++){
+            Ingredient ingredient= lesIngredients.get(i);
+            String Quantite;
+            Quantite = Integer.toString(ingredient.getQuantité(progress));
+            String TexteIngredient=Quantite+" "+ingredient.getUnite()+" "+ingredient.getIngredient();
             TextView tv=new TextView(this);
-            tv.setText(TexteIngrédient);
-            ListeIngrédients.addView(tv);
+            tv.setText(TexteIngredient);
+            ListeIngredients.addView(tv);
     }}
 
     @Override
