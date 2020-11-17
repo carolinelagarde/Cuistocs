@@ -17,12 +17,16 @@ public class CommentRecetteActivity extends AppCompatActivity {
     int numeroRecette;
     EditText commentaireRecetteEditText;  //la view où l'utiliateur rentre le commentaire de la recette
     String commentaireRecette;   //la string associée à ce commentaire
+    Recette recetteEnCours;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
+
+        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
+
     }
 
     public void enregistrer(View view) {   //on récupère la note que l'utilisateur entre dans la rating bar
@@ -54,7 +58,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
                 + recetteEnCours.getIngredients() + "\n"
-                + recetteEnCours.getTempsDeCuisine() + "\n"
+                + recetteEnCours.getTempsdecuisine() + "\n"
                 + recetteEnCours.getInstructions() + "\n");
         Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
         versAppSMS.setData(Uri.parse("smsto:"));
