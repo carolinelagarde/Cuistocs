@@ -131,18 +131,36 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     /*void finRecette(View view) {
         // si bouton Fini clique : +1 point !
+
         if (view.equals(boutonFini)) {
-            points += 1;
+            points += 1;   // si bouton Fini clique : +1 point !
+
+            ///on va enregistrer le fait que la recette a été faite et le score du joueur
             sp =getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
+            editor.putBoolean("r"+ numeroRecette + "finie", true);
             editor.apply();
+
+
+            ///on veut aller à l'activité qui permet de commenter la recette, en transmettant à cette activité le numéro de la recette faite
             Intent versCommentRecetteActivity=new Intent();
             versCommentRecetteActivity.setClass(this,CommentRecetteActivity.class);
             versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
             startActivity(versCommentRecetteActivity);
+
         }
-        if (view.equals(boutonPasse)){
+
+        ///le joueur n'a pas fait la recette
+        if (view.equals(boutonPasse)) {
+
+            ///on enregistre le fait que le score du joueur n'a pas changé et que l'a recette n'a pas été faite
+            sp =getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putInt("nombrePointsDejaGagnes", points);
+            editor.putBoolean("r"+ numeroRecette + "finie", false);
+            editor.apply();
+
 
             // si on n'est pas au dernier jour de la semaine, ca nous ramene a l'écran des jours
             if (numeroJour < 7) {
@@ -152,17 +170,14 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
                 finish();
             }
             //si on est au dernier jour, ca nous ramene à l'écran semaine.
-            if (numeroJour ==7) {
+            if (numeroJour == 7) {
                 Intent versEcranSemaine = new Intent();
                 versEcranSemaine.setClass(this, SemaineActivity.class);
                 startActivity(versEcranSemaine);
                 finish();
             }
-
-
         }
 
 
 
-    }
     */
