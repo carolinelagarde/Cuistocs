@@ -38,7 +38,7 @@ public class RecettesEffectuees extends AppCompatActivity {
         lay.removeAllViews();
 
         for (int i=0;i<30;i++) {
-            if (sharedPreferences.contains("r"+Integer.toString(i)+"faite")) {
+            if (sharedPreferences.contains("r"+Integer.toString(i)+"finie")) {
 
                 Button button = new Button(getApplicationContext());
                 button.setText("Recette" + Integer.toString(i));

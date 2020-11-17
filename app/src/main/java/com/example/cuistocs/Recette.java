@@ -60,6 +60,7 @@ public class Recette {
     //obtenir le titre de la recette
     public String getTitre() { return titre; }
 
+    //obtenir le numéro de la recette
     public int getNumeroRecette() { return numeroRecette; }
 
     //obtenir les ingrédients avec ses quantités
