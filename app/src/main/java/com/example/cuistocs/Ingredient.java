@@ -26,8 +26,8 @@ public class Ingredient {
     public String getIngredient() {return ingredient;}
 
     //modifier les quantités des ingrédients en fonction du nombre d'invité entré
-    public void quantitepourinvites(int nbInvites) {
-        quantite=quantite*nbInvites;
+    public int getQuantité(int nbInvites) {
+        return quantite*nbInvites;
     }
 
 }
