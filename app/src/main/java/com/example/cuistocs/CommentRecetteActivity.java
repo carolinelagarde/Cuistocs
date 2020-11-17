@@ -14,13 +14,13 @@ import android.widget.Toast;
 import java.util.Vector;
 
 public class CommentRecetteActivity extends AppCompatActivity {
-    String titre;
+    int numeroRecette;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
         Intent messagedeRecetteActivity=getIntent();
-        titre= messagedeRecetteActivity.getStringExtra("titre recette");
+        numeroRecette= messagedeRecetteActivity.getIntExtra("numero recette", numeroRecette);
 
     }
 
@@ -34,7 +34,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         //on enregistre la note que l'utilisateur a associé à sa recette
         SharedPreferences sp=getSharedPreferences("memonote", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sp.edit();
-        int numeroRecette=0;
         String rating=Integer.toString(numeroRecette);
         editor.putFloat(rating, note);  //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
         editor.apply();
