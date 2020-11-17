@@ -44,7 +44,7 @@ public class AccueilActivity extends AppCompatActivity {
 
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        for (int i=0;i<28;i++) {
+                        for (int i=0;i<2;i++) {
                             set.add(""+LivreRecette.get(i).getNumeroRecette()+"");
                         }
 
