@@ -7,11 +7,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 
@@ -24,9 +29,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Recette recette;
     int numeroJour;
     int numeroSemaine;
+    int numeroRecette;
     Vector<Ingredient> lesIngredients;
 
-    SharedPreferences sp;
+    SharedPreferences etatBouton;
+    SharedPreferences spPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +49,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
            - 0 si aucun point n'a été marqué
            - le nombre de points mémorisés en sharedPreferences si des points on deja ete marques
          */
-        SharedPreferences sp = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-        if (sp.contains("nombrePoints")) {
-            points = sp.getInt("nombrePoints", -1);
+        SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+        if (spPoints.contains("nombrePoints")) {
+            points = spPoints.getInt("nombrePoints", -1);
         } else { points = 0; }
 
 
@@ -64,45 +71,44 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         barre.setOnSeekBarChangeListener(this);
 
         //////// accès à la matrice recette de test
-        Vector<Ingredient> lesIngredientsdelaRecette=new Vector<Ingredient>();
-        Vector <Recette> livreRecettes=new Vector<Recette>();
+        Vector<Ingredient> lesIngredientsdelaRecette = new Vector<Ingredient>();
+        Vector<Recette> livreRecettes = new Vector<Recette>();
 
-        lesIngredientsdelaRecette.add(new Ingredient(25,"g","mozarella"));
-        lesIngredientsdelaRecette.add(new Ingredient(4,"","oeufs"));
-        lesIngredientsdelaRecette.add(new Ingredient(1,"bouquet","ciboulette"));
-        lesIngredientsdelaRecette.add(new Ingredient(2,"cuilleres a soupe","huile"));
-        lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","sel"));
-        lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","poivre"));
+        lesIngredientsdelaRecette.add(new Ingredient(25, "g", "mozarella"));
+        lesIngredientsdelaRecette.add(new Ingredient(4, "", "oeufs"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "bouquet", "ciboulette"));
+        lesIngredientsdelaRecette.add(new Ingredient(2, "cuilleres a soupe", "huile"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "sel"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "poivre"));
 
-        livreRecettes.add(new Recette(1,"Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"\n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"\n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"\n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
+        livreRecettes.add(new Recette(1, "Omelette ciboulette et mozzarella", 10, lesIngredientsdelaRecette, "1) Coupez la mozzarella en 12 morceaux" + "\n" + "2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement" + "\n" + "3) Faire cuire les oeufs sur une poele pendant deux à trois minutes" + "\n" + "4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
 
 
-       // Recette recette=matriceRecette[numeroSemaine][numeroJour];
-        Recette recette=livreRecettes.get(0);
-        int tempsDeCuisine=recette.getTempsdecuisine();
+        // Recette recette=matriceRecette[numeroSemaine][numeroJour];
+        recette = livreRecettes.get(0);
+        int tempsDeCuisine = recette.getTempsdecuisine();
         lesIngredients = recette.getIngredients();
-        String instructions=recette.getInstructions();
-        String Titre=recette.getTitre();
+        String instructions = recette.getInstructions();
+        String Titre = recette.getTitre();
 
-    TextView ViewTempsDeCuisine=findViewById(R.id.tempsCuisine);
-    LinearLayout ViewRecette=findViewById(R.id.Recette);
-    TextView ViewTitre=findViewById(R.id.Titre);
+        TextView ViewTempsDeCuisine = findViewById(R.id.tempsCuisine);
+        LinearLayout ViewRecette = findViewById(R.id.Recette);
+        TextView ViewTitre = findViewById(R.id.Titre);
 
 
+        ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
+        TextView ViewInstruction = new TextView(this);
+        ViewInstruction.setText(instructions);
+        ViewRecette.addView(ViewInstruction);
+        ViewTitre.setText(Titre);
 
-     ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
-     TextView ViewInstruction = new TextView(this);
-     ViewInstruction.setText(instructions);
-     ViewRecette.addView(ViewInstruction);
-     ViewTitre.setText(Titre);
-
-        }
+    }
 
 
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        TextView NbInvites =findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
+        TextView NbInvites = findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
         NbInvites.setText(Integer.toString(progress));
         LinearLayout ListeIngredients=findViewById(R.id.Ingredients);
         ListeIngredients.removeAllViewsInLayout();
@@ -114,7 +120,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             TextView tv=new TextView(this);
             tv.setText(TexteIngredient);
             ListeIngredients.addView(tv);
-    }}
+
+        }
+    }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -124,25 +132,37 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
-    }}
+    }
 
-    /*void finRecette(View view) {
-        // si bouton Fini clique : +1 point !
+    public void finRecette(View view) {
+
+        numeroRecette=recette.getNumeroRecette();  //on récupère le numéro de la recette faite
+
+        //on veut débloquer le bouton du jour suivant
+        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorBouton = etatBouton.edit();
+
+        Set<String> defaultvalueset = new HashSet<>();
+        defaultvalueset.add("");
+
+        Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
+        boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
+        editorBouton.commit();
 
         if (view.equals(boutonFini)) {
             points += 1;   // si bouton Fini clique : +1 point !
 
             ///on va enregistrer le fait que la recette a été faite et le score du joueur
-            sp =getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
+            spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
-            editor.putBoolean("r"+ numeroRecette + "finie", true);
+            editor.putBoolean("r" + numeroRecette + "finie", true);
             editor.apply();
 
 
             ///on veut aller à l'activité qui permet de commenter la recette, en transmettant à cette activité le numéro de la recette faite
-            Intent versCommentRecetteActivity=new Intent();
-            versCommentRecetteActivity.setClass(this,CommentRecetteActivity.class);
+            Intent versCommentRecetteActivity = new Intent();
+            versCommentRecetteActivity.setClass(this, CommentRecetteActivity.class);
             versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
             startActivity(versCommentRecetteActivity);
 
@@ -152,29 +172,27 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         if (view.equals(boutonPasse)) {
 
             ///on enregistre le fait que le score du joueur n'a pas changé et que l'a recette n'a pas été faite
-            sp =getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
+            spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
-            editor.putBoolean("r"+ numeroRecette + "finie", false);
+            editor.putBoolean("r" + numeroRecette + "finie", false);
             editor.apply();
 
 
             // si on n'est pas au dernier jour de la semaine, ca nous ramene a l'écran des jours
-            if (numeroJour < 7) {
+            if (numeroJour < 6) {
                 Intent versEcranJour = new Intent();
                 versEcranJour.setClass(this, ChoixJoursActivity.class);
                 startActivity(versEcranJour);
                 finish();
             }
             //si on est au dernier jour, ca nous ramene à l'écran semaine.
-            if (numeroJour == 7) {
+            if (numeroJour == 6) {
                 Intent versEcranSemaine = new Intent();
                 versEcranSemaine.setClass(this, SemaineActivity.class);
                 startActivity(versEcranSemaine);
                 finish();
             }
         }
-
-
-
-    */
+    }
+}
