@@ -15,11 +15,14 @@ public class Recette {
     //temps
     private int tempsdecuisine;
 
+    // numéro recette
+    private int numeroRecette;
+
     /** creer une nouvelle recette
      *
      */
 
-    public Recette(String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
+    public Recette(int numeroRecette, String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
         this.titre=titre;
         this.tempsdecuisine=tempsdecuisine;
         this.lesIngredients=lesIngredients;
@@ -64,6 +67,9 @@ public class Recette {
 
     //obtenir les instructions de cuisine
     public String getInstructions() { return instructions; }
+
+    //obtenir numero de recette
+    public int getNumeroRecette(){return numeroRecette;}
 }
 
 
