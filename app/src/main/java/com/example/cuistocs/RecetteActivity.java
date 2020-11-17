@@ -77,7 +77,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","sel"));
         lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","poivre"));
 
-        livreRecettes.add(new Recette(1,"Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"\n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"\n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"\n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise"));
+        livreRecettes.add(new Recette(1,"Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"\n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"\n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"\n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
 
 
        // Recette recette=matriceRecette[numeroSemaine][numeroJour];
@@ -88,14 +88,16 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         String Titre=recette.getTitre();
 
     TextView ViewTempsDeCuisine=findViewById(R.id.tempsCuisine);
-    TextView ViewRecette=findViewById(R.id.Recette);
+    LinearLayout ViewRecette=findViewById(R.id.Recette);
     TextView ViewTitre=findViewById(R.id.Titre);
 
 
 
      ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
-    ViewRecette.setText(instructions);
-    ViewTitre.setText(Titre);
+     TextView ViewInstruction = new TextView(this);
+     ViewInstruction.setText(instructions);
+     ViewRecette.addView(ViewInstruction);
+     ViewTitre.setText(Titre);
 
         }
 
