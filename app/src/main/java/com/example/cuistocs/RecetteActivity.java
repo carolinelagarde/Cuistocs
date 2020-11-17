@@ -53,9 +53,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //////// accès à la matrice recette
 
         //Recette recette=matriceRecette[numeroSemaine][numeroJour];
-       // int tempsDeCuisine=recette.getTempsdecuisine();
-       // Vector<Ingredient> ingrédients=recette.getIngredients();
-       // String instructions=recette.getInstructions();
+      // int tempsDeCuisine=recette.getTempsdecuisine();
+      // Vector<Ingredient> ingrédients=recette.getIngredients();
+      // String instructions=recette.getInstructions();
 
 
 
