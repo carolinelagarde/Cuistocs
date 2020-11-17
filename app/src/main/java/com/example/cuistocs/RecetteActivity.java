@@ -32,8 +32,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     int numeroRecette;
     Vector<Ingredient> lesIngredients;
 
-    SharedPreferences sp;
     SharedPreferences etatBouton;
+    SharedPreferences spPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
            - 0 si aucun point n'a été marqué
            - le nombre de points mémorisés en sharedPreferences si des points on deja ete marques
          */
-        SharedPreferences sp = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-        if (sp.contains("nombrePoints")) {
-            points = sp.getInt("nombrePoints", -1);
+        SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+        if (spPoints.contains("nombrePoints")) {
+            points = spPoints.getInt("nombrePoints", -1);
         } else { points = 0; }
 
 
@@ -120,7 +120,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             TextView tv=new TextView(this);
             tv.setText(TexteIngredient);
             ListeIngredients.addView(tv);
-    }}
+
+        }
+    }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -151,11 +153,12 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             points += 1;   // si bouton Fini clique : +1 point !
 
             ///on va enregistrer le fait que la recette a été faite et le score du joueur
-            sp = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
+            spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
             editor.putBoolean("r" + numeroRecette + "finie", true);
             editor.apply();
+
 
             ///on veut aller à l'activité qui permet de commenter la recette, en transmettant à cette activité le numéro de la recette faite
             Intent versCommentRecetteActivity = new Intent();
@@ -169,8 +172,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         if (view.equals(boutonPasse)) {
 
             ///on enregistre le fait que le score du joueur n'a pas changé et que l'a recette n'a pas été faite
-            sp = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sp.edit();
+            spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
             editor.putBoolean("r" + numeroRecette + "finie", false);
             editor.apply();
