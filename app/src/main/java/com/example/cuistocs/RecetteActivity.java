@@ -120,27 +120,33 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             SharedPreferences.Editor editor = sp.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
             editor.apply();
+            Intent versCommentRecetteActivity=new Intent();
+            versCommentRecetteActivity.setClass(this,CommentRecetteActivity.class);
+            versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
+            startActivity(versCommentRecetteActivity);
+        }
+        if (view.equals(boutonPasse)){
+
+            // si on n'est pas au dernier jour de la semaine, ca nous ramene a l'écran des jours
+            if (numeroJour < 7) {
+                Intent versEcranJour = new Intent();
+                versEcranJour.setClass(this, ChoixJoursActivity.class);
+                startActivity(versEcranJour);
+                finish();
+            }
+            //si on est au dernier jour, ca nous ramene à l'écran semaine.
+            if (numeroJour ==7) {
+                Intent versEcranSemaine = new Intent();
+                versEcranSemaine.setClass(this, SemaineActivity.class);
+                startActivity(versEcranSemaine);
+                finish();
+            }
+
+
         }
 
-        // si on n'est pas au dernier jour de la semaine, ca nous ramene a l'écran des jours
-        if (numeroJour < 7) {
-            Intent versEcranJour = new Intent();
-            versEcranJour.setClass(this, ChoixJoursActivity.class);
-            startActivity(versEcranJour);
-            finish();
-        }
-        //si on est au dernier jour, ca nous ramene à l'écran semaine.
-        if (numeroJour ==7) {
-            Intent versEcranSemaine = new Intent();
-            versEcranSemaine.setClass(this, SemaineActivity.class);
-            startActivity(versEcranSemaine);
-            finish();
-        }
 
-        Intent versCommentRecetteActivity=new Intent();
-        versCommentRecetteActivity.setClass(this,CommentRecetteActivity.class);
-        versCommentRecetteActivity.putExtra("titre recette", recette.getTitre());
-        startActivity(versCommentRecetteActivity);
+
     }
 
 
