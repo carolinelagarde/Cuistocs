@@ -11,12 +11,6 @@ import java.util.Vector;
 public class Menu {
     private static Vector<Recette> livreRecettes;
 
-    Set listeJoursDebloques;
-    Set calendrierRecettes;
-    SharedPreferences spSetOrdre;
-    public SharedPreferences etatBouton;
-
-
 
     public Menu(){
         livreRecettes=new Vector<>();
@@ -57,22 +51,6 @@ public class Menu {
     }
 
 
-    public Recette getCurrentRecette(){
-        //Creation d'un valeur par defaut pour le sharedPreferences
-        Set<String> defaultvalueset= new HashSet<>();
-        defaultvalueset.add("");
-
-        calendrierRecettes = spSetOrdre.getStringSet("setOrdre", defaultvalueset);
-
-        //recuperation de l'indice du jour
-        listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
-        int nombreJoursDebloques = listeJoursDebloques.size();
-
-        Object[] tableauJoursDebloques = listeJoursDebloques.toArray();
-
-        return (Recette) tableauJoursDebloques[nombreJoursDebloques];
-
-    }
 
 }
 

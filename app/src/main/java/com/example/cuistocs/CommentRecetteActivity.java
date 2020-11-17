@@ -12,12 +12,20 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CommentRecetteActivity extends AppCompatActivity {
 
     int numeroRecette;
     EditText commentaireRecetteEditText;  //la view où l'utiliateur rentre le commentaire de la recette
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
+
+    Set listeJoursDebloques;
+    Set calendrierRecettes;
+    SharedPreferences spSetOrdre;
+    public SharedPreferences etatBouton;
 
 
     @Override
@@ -65,6 +73,23 @@ public class CommentRecetteActivity extends AppCompatActivity {
         versAppSMS.putExtra("sms_body", messageSMS);
         Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
         startActivity(choixAppSMS);
+    }
+
+    public Recette getCurrentRecette(){
+        //Creation d'un valeur par defaut pour le sharedPreferences
+        Set<String> defaultvalueset= new HashSet<>();
+        defaultvalueset.add("");
+
+        calendrierRecettes = spSetOrdre.getStringSet("setOrdre", defaultvalueset);
+
+        //recuperation de l'indice du jour
+        listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
+        int nombreJoursDebloques = listeJoursDebloques.size();
+
+        Object[] tableauJoursDebloques = listeJoursDebloques.toArray();
+
+        return (Recette)tableauJoursDebloques[nombreJoursDebloques];
+
     }
 
 }
