@@ -15,6 +15,8 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 
@@ -31,6 +33,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Vector<Ingredient> lesIngredients;
 
     SharedPreferences sp;
+    SharedPreferences etatBouton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,17 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         numeroRecette=recette.getNumeroRecette();  //on récupère le numéro de la recette faite
 
+        //on veut débloquer le bouton du jour suivant
+        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorBouton = etatBouton.edit();
+
+        Set<String> defaultvalueset = new HashSet<>();
+        defaultvalueset.add("");
+
+        Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
+        boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
+        editorBouton.commit();
+
         if (view.equals(boutonFini)) {
             points += 1;   // si bouton Fini clique : +1 point !
 
@@ -142,7 +156,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             editor.putInt("nombrePointsDejaGagnes", points);
             editor.putBoolean("r" + numeroRecette + "finie", true);
             editor.apply();
-
 
             ///on veut aller à l'activité qui permet de commenter la recette, en transmettant à cette activité le numéro de la recette faite
             Intent versCommentRecetteActivity = new Intent();

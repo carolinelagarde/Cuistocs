@@ -73,13 +73,13 @@ public class ChoixJoursActivity extends AppCompatActivity {
 
         etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = etatBouton.edit();
-        Set<String> boutonDebloqueSet = new HashSet<>();
+        Set<String> boutonDebloqueSet = etatBouton.getStringSet("boutonDebloque",defaultvalueset);
+
         boutonDebloqueSet.add("jour1semaine0");
         editor.putStringSet("boutonDebloque", boutonDebloqueSet);
+        editor.commit();
 
-        if (jour == 0 | etatBouton.getStringSet("boutonDebloque", defaultvalueset).contains("jour7semaine" + (numeroSemaine - 1))) {
-
-
+        if (jour == 0 | boutonDebloqueSet.contains("jour"+(jour-1)+"semaine" +numeroSemaine)) {
             Intent messageVersRecetteActivity = new Intent();
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
             messageVersRecetteActivity.putExtra("numero jour", jour);
