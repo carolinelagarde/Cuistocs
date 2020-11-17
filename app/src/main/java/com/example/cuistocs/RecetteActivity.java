@@ -7,11 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
-import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -20,14 +17,14 @@ import java.util.Vector;
 
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
-    public int points;
-// checker pourquoi il reconnait pas la variable, et push car j'ai modifie l'erreur
+    int points;
+    // checker pourquoi il reconnait pas la variable, et push car j'ai modifie l'erreur
     Button boutonFini;
     Button boutonPasse;
     Recette recette;
     int numeroJour;
     int numeroSemaine;
-    Vector<Ingredient> lesIngrédients;
+    Vector<Ingredient> lesIngredients;
 
     SharedPreferences sp;
 
@@ -59,11 +56,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
 
-        Intent messagedeSemaineActivity=getIntent() ;
-        numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
+        Intent messagedeSemaineActivity = getIntent();
+        numeroSemaine = messagedeSemaineActivity.getIntExtra("indiceSemaine", -1);
 
 
-        SeekBar barre=findViewById(R.id.seekBar); // barre de choix du nombre d'invités
+        SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
 
         //////// accès à la matrice recette de test
@@ -77,13 +74,13 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","sel"));
         lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","poivre"));
 
-        livreRecettes.add(new Recette("Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"\n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"\n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"\n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
+        livreRecettes.add(new Recette(1,"Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"\n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"\n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"\n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
 
 
        // Recette recette=matriceRecette[numeroSemaine][numeroJour];
         Recette recette=livreRecettes.get(0);
         int tempsDeCuisine=recette.getTempsdecuisine();
-        lesIngrédients = recette.getIngredients();
+        lesIngredients = recette.getIngredients();
         String instructions=recette.getInstructions();
         String Titre=recette.getTitre();
 
@@ -107,16 +104,16 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         TextView NbInvites =findViewById(R.id.NbInvites); //on affiche le nombre d'invités choisis
         NbInvites.setText(Integer.toString(progress));
-        LinearLayout ListeIngrédients=findViewById(R.id.Ingrédients);
-        ListeIngrédients.removeAllViewsInLayout();
-        for (int i=0;i<lesIngrédients.size();i++){
-            Ingredient ingrédient=lesIngrédients.get(i);
-            String Quantité;
-            Quantité = Integer.toString(ingrédient.getQuantité(progress));
-            String TexteIngrédient=Quantité+" "+ingrédient.getUnite()+" "+ingrédient.getIngredient();
+        LinearLayout ListeIngredients=findViewById(R.id.Ingredients);
+        ListeIngredients.removeAllViewsInLayout();
+        for (int i = 0; i< lesIngredients.size(); i++){
+            Ingredient ingredient= lesIngredients.get(i);
+            String Quantite;
+            Quantite = Integer.toString(ingredient.getQuantité(progress));
+            String TexteIngredient=Quantite+" "+ingredient.getUnite()+" "+ingredient.getIngredient();
             TextView tv=new TextView(this);
-            tv.setText(TexteIngrédient);
-            ListeIngrédients.addView(tv);
+            tv.setText(TexteIngredient);
+            ListeIngredients.addView(tv);
     }}
 
     @Override

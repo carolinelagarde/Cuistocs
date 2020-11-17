@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -45,5 +46,22 @@ public class CommentRecetteActivity extends AppCompatActivity {
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
-}
 
+
+    /*
+    public void partageSMS(View view) {
+
+        String messageSMS = String.format("Toi aussi découvre cette recette !\n"
+                + recetteEnCours.getTitre() + "\n"
+                + recetteEnCours.getIngredients() + "\n"
+                + recetteEnCours.getTempsDeCuisine() + "\n"
+                + recetteEnCours.getInstructions() + "\n");
+        Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
+        versAppSMS.setData(Uri.parse("smsto:"));
+        versAppSMS.putExtra("sms_body", messageSMS);
+        Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
+        startActivity(choixAppSMS);
+    }
+    */
+
+}
