@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
-        android:onClick="versSemaine"
+        android:onClick="versConfirmation"
         android:text="Je commence le défi !"
         app:backgroundTint="#AC0404"
         app:layout_constraintBottom_toBottomOf="parent"
