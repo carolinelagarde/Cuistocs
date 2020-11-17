@@ -2,6 +2,10 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
@@ -20,4 +24,20 @@ public class CommentRecetteActivity extends AppCompatActivity {
         float note= rb.getRating();
         Toast.makeText(this, "note:"+ note, Toast.LENGTH_SHORT).show();
     }
+
+
+    public void partageSMS(View view) {
+
+        String messageSMS = String.format("Toi aussi découvre cette recette !\n"
+                + recetteEnCours.getTitre() + "\n"
+                + recetteEnCours.getIngredients() + "\n"
+                + recetteEnCours.getTempsDeCuisine() + "\n"
+                + recetteEnCours.getInstructions() + "\n");
+        Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
+        versAppSMS.setData(Uri.parse("smsto:"));
+        versAppSMS.putExtra("sms_body", messageSMS);
+        Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
+        startActivity(choixAppSMS);
+    }
+
 }
