@@ -20,7 +20,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     Button boutonFini;
     Button boutonPasse;
-
+    Recette recette;
     int numeroJour;
     int numeroSemaine;
     @Override
@@ -51,6 +51,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         barre.setOnSeekBarChangeListener(this);
 
         //////// accès à la matrice recette
+
 
         //Recette recette=matriceRecette[numeroSemaine][numeroJour];
        // int tempsDeCuisine=recette.getTempsdecuisine();
@@ -100,6 +101,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             startActivity(versEcranSemaine);
             finish();
         }
+
+        Intent versCommentRecetteActivity=new Intent();
+        versCommentRecetteActivity.setClass(this,CommentRecetteActivity.class);
+        versCommentRecetteActivity.putExtra("titre recette", recette.getTitre());
+        startActivity(versCommentRecetteActivity);
     }
 
 
