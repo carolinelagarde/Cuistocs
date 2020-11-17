@@ -2,6 +2,8 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +12,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ChoixJoursActivity extends AppCompatActivity {
+    int numeroSemaine;
 
     View Jour1= findViewById(R.id.jour1);
     View Jour2= findViewById(R.id.jour2);
@@ -21,11 +27,16 @@ public class ChoixJoursActivity extends AppCompatActivity {
     View Jour7= findViewById(R.id.jour7);
     int jour;
 
+    public SharedPreferences etatBouton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_jours);
-        //test caro
+
+        //recupere le numero de la semaine
+        Intent messagedeSemaineActivity=getIntent() ;
+        numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1);
     }
 
     public void allerVersRecetteActivity(View view) {
@@ -47,10 +58,24 @@ public class ChoixJoursActivity extends AppCompatActivity {
 
         //debloque le jour que si le jour précédent a été développé
 
-        Intent messageVersRecetteActivity = new Intent();
-        messageVersRecetteActivity.setClass(this, RecetteActivity.class);
-        messageVersRecetteActivity.putExtra("numero jour", jour);
-        startActivity(messageVersRecetteActivity);
+        Set<String> defaultvalueset= new HashSet<>();
+        defaultvalueset.add("");
+
+        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = etatBouton.edit();
+        Set<String> boutonDebloqueSet= new HashSet<>();
+        boutonDebloqueSet.add("jour1semaine0");
+        editor.putStringSet("boutonDebloque",boutonDebloqueSet);
+
+        if (jour==0| etatBouton.getStringSet("boutonDebloque",defaultvalueset).contains("jour7semaine"+(numeroSemaine-1))) {
+
+            //transmet a recette activity le numero du jour
+            Intent messageVersRecetteActivity = new Intent();
+            messageVersRecetteActivity.setClass(this, RecetteActivity.class);
+            messageVersRecetteActivity.putExtra("numero jour", jour);
+
+            startActivity(messageVersRecetteActivity);
+        }
 
     }
 }

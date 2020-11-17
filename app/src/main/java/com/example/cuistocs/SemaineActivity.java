@@ -2,13 +2,17 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.lang.reflect.Array;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 public class SemaineActivity extends AppCompatActivity {
@@ -19,30 +23,29 @@ public class SemaineActivity extends AppCompatActivity {
     Button semaine3;
     Button semaine4;
 
-    //creation d'une matrice pour mettre à jour les boutons à débloquer au fur et à mesure
-    public String[][] debloque;
-
+    //creation d'un vecteur pour mettre à jour les boutons à débloquer au fur et à mesure
+    public SharedPreferences etatBouton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semaine);
 
+        //on cree en memoire de quoi garder si les boutons sont bloques ou non
+        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = etatBouton.edit();
+
+        Set<String> boutonDebloqueSet= new HashSet<>();
+        boutonDebloqueSet.add("jour1semaine0");
+        editor.putStringSet("boutonDebloque",boutonDebloqueSet);
+
+
         Button semaine1 = findViewById(R.id.boutonSemaine1);
         Button semaine2 = findViewById(R.id.boutonSemaine2);
         Button semaine3 = findViewById(R.id.boutonSemaine3);
         Button semaine4 = findViewById(R.id.boutonSemaine4);
 
-        //initialement seul le bouton jour1 est débloqué
-        debloque = new String[4][7];
 
-        for (int semaine = 0; semaine < 4; semaine++) {
-            for (int jourdelasemaine = 0; jourdelasemaine < 7; jourdelasemaine++) {
-                debloque[semaine][jourdelasemaine] = "non";
-            }
-        }
-
-        debloque[0][0] = "oui";
 
     }
 
@@ -65,14 +68,25 @@ public class SemaineActivity extends AppCompatActivity {
             Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
+        Set<String> defaultvalueset= new HashSet<>();
+        defaultvalueset.add("");
 
-        //le bouton de la semaine est débloqué que si c'est la semaine 1 ou que le jour 7 de la semaine précédente est débloqué
-        if (numeroSemaine == 0 || debloque[numeroSemaine-1][6].equals("oui")) {
+       //passe à l'activité suivante que si les boutons sont débloqués
+        if (numeroSemaine==0 | etatBouton.getStringSet("boutonDebloque",defaultvalueset).contains("jour7semaine"+(numeroSemaine-1))){
+
+            //transmet le numero de semaine et la matrice debloque a l'activité recette et choixjours
+
+
+            //vers activité semaine
             Intent versActiviteSemaine = new Intent();
             versActiviteSemaine.setClass(this, RecetteActivity.class);
-
-
             versActiviteSemaine.putExtra("indiceSemaine", numeroSemaine);
+
+            //vers activité jour
+            Intent versActiviteChoixJours = new Intent();
+            versActiviteChoixJours.setClass(this, ChoixJoursActivity.class);
+            versActiviteChoixJours.putExtra("indiceSemaine", numeroSemaine);
+
             startActivity(versActiviteSemaine);
 
         }

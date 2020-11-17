@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
 import android.widget.Button;
@@ -23,6 +24,10 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     int numeroJour;
     int numeroSemaine;
+    String[][] debloque;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +48,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
 
-        Intent messagedeSemaineActivity=getIntent() ;
+        Intent messagedeSemaineActivity=getIntent();
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
+        Bundle b = messagedeSemaineActivity.getExtras();
+        debloque = (String [][]) b.getSerializable("debloque");
 
         SeekBar barre=findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
@@ -80,7 +87,12 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     }
 
+    //commenter cette fonction : une fonction pour les deux boutons ?
     void finRecette(View view) {
+
+        //on debloque une nouvelle recette
+        debloque[numeroSemaine][numeroJour]="oui";
+
         // si bouton Fini clique : +1 point !
         if (view.equals(boutonFini)) {
             points += 1;
