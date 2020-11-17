@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.Vector;
+
 
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
@@ -26,8 +28,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recette);
 
-        Button boutonFini = findViewById(R.id.boutonFini);
-        Button boutonPasse = findViewById(R.id.boutonPasse);
+        //affecte les deux boutons
+        boutonFini = findViewById(R.id.boutonFini);
+        boutonPasse = findViewById(R.id.boutonPasse);
 
         //il faut insérer un sharedpreference et unif pour recuperer la valeur du score si stockée, ou bien initier points à 0
 
@@ -43,13 +46,20 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         Intent messagedeSemaineActivity=getIntent() ;
         numeroSemaine=messagedeSemaineActivity.getIntExtra("indiceSemaine",-1) ;
 
-        String[][] matriceRecette;
-        TextView textViewRecette=findViewById(R.id.textView2);  //on crée le textview dans lequel la recette va être affichée
-
-        //textViewRecette.setText(matriceRecette[numeroSemaine][numeroJour]);
 
         SeekBar barre=findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
+
+        //////// accès à la matrice recette
+
+        //Recette recette=matriceRecette[numeroSemaine][numeroJour];
+       // int tempsDeCuisine=recette.getTempsdecuisine();
+       // Vector<Ingredient> ingrédients=recette.getIngredients();
+       // String instructions=recette.getInstructions();
+
+
+
+
 
 
     }
