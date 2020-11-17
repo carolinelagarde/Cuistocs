@@ -9,23 +9,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class ChoixJoursActivity extends AppCompatActivity {
 
-    View Jour1= findViewById(R.id.jour1);
-    View Jour2= findViewById(R.id.jour2);
-    View Jour3= findViewById(R.id.jour3);
-    View Jour4= findViewById(R.id.jour4);
-    View Jour5= findViewById(R.id.jour5);
-    View Jour6= findViewById(R.id.jour6);
-    View Jour7= findViewById(R.id.jour7);
+    Button Jour1;
+    Button Jour2;
+    Button Jour3;
+    Button Jour4;
+    Button Jour5;
+    Button Jour6;
+    Button Jour7;
     int jour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_jours);
-        //test caro
+         Jour1= findViewById(R.id.jour1);
+        Jour2= findViewById(R.id.jour2);
+        Jour3= findViewById(R.id.jour3);
+         Jour4= findViewById(R.id.jour4);
+        Jour5= findViewById(R.id.jour5);
+       Jour6= findViewById(R.id.jour6);
+         Jour7= findViewById(R.id.jour7);
     }
 
     public void allerVersRecetteActivity(View view) {

@@ -68,12 +68,10 @@ public class SemaineActivity extends AppCompatActivity {
 
         //le bouton de la semaine est débloqué que si c'est la semaine 1 ou que le jour 7 de la semaine précédente est débloqué
         if (numeroSemaine == 0 || debloque[numeroSemaine-1][6].equals("oui")) {
-            Intent versActiviteSemaine = new Intent();
-            versActiviteSemaine.setClass(this, RecetteActivity.class);
-
-
-            versActiviteSemaine.putExtra("indiceSemaine", numeroSemaine);
-            startActivity(versActiviteSemaine);
+            Intent versJour = new Intent();
+            versJour.setClass(this, ChoixJoursActivity.class);
+            versJour.putExtra("indiceSemaine", numeroSemaine);
+            startActivity(versJour);
 
         }
 
