@@ -21,6 +21,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Button boutonFini;
     Button boutonPasse;
 
+
     int numeroJour;
     int numeroSemaine;
     @Override
@@ -81,7 +82,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
     void finRecette(View view) {
+
         // si bouton Fini clique : +1 point !
+
         if (view.equals(boutonFini)) {
             points += 1;
         }
