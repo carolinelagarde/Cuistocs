@@ -15,9 +15,9 @@ import android.widget.TextView;
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     public int points;
-
-    Button boutonFini = findViewById(R.id.boutonFini);
-    Button boutonPasse = findViewById(R.id.boutonPasse);
+// checker pourquoi il reconnait pas la variable, et push car j'ai modifie l'erreur
+    Button boutonFini;
+    Button boutonPasse;
 
     int numeroJour;
     int numeroSemaine;
@@ -25,6 +25,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recette);
+
+        Button boutonFini = findViewById(R.id.boutonFini);
+        Button boutonPasse = findViewById(R.id.boutonPasse);
 
         //il faut insérer un sharedpreference et unif pour recuperer la valeur du score si stockée, ou bien initier points à 0
 
