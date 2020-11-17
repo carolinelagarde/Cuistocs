@@ -46,12 +46,13 @@ public class AccueilActivity extends AppCompatActivity {
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         for (int i=0;i<28;i++) {
                             set.add(""+LivreRecette.get(i).getNumeroRecette()+"");
                         }
 
                         editor.putStringSet("setOrdre",set);
+                        Log.i("définition du set","effectuée");
 
                     }
                 });

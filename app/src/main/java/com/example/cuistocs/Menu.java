@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Vector;
 
 public class Menu {
-    private Vector<Recette> livreRecettes;
+    private static Vector<Recette> livreRecettes;
 
     public Menu(){
         livreRecettes=new Vector<>();
@@ -34,7 +34,7 @@ public class Menu {
 
 
 }
-    public Vector<Recette> getMenu(){
+    public static Vector<Recette> getMenu(){
         Vector<Recette> Menu=new Vector<>(livreRecettes.size());
         Collections.copy(Menu,livreRecettes);
         Collections.shuffle(Menu);
