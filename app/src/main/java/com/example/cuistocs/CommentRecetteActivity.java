@@ -85,7 +85,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         //recuperation de l'indice du jour : je n'y arrive pas. Je prends donc la recette 1 (pour changer)
 
 
-        int nombreJoursDebloques = listeJoursDebloques.size();
+
         Menu menu= new Menu();
 
 
