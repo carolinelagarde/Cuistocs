@@ -26,7 +26,7 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
 
         TextView Periode=findViewById(R.id.Periode);
         LinearLayout Liste=findViewById(R.id.Liste);
-        SharedPreferences sp=getSharedPreferences("", Context.MODE_PRIVATE);
+        SharedPreferences sp=getSharedPreferences("lien", Context.MODE_PRIVATE);
 
         Periode.setText(String.format("des recettes %1d à %2d!pour 1 personne",jourDebut,jourFin));
         for (int i=jourDebut;i<=jourFin;i++){

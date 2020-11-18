@@ -30,7 +30,9 @@ public class AccueilActivity extends AppCompatActivity {
     }
 
     public void versSemaine(View view) {
-
+        Intent versSemaine=new Intent();
+        versSemaine.setClass(this,SemaineActivity.class);
+        startActivity(versSemaine);
     }
 
     public void versConfirmation(View view) {
@@ -45,6 +47,10 @@ public class AccueilActivity extends AppCompatActivity {
 
                         sharedPreferences = getSharedPreferences("lien", MODE_PRIVATE);
                         editor = sharedPreferences.edit();
+                        editor.clear();
+
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        editor=preferences.edit();
 
                         for (int i=0;i<2;i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
