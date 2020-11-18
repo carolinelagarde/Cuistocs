@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
 
+        //on déclare le provider qui va permettre d'accéder au fichier externe
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="$(applicationId).provider"
