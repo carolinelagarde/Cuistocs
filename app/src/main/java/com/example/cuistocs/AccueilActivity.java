@@ -41,9 +41,6 @@ public class AccueilActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Vector<Recette> LivreRecette = Menu.getMenu();
-                        Set<String> set=new Set<String>() {
-                        }
-
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         editor=preferences.edit();
