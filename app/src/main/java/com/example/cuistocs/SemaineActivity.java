@@ -10,10 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 public class SemaineActivity extends AppCompatActivity {
 
@@ -24,7 +22,7 @@ public class SemaineActivity extends AppCompatActivity {
     Button semaine4;
 
     //creation d'un vecteur pour mettre à jour les boutons à débloquer au fur et à mesure
-    public SharedPreferences etatBouton;
+    public SharedPreferences spEtatBouton;
 
 
     @Override
@@ -33,18 +31,18 @@ public class SemaineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_semaine);
 
         //on cree en memoire de quoi garder si les boutons sont bloques ou non
-        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = etatBouton.edit();
+        spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = spEtatBouton.edit();
 
         Set<String> boutonDebloqueSet= new HashSet<>();
-        boutonDebloqueSet.add("jour1semaine0");
+        boutonDebloqueSet.add("jour0semaine0");
         editor.putStringSet("boutonDebloque",boutonDebloqueSet);
         editor.commit();
 
-        Button semaine1 = findViewById(R.id.boutonSemaine1);
-        Button semaine2 = findViewById(R.id.boutonSemaine2);
-        Button semaine3 = findViewById(R.id.boutonSemaine3);
-        Button semaine4 = findViewById(R.id.boutonSemaine4);
+        semaine1 = findViewById(R.id.boutonSemaine1);
+        semaine2 = findViewById(R.id.boutonSemaine2);
+        semaine3 = findViewById(R.id.boutonSemaine3);
+        semaine4 = findViewById(R.id.boutonSemaine4);
 
     }
 
@@ -54,25 +52,25 @@ public class SemaineActivity extends AppCompatActivity {
             numeroSemaine = 0;
             Log.i("boutonSemaineClique", "semaine 1 selectionnee");
         }
-        if (view.equals(semaine2)) {
+        else if (view.equals(semaine2)) {
             numeroSemaine = 1;
             Log.i("boutonSemaineClique", "semaine 2 selectionnee");
         }
-        if (view.equals(semaine3)) {
+        else if (view.equals(semaine3)) {
             numeroSemaine = 2;
             Log.i("boutonSemaineClique", "semaine 3 selectionnee");
         }
-        if (view.equals(semaine4)) {
+        else if (view.equals(semaine4)) {
             numeroSemaine = 3;
             Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
-
+        //avoir un StringSet neutre
         Set<String> defaultvalueset= new HashSet<>();
         defaultvalueset.add("");
 
         //passe à l'activité suivante que si les boutons sont débloqués
-        if (numeroSemaine==0 | etatBouton.getStringSet("boutonDebloque",defaultvalueset).contains("jour7semaine"+(numeroSemaine-1))){
+        if (numeroSemaine==0 || spEtatBouton.getStringSet("boutonDebloque",defaultvalueset).contains("jour6semaine"+(numeroSemaine-1))){
 
             Intent versJour = new Intent();
             versJour.setClass(this, ChoixJoursActivity.class);
