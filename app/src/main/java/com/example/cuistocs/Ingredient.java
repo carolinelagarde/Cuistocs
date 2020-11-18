@@ -16,8 +16,6 @@ public class Ingredient {
         this.ingredient=ingredient;
     }
 
-    //obtenir la quantité nécessaire d'un ingrédient
-    public int getQuantite() {return quantite;}
 
     //obtenir l'unité de l'ingrédient
     public String getUnite() {return unite;}
