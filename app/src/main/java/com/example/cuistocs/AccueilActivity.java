@@ -45,6 +45,7 @@ public class AccueilActivity extends AppCompatActivity {
 
                         sharedPreferences = getSharedPreferences("lien", MODE_PRIVATE);
                         editor = sharedPreferences.edit();
+                        editor.clear();
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         editor=preferences.edit();
