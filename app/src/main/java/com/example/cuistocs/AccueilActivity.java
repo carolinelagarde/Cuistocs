@@ -54,10 +54,11 @@ public class AccueilActivity extends AppCompatActivity {
                         editor=preferences.edit();
 
                         for (int i=0;i<LivreRecette.size();i++) {
-                            editor.putString(Integer.toString(i),Integer.toString(LivreRecette.get(i).getNumeroRecette()));
+                            editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
+                            Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
                         }
 
-                        editor.commit();
+                        editor.apply();
                         Log.i("définition du set","effectuée");
 
                         Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
