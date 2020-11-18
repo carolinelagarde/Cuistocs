@@ -38,7 +38,7 @@ public class RecettesEffectuees extends AppCompatActivity {
         LinearLayout lay = findViewById(R.id.recetteseffectuees);
         lay.removeAllViews();
         //on récupère les recettes finies dans le fichier associé
-        sharedPreferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
 
 
 
@@ -64,7 +64,9 @@ public class RecettesEffectuees extends AppCompatActivity {
         Intent versAfficherRecettesEffectuées = new Intent();
         versAfficherRecettesEffectuées.setClass(this, AfficherRecettesEffectueesActivity.class);
         //on transfere les données de la recette séléctionnée
-
+        Button buttonClique= (Button)view;
+        String numeroRecette=buttonClique.getTag().toString();
+        versAfficherRecettesEffectuées.putExtra("numeroRecette",numeroRecette);
         startActivity(versAfficherRecettesEffectuées);
     }
 

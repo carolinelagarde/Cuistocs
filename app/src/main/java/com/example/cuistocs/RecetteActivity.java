@@ -172,7 +172,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         if (view.equals(boutonFini)) {
             //on indique que la recette est terminée
-            sharedPreferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
+            sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putBoolean("r" + numeroRecette + "finie", true);
             editor.commit();
