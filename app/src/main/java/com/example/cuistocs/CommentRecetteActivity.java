@@ -163,14 +163,15 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String photoPath=null;
 
      */
-    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-    Button btnPrendrePhoto;
+    //on définit l'imageView qui va afficher la photo
+
     ImageView imgAffichePhoto;
     String photoPath=null;
 
+
     public void prendrePhoto(View view) {
 
-        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+
 
         //on crée un intent pour ouvri la fenêtre pour prendre la photo
         Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -201,6 +202,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         //retour de l'appareil photo après le startactivityforresult
         protected void onActivityResult(int requestCode,int resultCode,Intent data){
+            imgAffichePhoto=findViewById(R.id.imageViewAfficherPhoto);
             super.onActivityResult(requestCode,resultCode,data);
             //vérifie le code de retour et l'état du retour ok
             if(requestCode==1 && resultCode==RESULT_OK) {
