@@ -37,6 +37,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
     Set calendrierRecettes;
     SharedPreferences spSetOrdre;
     SharedPreferences spCaracteristiqueRecette;
+    SharedPreferences.Editor editor;
+
+
+    Intent  messageVersAccueilActivity;
     public SharedPreferences etatBouton;
 
 
@@ -48,7 +52,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
-
+        Intent messageVersAccueilActivity;
         recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
 
     }
@@ -70,8 +74,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
     public void valider(View view) {
-        spCaracteristiqueRecette.
-        Intent messageVersAccueilActivity = new Intent();
+
+        messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
