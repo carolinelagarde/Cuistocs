@@ -40,6 +40,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
     Set calendrierRecettes;
     SharedPreferences spSetOrdre;
     SharedPreferences spCaracteristiqueRecette;
+    SharedPreferences.Editor editor;
+
+
+    Intent  messageVersAccueilActivity;
     public SharedPreferences etatBouton;
 
 
@@ -50,10 +54,13 @@ public class CommentRecetteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment_recette);
 
 
-        deRecetteActivity = getIntent();
+        Intent deRecetteActivity = getIntent();
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
+        editor=spCaracteristiqueRecette.edit();
+        Intent messageVersAccueilActivity;
+       // recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
         SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
 
 
@@ -76,6 +83,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
     public void valider(View view) {
+
+        messageVersAccueilActivity = new Intent();
 
         Intent messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
