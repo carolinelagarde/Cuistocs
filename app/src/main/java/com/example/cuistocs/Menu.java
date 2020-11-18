@@ -91,6 +91,43 @@ public class Menu {
 
         livreRecettes.add(new Recette(6,"Salade grecque", 15, lesIngredientsdelaRecette, "1)Lavez et coupez en quatre les tomates cerise. Nettoyez puis taillez le concombre en deux dans la longueur, puis en rondelles. Pelez, dégermez et émincez finement l’oignon rouge. Découpez la feta en cubes. Coupez en deux les olives noires, puis dénoyautez-les. /n 2)Dans un saladier, préparez la vinaigrette en mélangeant ensemble l’huile d’olive et le vinaigre de vin rouge. Saupoudrez d’herbes de Provence et assaisonnez de sel et de poivre, selon votre goût. Émulsionnez bien. /n 3)Ajoutez dans le saladier les olives noires dénoyautées, les cubes de feta, les tomates cerises, les rondelles de concombre et l’oignon rouge émincé. Remuez pour bien répartir la sauce dans toute la salade à la grecque. /n 4)C'est prêt! Servez et dégustez!"));
 
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","oeuf(s)"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"filet(s)","de poulet"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","petite salade verte"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"poignée(s)","de roquette"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","oignon doux"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"grammes","de mimolette"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à soupe","de yaourt ou fromage blanc"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à soupe","de moutarde à l'ancienne"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à soupe","de câpres"));
+
+
+
+        livreRecettes.add(new Recette(9,"Salade de poulet à la mimolette", 15, lesIngredientsdelaRecette, "1) Plongez les œufs dans une casserole d’eau bouillante et laissez-les cuire 8 mn. Passez-les aussitôt sous l’eau froide, roulez-les pour fendiller la coquille et laissez-les refroidir dans de l’eau froide. \n 2) Faites cuire les filets de poulet incisés et posés bien à plat dans une poêle huilée bien chaude, 3 à 4 mn de chaque côté, jusqu’à ce qu’ils soient dorés. Salez, poivrez, puis emballez-les aussitôt dans un papier alimentaire ou enfermez-les dans une boîte hermétique et laissez-les tiédir. \n 3) Rincez et essorez la salade et la roquette. Émincez finement l’oignon. Taillez la mimolette en fins copeaux. Mélangez le yaourt avec la moutarde, 3 c. à soupe d’huile d’olive, 1 pincée de sel et 1 pincée de poivre moulu, ajustez la consistance avec un peu d’eau pour obtenir une sauce crémeuse mais fluide. Écalez les œufs, coupez-les en quartiers, tranchez les filets de poulet en lanières. \n 4) Présentez les feuilles de salade et la roquette avec les lamelles de poulet, les copeaux de mimolette, les quartiers d’œufs durs, nappez de sauce et parsemez de câpres."));
+
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","poivron(s) rouge(s)"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","oignon jaune"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"gousse","d'ail"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"grammes","de potrines fumées en tranches"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"cl","de crème végétale"));
+        lesIngredientsdelaRecette.add(new Ingredient(100,"grammes","de pois chiches"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"grammes","de petit pois surgelés"));
+        lesIngredientsdelaRecette.add(new Ingredient(25,"grammes","de noix de cajous grillées"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à soupe","d'huile de cuisson"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à café","d'origan"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"pincée(s)","de paprika"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère(s) à soupe","de concentré de tomates"));
+
+
+
+
+
+
+        livreRecettes.add(new Recette(10,"Poivrons et pois chiches au lard fumé", 10, lesIngredientsdelaRecette, "1) Rincez et essuyez les poivrons. Épépinez-les et coupez-les en lanières. Rincez et égouttez les pois chiches. Épluchez et émincez l’oignon. Épluchez et ciselez finement l’ail. \n 2) Dans une cocotte, faites chauffer l’huile, ajoutez l’oignon et les tranches de poitrine fumée coupées en morceaux. Laissez rissoler 3 mn en remuant jusqu’à ce que l’oignon soit translucide. Ajoutez les poivrons, l’origan et l’ail, laissez cuire encore 5 mn en remuant régulièrement. Ajoutez le concentré de tomate, la crème végétale, les pois chiches, les petits pois, 1 pincée de sel et le paprika. Couvrez et laissez mijoter à feu doux pendant 10 mn. \n 3) Servez avec des noix de cajou grillées concassées."));
 
         lesIngredientsdelaRecette=new Vector<>();
 
@@ -198,6 +235,42 @@ public class Menu {
                         "8. ajouter du chili\n" +
                         "9. quand le riz est cuit, mélanger le tout"));
 
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(100,"grammes","de carottes"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"portion","de vachequirit"));
+      lesIngredientsdelaRecette.add(new Ingredient(10,"grammes","de beurre"));
+      lesIngredientsdelaRecette.add(new Ingredient(10,"grammes","de farine"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"","oeuf"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"cl","de lait"));
+      lesIngredientsdelaRecette.add(new Ingredient(5, "brins", "de ciboulette"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"pincée", "de cumin en poudre"));
+
+
+      livreRecettes.add(new Recette(17,"Soufflés de carotte à la Vache-qui-Rit", 25, lesIngredientsdelaRecette,
+              "1. Pelez les carottes, coupez-les en rondelles, puis faites-les cuire 15 mn à la vapeur. Réduisez-les en très fine purée avec un mixeur. Versez dans un saladier et laissez tiédir.\n" +
+                      "2. Préchauffez le four th. 5 (150 °C).\n" +
+                      "3. Préparez la béchamel : faites fondre les 40 g de beurre dans une petite casserole. \n Ajoutez la farine, laissez dorer à feu doux en remuant, puis ajoutez le lait. Salez, poivrez, ajoutez le cumin. \n Laissez cuire 10 mn à feu très doux en mélangeant. Hors du feu, ajoutez les portions de Vache-qui-Rit.\n" +
+                      "4. Versez la béchamel dans la purée de carottes. Ajoutez les jaunes d’œufs. Mélangez parfaitement, puis ajoutez la ciboulette ciselée. Montez les blancs en neige. Incorporez-les délicatement à la purée de carotte et versez dans un plat à soufflé légèrement beurré. Faites cuire 25 mn au four et servez sans attendre."));
+
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(30,"grammes","de feta"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"brins","de coriandre"));
+      lesIngredientsdelaRecette.add(new Ingredient(2,"","oeufs"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"grammes","de beurre demi-sel"));
+      lesIngredientsdelaRecette.add(new Ingredient(0,"","piment d'espelette"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère à café","d'huile d'olive'"));
+
+
+      livreRecettes.add(new Recette(18,"Brouillade feta-coriandre", 5, lesIngredientsdelaRecette,
+              "1. Émiettez la feta. Rincez, effeuillez et ciselez la coriandre.\n" +
+                      "2. Cassez les œufs dans un récipient et battez-les à la fourchette. Ajoutez du sel, du poivre et une pointe de piment d’Espelette.\n" +
+                      "3. Faites chauffer le beurre et l’huile d’olive dans une casserole. Ajoutez les œufs et laissez cuire sur feu très doux pendant 5 à 6 mn en remuant avec une cuillère en bois : ils doivent rester crémeux. Hors du feu, incorporez la feta et la coriandre.\n" +
+                      "4. Mélangez jusqu’à ce que le fromage ait fondu et servez bien chaud."));
+
+
+
 
 
     }
@@ -213,7 +286,19 @@ public class Menu {
        // }
         return Menu;
     }
+    public Recette getRecetteAvecNumero(int NumeroRecette) {
 
+
+        for (int i = 0; i <= livreRecettes.size(); i++) {
+            Recette RecetteATrouver = livreRecettes.get(i);
+            int numRecette = RecetteATrouver.getNumeroRecette();
+            if (numRecette == NumeroRecette) {
+                return RecetteATrouver;
+            }
+
+        }
+     return null;
+    }
 
 
 }

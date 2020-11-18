@@ -2,11 +2,13 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,7 +53,20 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
                Liste.addView(ListeDuJour);
 
             }
-
         }
+    }
+
+    public void commanderPepin(View view) {
+        String url = "https://impact.cs-campus.fr/pepin";
+        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH );
+        intent.putExtra(SearchManager.QUERY, url);
+        startActivity(intent);
+    }
+
+    public void commandeMiamLocale(View view) {
+        String url = "https://www.lamiamlocale.fr";
+        Intent intent = new Intent(Intent.ACTION_WEB_SEARCH );
+        intent.putExtra(SearchManager.QUERY, url);
+        startActivity(intent);
     }
 }
