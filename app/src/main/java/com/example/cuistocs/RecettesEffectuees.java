@@ -47,27 +47,24 @@ public class RecettesEffectuees extends AppCompatActivity {
             if (sharedPreferences.getBoolean(name, false)) {
 
                 Button button = new Button(getApplicationContext());
-                button.setText("Recette" + ""+i+"");
+                button.setText("Recette" + " " + ""+i+"");
                 button.setOnClickListener(this::onClick);
                 button.setTag(Integer.toString(i));
                 lay.addView(button);
-
-            } else {
-                //à changer car les recettes peuvent ne pas être dans le bon ordre
-                break;
             }
         }
     }
     public void onClick(View view) {
         Button boutonClique = (Button)view;
         //On passe vers l'affichage des recettes
-        Intent versAfficherRecettesEffectuées = new Intent();
-        versAfficherRecettesEffectuées.setClass(this, AfficherRecettesEffectueesActivity.class);
+        Intent versAfficherRecettesEffectuees = new Intent();
+        versAfficherRecettesEffectuees.setClass(this, AfficherRecettesEffectueesActivity.class);
         //on transfere les données de la recette séléctionnée
         Button buttonClique= (Button)view;
         String numeroRecette=buttonClique.getTag().toString();
-        versAfficherRecettesEffectuées.putExtra("numeroRecette",numeroRecette);
-        startActivity(versAfficherRecettesEffectuées);
+        versAfficherRecettesEffectuees.putExtra("numeroRecette",numeroRecette);
+        startActivity(versAfficherRecettesEffectuees);
+        Log.i("numrecette","ok");
     }
 
 }

@@ -45,19 +45,16 @@ public class CommentRecetteActivity extends AppCompatActivity {
     int numeroRecette;
     int numeroJour;
     int numeroSemaine;
-    EditText commentaireRecetteEditText;  //la view où l'utiliateur rentre le commentaire de la recette
+    EditText Commentaire; //la view où l'utiliateur rentre le commentaire de la recette
     String commentaireRecette;   //la string associée à ce commentaire
-    Recette recetteEnCours;
 
-    Set listeJoursDebloques;
-    Set calendrierRecettes;
-    SharedPreferences spSetOrdre;
+
     SharedPreferences spCaracteristiqueRecette;
     SharedPreferences.Editor editor;
-
+    RatingBar rb;
 
     Intent  messageVersAccueilActivity;
-    public SharedPreferences etatBouton;
+
 
 
 
@@ -76,15 +73,18 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 
 
-
+        //Recuperation des données
         Intent deRecetteActivity = getIntent();
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
-        spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
+        numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
+
+        //Init du sp
+        spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
-        Intent messageVersAccueilActivity;
-       // recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
-        SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
+
+
+
 
 
     }
@@ -95,18 +95,20 @@ public class CommentRecetteActivity extends AppCompatActivity {
         float note = rb.getRating();  //on récupère la note que l'utilisateur entre dans la rating bar
         Toast.makeText(this, "note:" + note, Toast.LENGTH_SHORT).show(); //on montre à l'utilisateur la note qu'il a mise
 
+        Commentaire=findViewById(R.id.Commentaire);
+        commentaireRecette=Commentaire.getText().toString();
 
         //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences
-        SharedPreferences sp = getSharedPreferences("memonote", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putFloat("r" + numeroRecette + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
-        editor.putString("r" + numeroRecette + "commentaire", commentaireRecette);
+
+        editor.putFloat("r" + Integer.toString(numeroRecette) + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
+        editor.putString("r" + Integer.toString(numeroRecette) + "commentaire", commentaireRecette);
         editor.apply();
 
     }
 
     public void valider(View view) {
-
+        rb=findViewById(R.id.ratingBar);
+        enregistrer(rb);
         messageVersAccueilActivity = new Intent();
 
         Intent messageVersAccueilActivity = new Intent();
@@ -121,7 +123,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent deRecetteActivity = getIntent();
 
         //default value à -1 pour faciliter le debut si debug il y a. il faudra la definir à 0 apres
-        numeroRecette = deRecetteActivity.getIntExtra("numero recette", -1);
+         numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
         Menu menu = new Menu();
         Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
@@ -245,8 +247,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
                             }
                         });
             }
-
-
             catch(IOException e){
                 e.printStackTrace();
             }
