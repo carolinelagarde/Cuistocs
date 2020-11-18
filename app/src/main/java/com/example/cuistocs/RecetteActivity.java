@@ -155,13 +155,15 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
         editorBouton.commit();
 
+        //on indique que la recette est terminée
+        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putBoolean("r" + numeroRecette + "finie", true);
+        editor.commit();
+        Log.i("fait","vous avez fini la recette"+" "+ "" + numeroRecette+"");
+
+
         if (view.equals(boutonFini)) {
-            //on indique que la recette est terminée
-            sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
-            editor.putBoolean("r" + numeroRecette + "finie", true);
-            editor.commit();
-            Log.i("fait","vous avez fini la recette"+ "" +numeroRecette+"");
 
             points += 1;   // si bouton Fini clique : +1 point !
 

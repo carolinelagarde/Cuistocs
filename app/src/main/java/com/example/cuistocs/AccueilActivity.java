@@ -46,8 +46,16 @@ public class AccueilActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
+                        //on reinitialise les données rentrées des recettes
+                        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+                        editor = sharedPreferences.edit();
+                        editor.clear().commit();
+
+                        //on récupère ce qui va nous servir à faire le lien entre le jour et les recettes
                         sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
                         editor = sharedPreferences.edit();
+
+                        //reset du lien
                         editor.clear();
 
 

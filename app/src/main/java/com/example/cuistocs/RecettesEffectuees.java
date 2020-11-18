@@ -47,14 +47,10 @@ public class RecettesEffectuees extends AppCompatActivity {
             if (sharedPreferences.getBoolean(name, false)) {
 
                 Button button = new Button(getApplicationContext());
-                button.setText("Recette" + ""+i+"");
+                button.setText("Recette" + " " + ""+i+"");
                 button.setOnClickListener(this::onClick);
                 button.setTag(Integer.toString(i));
                 lay.addView(button);
-
-            } else {
-                //à changer car les recettes peuvent ne pas être dans le bon ordre
-                break;
             }
         }
     }
