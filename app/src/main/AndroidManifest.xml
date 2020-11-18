@@ -26,9 +26,10 @@
         </activity>
 
         //on déclare le provider qui va permettre d'accéder au fichier externe
+
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="$(applicationId).provider"
+            android:authorities="com.example.cuistocs.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
