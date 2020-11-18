@@ -53,7 +53,6 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
                Liste.addView(ListeDuJour);
 
             }
-
         }
     }
 
