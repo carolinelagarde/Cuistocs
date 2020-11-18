@@ -61,11 +61,11 @@ public class RecettesEffectuees extends AppCompatActivity {
     public void onClick(View view) {
         Button boutonClique = (Button)view;
         //On passe vers l'affichage des recettes
-        Intent versAfficherRecette = new Intent();
-        versAfficherRecette.setClass(this, RecetteActivity.class);
+        Intent versAfficherRecettesEffectuées = new Intent();
+        versAfficherRecettesEffectuées.setClass(this, AfficherRecettesEffectueesActivity.class);
         //on transfere les données de la recette séléctionnée
 
-        startActivity(versAfficherRecette);
+        startActivity(versAfficherRecettesEffectuées);
     }
 
 }
