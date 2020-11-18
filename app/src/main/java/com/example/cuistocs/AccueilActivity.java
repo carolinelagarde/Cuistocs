@@ -50,14 +50,13 @@ public class AccueilActivity extends AppCompatActivity {
                         editor = sharedPreferences.edit();
                         editor.clear();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor=preferences.edit();
 
                         for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
+                            Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
                         }
 
-                        editor.commit();
+                        editor.apply();
                         Log.i("définition du set","effectuée");
 
                         Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
