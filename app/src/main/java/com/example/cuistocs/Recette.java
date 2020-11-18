@@ -56,18 +56,7 @@ public class Recette {
     }
 
 
-public Recette getRecetteAvecNumero(int NumeroRecette){
-        Menu menu=new Menu();
-    Vector<Recette> livreRecettes=menu.livreRecettes;
-    Recette RecetteARenvoyer = null;
-    for (int i=0;i<livreRecettes.size();i++){
-        Recette currentRecette=livreRecettes.get(i);
-        if (currentRecette.getNumeroRecette()==NumeroRecette){
-           RecetteARenvoyer=currentRecette;
-        }
 
-    }
-    return RecetteARenvoyer;
-}}
+}
 
 
