@@ -230,6 +230,42 @@ public class Menu {
                         "8. ajouter du chili\n" +
                         "9. quand le riz est cuit, mélanger le tout"));
 
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(100,"grammes","de carottes"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"portion","de vachequirit"));
+      lesIngredientsdelaRecette.add(new Ingredient(10,"grammes","de beurre"));
+      lesIngredientsdelaRecette.add(new Ingredient(10,"grammes","de farine"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"","oeuf"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"cl","de lait"));
+      lesIngredientsdelaRecette.add(new Ingredient(5, "brins", "de ciboulette"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"pincée", "de cumin en poudre"));
+
+
+      livreRecettes.add(new Recette(17,"Soufflés de carotte à la Vache-qui-Rit", 25, lesIngredientsdelaRecette,
+              "1. Pelez les carottes, coupez-les en rondelles, puis faites-les cuire 15 mn à la vapeur. Réduisez-les en très fine purée avec un mixeur. Versez dans un saladier et laissez tiédir.\n" +
+                      "2. Préchauffez le four th. 5 (150 °C).\n" +
+                      "3. Préparez la béchamel : faites fondre les 40 g de beurre dans une petite casserole. \n Ajoutez la farine, laissez dorer à feu doux en remuant, puis ajoutez le lait. Salez, poivrez, ajoutez le cumin. \n Laissez cuire 10 mn à feu très doux en mélangeant. Hors du feu, ajoutez les portions de Vache-qui-Rit.\n" +
+                      "4. 4. Versez la béchamel dans la purée de carottes. Ajoutez les jaunes d’œufs. Mélangez parfaitement, puis ajoutez la ciboulette ciselée. Montez les blancs en neige. Incorporez-les délicatement à la purée de carotte et versez dans un plat à soufflé légèrement beurré. Faites cuire 25 mn au four et servez sans attendre."));
+
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(30,"grammes","de feta"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"brins","de coriandre"));
+      lesIngredientsdelaRecette.add(new Ingredient(2,"","oeufs"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"grammes","de beurre demi-sel"));
+      lesIngredientsdelaRecette.add(new Ingredient(0,"","piment d'espelette"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère à café","d'huile d'olive'"));
+
+
+      livreRecettes.add(new Recette(18,"Brouillade feta-coriandre", 5, lesIngredientsdelaRecette,
+              "1. Émiettez la feta. Rincez, effeuillez et ciselez la coriandre.\n" +
+                      "2. Cassez les œufs dans un récipient et battez-les à la fourchette. Ajoutez du sel, du poivre et une pointe de piment d’Espelette.\n" +
+                      "3. Faites chauffer le beurre et l’huile d’olive dans une casserole. Ajoutez les œufs et laissez cuire sur feu très doux pendant 5 à 6 mn en remuant avec une cuillère en bois : ils doivent rester crémeux. Hors du feu, incorporez la feta et la coriandre.\n" +
+                      "4. Mélangez jusqu’à ce que le fromage ait fondu et servez bien chaud."));
+
+
+
     }
     public static Vector<Recette> getMenu(){
         Menu test= new Menu();
