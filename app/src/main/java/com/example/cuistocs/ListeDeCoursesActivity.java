@@ -40,7 +40,8 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
             Liste.addView(Titre);
 
            int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),"0"));
-           Recette RecetteEnCours=Menu.livreRecettes.get(RecetteNumber);
+           Menu menu = new Menu();
+           Recette RecetteEnCours=menu.getRecetteAvecNumero(RecetteNumber);
            Vector<Ingredient> Ingredients=RecetteEnCours.getIngredients();
            for (int index=0;index<Ingredients.size();index++){
                Ingredient Ingredient=Ingredients.get(index);
