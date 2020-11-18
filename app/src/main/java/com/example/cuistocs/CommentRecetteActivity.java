@@ -1,6 +1,7 @@
 package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 public class CommentRecetteActivity extends AppCompatActivity {
 
@@ -25,7 +27,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     static Set listeJoursDebloques;
     static Set calendrierRecettes;
-    static SharedPreferences spSetOrdre;
+    static SharedPreferences spCalendrierRecettes;
     public SharedPreferences etatBouton;
 
     @Override
@@ -75,6 +77,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
+    /*
     public static Recette getCurrentRecette(){
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
@@ -93,24 +96,36 @@ public class CommentRecetteActivity extends AppCompatActivity {
         return CurrentRecette;
     }
 
-/*
+     */
+
+
     public Recette getCurrentRecette(){
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
         defaultvalueset.add("");
 
-        calendrierRecettes = spSetOrdre.getStringSet("setOrdre", defaultvalueset);
+        Menu menu = new Menu();
+        Vector<Recette> livreRecettes = menu.livreRecettes;
 
-        //recuperation de l'indice du jour
+
+
+        //recuperation de nombre de jours debloqués (donne une liste, et on recupere la taille de la liste des jours debloques)
         listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
         int nombreJoursDebloques = listeJoursDebloques.size();
 
-        Object[] tableauJoursDebloques = listeJoursDebloques.toArray();
+        //recuperation de l'indice du jour sous forme de string
+        String numeroJour = "" + nombreJoursDebloques;
 
-        return (Recette)tableauJoursDebloques[nombreJoursDebloques];
+        //recuperation de l'indice de la recette (de type int) en recuperant l'indice de la recette correspondant
+        // au jours actuel (sous forme de string) puis en le convertissant en int
+        Integer numeroRecetteEnCours = Integer.valueOf(spCalendrierRecettes.getString(numeroJour, "-1"));
+
+        // recuperation de la recette correspondante en allant chercher la numeroRecetteEnCours-ième
+        // dans le vector de recettes initial (non shffuled) livreRecettes
+        recetteEnCours = livreRecettes.elementAt(numeroRecetteEnCours);
+
+        return recetteEnCours;
 
     }
 
-
- */
 }
