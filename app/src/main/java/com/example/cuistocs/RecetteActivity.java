@@ -42,6 +42,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     int numeroSemaine;
     int numeroRecette;
     String numeroRecetteActuel;
+    int JourAbsoluActuel; //il vaut (numeroJour+1)*(numeroSemaine+1)
+
     Vector<Ingredient> lesIngredients;
 
     SharedPreferences etatBouton;
@@ -74,8 +76,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         Intent messagedeChoixJoursActivity = getIntent();
 
-        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
-
+        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1);
+        numeroSemaine = messagedeChoixJoursActivity.getIntExtra("numero semaine", -1);
+        JourAbsoluActuel = (numeroJour+1)*(numeroSemaine+1);
 
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
@@ -84,11 +87,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //recuperation de la recette
         preferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
 
-        numeroRecetteActuel = preferences.getString(""+numeroJour+"","1");
-        Log.i("NumeroRecette",numeroRecetteActuel);
+        numeroRecetteActuel = preferences.getString(""+JourAbsoluActuel+"","1");
+        Log.i("NumeroRecette",""+JourAbsoluActuel+"");
 
         Menu test= new Menu();
-        recette = test.livreRecettes.get(Integer.valueOf(numeroRecetteActuel));
+        recette = test.getRecetteAvecNumero(Integer.valueOf(numeroRecetteActuel));
 
         //ajout des éléments
         int tempsDeCuisine = recette.getTempsdecuisine();
@@ -155,13 +158,15 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
         editorBouton.commit();
 
+        //on indique que la recette est terminée
+        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putBoolean("r" + numeroRecette + "finie", true);
+        editor.commit();
+        Log.i("fait","vous avez fini la recette"+" "+ "" + numeroRecette+"");
+
+
         if (view.equals(boutonFini)) {
-            //on indique que la recette est terminée
-            sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
-            editor.putBoolean("r" + numeroRecette + "finie", true);
-            editor.commit();
-            Log.i("fait","vous avez fini la recette"+ "" +numeroRecette+"");
 
             points += 1;   // si bouton Fini clique : +1 point !
 

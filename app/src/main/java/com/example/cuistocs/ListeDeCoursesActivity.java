@@ -31,7 +31,7 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
         LinearLayout Liste=findViewById(R.id.Liste);
         SharedPreferences sp=getSharedPreferences("lien", Context.MODE_PRIVATE);
 
-        Periode.setText(String.format("des recettes %1d à %2d!pour 1 personne",jourDebut,jourFin));
+        Periode.setText(String.format("des recettes %1d à %2d!  pour 1 personne",jourDebut,jourFin));
         for (int i=jourDebut;i<=jourFin;i++){
             TextView Titre=new TextView(this);
             Titre.setText(String.format("Recette %1d",i));
@@ -40,7 +40,8 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
             Liste.addView(Titre);
 
            int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),"0"));
-           Recette RecetteEnCours=Menu.livreRecettes.get(RecetteNumber);
+           Menu menu = new Menu();
+           Recette RecetteEnCours=menu.getRecetteAvecNumero(RecetteNumber);
            Vector<Ingredient> Ingredients=RecetteEnCours.getIngredients();
            for (int index=0;index<Ingredients.size();index++){
                Ingredient Ingredient=Ingredients.get(index);
