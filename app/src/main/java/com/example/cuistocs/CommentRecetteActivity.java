@@ -1,12 +1,15 @@
 package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +17,15 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
+import android.content.ContentProvider;
+import androidx.core.content.FileProvider;
 
 public class CommentRecetteActivity extends AppCompatActivity {
 
@@ -33,10 +42,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     SharedPreferences spCaracteristiqueRecette;
     public SharedPreferences etatBouton;
 
-    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-    private Button btnPrendrePhoto;
-    private ImageView imgAffichePhoto;
-    Intent deRecetteActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,9 +153,41 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-    public void prendrePhoto(View view) {
-        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
-    }
 
      */
+
+    public void prendrePhoto(View view) {
+        //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+         Button btnPrendrePhoto;
+        ImageView imgAffichePhoto;
+        String photoPath=null;
+
+        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+
+        //on crée un intent pour ouvri la fenêtre pour prendre la photo
+        Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(intent.resolveActivity(getPackageManager())!= null) { //on vérifie que l'intent peut être crée
+            //création d'un fichier pour la photo
+            String time=new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); //on aura la date précise de la photo
+            File photoDir=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            try{
+                File photoFile= File.createTempFile("photo"+time,".jpg", photoDir);
+                //on enregistre le chemin complet
+                photoPath=photoFile.getAbsolutePath();
+                //crée l'URI
+                Uri photoUri= FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider",photoFile);
+                //transfert uri vers l'intent pour enregistrer la photo dans un fichier temporaire
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                //on ouvre l'activité par rapport à l'intent
+                startActivityForResult(intent,1);
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+    }
 }
