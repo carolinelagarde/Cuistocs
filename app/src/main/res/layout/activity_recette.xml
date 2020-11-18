@@ -99,18 +99,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="33dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sans_titre_2"
-        app:tint="#BA0404" />
-f
+    f
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
@@ -127,9 +117,11 @@ f
 
         android:layout_width="282dp"
         android:layout_height="143dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="150dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="89dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/Ingredients"

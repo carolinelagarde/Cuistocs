@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
         for (int i=jourDebut;i<=jourFin;i++){
             TextView Titre=new TextView(this);
             Titre.setText(String.format("Recette %1d",Integer.toString(i)));
+            Titre.setTextAppearance(this,android.R.style.TextAppearance_Medium);
+            Titre.setTextColor(Color.parseColor("#AC0404"));
             Liste.addView(Titre);
 
            int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),""));
