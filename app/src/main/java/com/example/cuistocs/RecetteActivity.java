@@ -156,6 +156,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         Set<String> defaultvalueset = new HashSet<>();
         defaultvalueset.add("");
+        //on dit aussi que la recette est finie
+
 
         Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
         boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
