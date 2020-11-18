@@ -15,8 +15,9 @@ import java.util.Set;
 import java.util.Vector;
 
 public class AccueilActivity extends AppCompatActivity {
+    //lien entre le jour et la recette
+    SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    SharedPreferences sp;
 
 
 
@@ -42,8 +43,8 @@ public class AccueilActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor=preferences.edit();
+                        sharedPreferences = getSharedPreferences("lien", MODE_PRIVATE);
+                        editor = sharedPreferences.edit();
 
                         for (int i=0;i<2;i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
