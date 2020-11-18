@@ -16,9 +16,6 @@ import java.util.Vector;
 
 public class AccueilActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
-    SharedPreferences sp;
-
-
 
 
     @Override

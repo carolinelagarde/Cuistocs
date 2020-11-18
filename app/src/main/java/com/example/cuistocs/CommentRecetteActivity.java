@@ -25,17 +25,11 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
 
-    static Set listeJoursDebloques;
-    static Set calendrierRecettes;
-    static SharedPreferences spCalendrierRecettes;
-    public SharedPreferences etatBouton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
 
-        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
 
     }
 
@@ -64,6 +58,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 
     public void partageSMS(View view) {
+
+        recetteEnCours = getCurrentRecette();
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
@@ -100,14 +96,19 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 
     public Recette getCurrentRecette(){
+
+        SharedPreferences spCalendrierRecettes = getSharedPreferences();
+        SharedPreferences etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+
+        Set listeJoursDebloques;
+        Set calendrierRecettes;
+
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
         defaultvalueset.add("");
 
         Menu menu = new Menu();
         Vector<Recette> livreRecettes = menu.livreRecettes;
-
-
 
         //recuperation de nombre de jours debloqués (donne une liste, et on recupere la taille de la liste des jours debloques)
         listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
@@ -122,9 +123,9 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         // recuperation de la recette correspondante en allant chercher la numeroRecetteEnCours-ième
         // dans le vector de recettes initial (non shffuled) livreRecettes
-        recetteEnCours = livreRecettes.elementAt(numeroRecetteEnCours);
+        Recette currentRecette = livreRecettes.elementAt(numeroRecetteEnCours);
 
-        return recetteEnCours;
+        return currentRecette;
 
     }
 
