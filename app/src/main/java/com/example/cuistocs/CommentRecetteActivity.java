@@ -42,9 +42,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     RatingBar rb;
 
-
     Intent  messageVersAccueilActivity;
-    public SharedPreferences etatBouton;
+
 
 
 
@@ -57,6 +56,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent deRecetteActivity = getIntent();
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
+        numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
         //Init du sp
         spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
@@ -75,12 +75,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Toast.makeText(this, "note:" + note, Toast.LENGTH_SHORT).show(); //on montre à l'utilisateur la note qu'il a mise
 
         Commentaire=findViewById(R.id.Commentaire);
-        String commentaireRecette=Commentaire.getText().toString();
+        commentaireRecette=Commentaire.getText().toString();
 
         //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences
 
-        editor.putFloat("r" + numeroRecette + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
-        editor.putString("r" + numeroRecette + "commentaire", commentaireRecette);
+        editor.putFloat("r" + Integer.toString(numeroRecette) + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
+        editor.putString("r" + Integer.toString(numeroRecette) + "commentaire", commentaireRecette);
         editor.apply();
 
     }
@@ -102,7 +102,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent deRecetteActivity = getIntent();
 
         //default value à -1 pour faciliter le debut si debug il y a. il faudra la definir à 0 apres
-        numeroRecette = deRecetteActivity.getIntExtra("numero recette", -1);
+         numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
         Menu menu = new Menu();
         Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
