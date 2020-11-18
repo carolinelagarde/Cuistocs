@@ -34,12 +34,12 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
         Periode.setText(String.format("des recettes %1d à %2d!pour 1 personne",jourDebut,jourFin));
         for (int i=jourDebut;i<=jourFin;i++){
             TextView Titre=new TextView(this);
-            Titre.setText(String.format("Recette %1d",Integer.toString(i)));
+            Titre.setText(String.format("Recette %1d",i));
             Titre.setTextAppearance(this,android.R.style.TextAppearance_Medium);
             Titre.setTextColor(Color.parseColor("#AC0404"));
             Liste.addView(Titre);
 
-           int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),""));
+           int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),"0"));
            Recette RecetteEnCours=Menu.livreRecettes.get(RecetteNumber);
            Vector<Ingredient> Ingredients=RecetteEnCours.getIngredients();
            for (int index=0;index<Ingredients.size();index++){

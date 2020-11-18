@@ -97,6 +97,14 @@ public class CommentRecetteActivity extends AppCompatActivity {
 ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
+        Intent deRecetteActivity = getIntent();
+
+        //default value à -1 pour faciliter le debut si debug il y a. il faudra la definir à 0 apres
+        numeroRecette = deRecetteActivity.getIntExtra("numero recette", -1);
+
+        Menu menu = new Menu();
+        Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
+
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
                 + recetteEnCours.getIngredients() + "\n"
