@@ -287,19 +287,18 @@ public class Menu {
         return Menu;
     }
     public Recette getRecetteAvecNumero(int NumeroRecette) {
+      Recette recetteNulle=livreRecettes.get(0);
+      for (int i = 0; i < livreRecettes.size(); i++) {
+        Recette RecetteATrouver = livreRecettes.get(i);
 
-
-        for (int i = 0; i <= livreRecettes.size(); i++) {
-            Recette RecetteATrouver = livreRecettes.get(i);
-            int numRecette = RecetteATrouver.getNumeroRecette();
-            if (numRecette == NumeroRecette) {
-                return RecetteATrouver;
-            }
-
+        int numRecette = RecetteATrouver.getNumeroRecette();
+        if (numRecette == NumeroRecette) {
+          return RecetteATrouver;
         }
-     return null;
-    }
 
+      }
+      return recetteNulle;
+    }
 
 }
 

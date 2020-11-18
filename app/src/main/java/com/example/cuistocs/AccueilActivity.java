@@ -54,7 +54,7 @@ public class AccueilActivity extends AppCompatActivity {
                         editor=preferences.edit();
 
                         for (int i=0;i<LivreRecette.size();i++) {
-                            editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
+                            editor.putString(Integer.toString(i),Integer.toString(LivreRecette.get(i).getNumeroRecette()));
                         }
 
                         editor.commit();

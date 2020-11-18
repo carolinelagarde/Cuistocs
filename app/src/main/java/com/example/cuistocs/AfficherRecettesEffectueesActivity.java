@@ -28,9 +28,8 @@ Vector<Ingredient> lesIngredients;
         Menu Menu=new Menu();
         int numeroRecette=sp.getInt("numeroRecette",0);
         Recette RecetteAAfficher=Menu.getRecetteAvecNumero(numeroRecette);
-
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
-        barre.setOnSeekBarChangeListener(this);
+        barre.setOnSeekBarChangeListener(this); //listener barre du nombre d'invités
 
 
 
