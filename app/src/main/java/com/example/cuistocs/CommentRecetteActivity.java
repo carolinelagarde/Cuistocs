@@ -1,12 +1,15 @@
 package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,12 +17,21 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
+import android.content.ContentProvider;
+import androidx.core.content.FileProvider;
 
 public class CommentRecetteActivity extends AppCompatActivity {
 
     int numeroRecette;
+    int numeroJour;
+    int numeroSemaine;
     EditText commentaireRecetteEditText;  //la view où l'utiliateur rentre le commentaire de la recette
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
@@ -28,21 +40,29 @@ public class CommentRecetteActivity extends AppCompatActivity {
     Set calendrierRecettes;
     SharedPreferences spSetOrdre;
     SharedPreferences spCaracteristiqueRecette;
+    SharedPreferences.Editor editor;
+
+
+    Intent  messageVersAccueilActivity;
     public SharedPreferences etatBouton;
 
-    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-    private Button btnPrendrePhoto;
-    private ImageView imgAffichePhoto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
 
+
+        Intent deRecetteActivity = getIntent();
+        numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
+        numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
+        Intent messageVersAccueilActivity;
+       // recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
+        SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
 
-        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
 
     }
 
@@ -63,7 +83,9 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
     public void valider(View view) {
-        spCaracteristiqueRecette.
+
+        messageVersAccueilActivity = new Intent();
+
         Intent messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
@@ -72,6 +94,13 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
+
+        int indiceJourTot = numeroSemaine*7+numeroJour;
+
+        Menu menu = new Menu();
+        Vector<Recette> livreRecettes = menu.livreRecettes;
+
+        Recette recetteEnCours = livreRecettes.elementAt(numeroRecette);
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
@@ -85,14 +114,45 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
-    public Recette getCurrentRecette(){
+
+    /*
+    public static Recette getCurrentRecette(){
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
         defaultvalueset.add("");
 
-        calendrierRecettes = spSetOrdre.getStringSet("setOrdre", defaultvalueset);
 
-        //recuperation de l'indice du jour
+
+        //recuperation de l'indice du jour : je n'y arrive pas. Je prends donc la recette 1 (pour changer)
+
+
+
+        Menu menu= new Menu();
+
+
+        Recette CurrentRecette= menu.livreRecettes.get(1);
+        return CurrentRecette;
+    }
+
+     */
+
+
+    /*
+    public Recette getCurrentRecette(int jour, int semaine){
+
+
+        SharedPreferences etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+
+        Set listeJoursDebloques;
+
+        //Creation d'un valeur par defaut pour le sharedPreferences
+        Set<String> defaultvalueset= new HashSet<>();
+        defaultvalueset.add("");
+
+        Menu menu = new Menu();
+        Vector<Recette> livreRecettes = menu.livreRecettes;
+
+        //recuperation de nombre de jours debloqués (donne une liste, et on recupere la taille de la liste des jours debloques)
         listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
         int nombreJoursDebloques = listeJoursDebloques.size();
 
@@ -102,7 +162,41 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
+
+     */
+
     public void prendrePhoto(View view) {
+        //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+         Button btnPrendrePhoto;
+        ImageView imgAffichePhoto;
+        String photoPath=null;
+
         btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+
+        //on crée un intent pour ouvri la fenêtre pour prendre la photo
+        Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if(intent.resolveActivity(getPackageManager())!= null) { //on vérifie que l'intent peut être crée
+            //création d'un fichier pour la photo
+            String time=new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); //on aura la date précise de la photo
+            File photoDir=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            try{
+                File photoFile= File.createTempFile("photo"+time,".jpg", photoDir);
+                //on enregistre le chemin complet
+                photoPath=photoFile.getAbsolutePath();
+                //crée l'URI
+                Uri photoUri= FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider",photoFile);
+                //transfert uri vers l'intent pour enregistrer la photo dans un fichier temporaire
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                //on ouvre l'activité par rapport à l'intent
+                startActivityForResult(intent,1);
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+
+        }
+
+
     }
 }
