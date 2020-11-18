@@ -41,12 +41,10 @@ public class AccueilActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Vector<Recette> LivreRecette = Menu.getMenu();
-                        Set<String> set=new Set<String>() {
-                        }
-
 
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         editor=preferences.edit();
+                        editor.clear();
 
                         for (int i=0;i<2;i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
