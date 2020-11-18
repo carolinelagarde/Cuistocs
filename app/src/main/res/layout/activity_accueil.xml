@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
         android:text="Je continue mon défi"
+        android:onClick="versSemaine"
         app:backgroundTint="#9F9B9B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

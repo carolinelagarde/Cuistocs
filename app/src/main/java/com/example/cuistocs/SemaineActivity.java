@@ -92,7 +92,7 @@ public class SemaineActivity extends AppCompatActivity {
 
     public void afficherJoursCourses(View view){
         Intent messageVersJoursCoursesActivity = new Intent();
-        //messageVersJoursCoursesActivity.setClass(this,JoursCoursesActivity.class);
-        //startActivity(messageVersJoursCoursesActivity);
+        messageVersJoursCoursesActivity.setClass(this,JoursCoursesActivity.class);
+        startActivity(messageVersJoursCoursesActivity);
     }
 }

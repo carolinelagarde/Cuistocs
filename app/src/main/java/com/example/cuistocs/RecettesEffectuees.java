@@ -2,6 +2,7 @@ package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,9 +17,9 @@ import java.util.Set;
 
 public class RecettesEffectuees extends AppCompatActivity {
 //liste les recettes effectuées et permet de les réafficher
-
-    
+    SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
     LinearLayout carteLayout;
 
 
@@ -36,19 +37,23 @@ public class RecettesEffectuees extends AppCompatActivity {
     public void afficher() {
         LinearLayout lay = findViewById(R.id.recetteseffectuees);
         lay.removeAllViews();
+        //on récupère les recettes finies dans le fichier associé
+        sharedPreferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        for (int i=0;i<30;i++) {
+
+
+              for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
-            if (preferences.contains(name)) {
+            if (sharedPreferences.getBoolean(name, false)) {
 
                 Button button = new Button(getApplicationContext());
-                button.setText("Recette" + Integer.toString(i));
-                button.setOnClickListener((View.OnClickListener) this);
+                button.setText("Recette" + ""+i+"");
+                button.setOnClickListener(this::onClick);
                 button.setTag(Integer.toString(i));
                 lay.addView(button);
 
             } else {
+                //à changer car les recettes peuvent ne pas être dans le bon ordre
                 break;
             }
         }
@@ -56,11 +61,11 @@ public class RecettesEffectuees extends AppCompatActivity {
     public void onClick(View view) {
         Button boutonClique = (Button)view;
         //On passe vers l'affichage des recettes
-        Intent versAfficherRecette = new Intent();
-        versAfficherRecette.setClass(this, RecetteActivity.class);
+        Intent versAfficherRecettesEffectuées = new Intent();
+        versAfficherRecettesEffectuées.setClass(this, AfficherRecettesEffectueesActivity.class);
         //on transfere les données de la recette séléctionnée
 
-        startActivity(versAfficherRecette);
+        startActivity(versAfficherRecettesEffectuées);
     }
 
 }
