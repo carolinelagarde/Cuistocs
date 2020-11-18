@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
 import android.widget.Button;
@@ -27,13 +29,17 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Button boutonFini;
     Button boutonPasse;
     Recette recette;
+    Menu test;
+
     int numeroJour;
     int numeroSemaine;
     int numeroRecette;
+    String numeroRecetteActuel;
     Vector<Ingredient> lesIngredients;
 
     SharedPreferences etatBouton;
     SharedPreferences spPoints;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +90,14 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         livreRecettes.add(new Recette(1, "Omelette ciboulette et mozzarella", 10, lesIngredientsdelaRecette, "1) Coupez la mozzarella en 12 morceaux" + "\n" + "2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement" + "\n" + "3) Faire cuire les oeufs sur une poele pendant deux à trois minutes" + "\n" + "4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
 */
         //recuperation de la recette
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        numeroRecetteActuel = preferences.getString(String.valueOf(numeroJour),"1");
+        Log.i("NumeroRecette",numeroRecetteActuel);
+        Menu test= new Menu();
+        recette = test.livreRecettes.get(Integer.valueOf(numeroRecetteActuel)-1);
 
-        // Recette recette=matriceRecette[numeroSemaine][numeroJour];
-        recette = CommentRecetteActivity.getCurrentRecette();
         //ajout des éléments
+
         int tempsDeCuisine = recette.getTempsdecuisine();
         lesIngredients = recette.getIngredients();
         String instructions = recette.getInstructions();
