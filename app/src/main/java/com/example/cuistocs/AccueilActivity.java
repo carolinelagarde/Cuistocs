@@ -50,9 +50,6 @@ public class AccueilActivity extends AppCompatActivity {
                         editor = sharedPreferences.edit();
                         editor.clear();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor=preferences.edit();
-
                         for (int i=0;i<2;i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                         }

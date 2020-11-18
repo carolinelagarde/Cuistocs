@@ -26,6 +26,15 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
 
+    Set listeJoursDebloques;
+    Set calendrierRecettes;
+    SharedPreferences spSetOrdre;
+    SharedPreferences spCaracteristiqueRecette;
+    public SharedPreferences etatBouton;
+
+    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+    private Button btnPrendrePhoto;
+    private ImageView imgAffichePhoto;
     Intent deRecetteActivity;
 
     @Override
@@ -37,6 +46,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
         deRecetteActivity = getIntent();
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
+        spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
+        editor=spCaracteristiqueRecette.edit();
+
+        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
 
     }
 
@@ -57,6 +70,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
     public void valider(View view) {
+        spCaracteristiqueRecette.
         Intent messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
