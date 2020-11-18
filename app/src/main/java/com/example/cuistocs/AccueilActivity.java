@@ -30,7 +30,9 @@ public class AccueilActivity extends AppCompatActivity {
     }
 
     public void versSemaine(View view) {
-
+        Intent versSemaine=new Intent();
+        versSemaine.setClass(this,SemaineActivity.class);
+        startActivity(versSemaine);
     }
 
     public void versConfirmation(View view) {
