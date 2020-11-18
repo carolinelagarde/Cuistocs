@@ -27,9 +27,12 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Button boutonFini;
     Button boutonPasse;
     Recette recette;
+
+
     int numeroJour;
     int numeroSemaine;
     int numeroRecette;
+    String numeroRecetteActuel;
     Vector<Ingredient> lesIngredients;
 
     SharedPreferences etatBouton;
@@ -86,8 +89,14 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //recuperation de la recette
 
         // Recette recette=matriceRecette[numeroSemaine][numeroJour];
-        recette = CommentRecetteActivity.getCurrentRecette();
+        numeroRecetteActuel = spPoints.getString(String.valueOf(numeroJour),"");
+
+        Menu menu= new Menu();
+
+        recette = menu.livreRecettes.get(Integer.valueOf(numeroRecetteActuel));
+
         //ajout des éléments
+
         int tempsDeCuisine = recette.getTempsdecuisine();
         lesIngredients = recette.getIngredients();
         String instructions = recette.getInstructions();
