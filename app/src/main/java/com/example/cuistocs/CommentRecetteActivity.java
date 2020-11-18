@@ -7,9 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -23,10 +24,14 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
 
-    static Set listeJoursDebloques;
-    static Set calendrierRecettes;
-    static SharedPreferences spSetOrdre;
+    Set listeJoursDebloques;
+    Set calendrierRecettes;
+    SharedPreferences spSetOrdre;
     public SharedPreferences etatBouton;
+
+    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+    private Button btnPrendrePhoto;
+    private ImageView imgAffichePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +60,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     public void valider(View view) {
         Intent messageVersAccueilActivity = new Intent();
-        messageVersAccueilActivity.setClass(this, AccueilActivity.class);
+        // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
 
 
-
+///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
@@ -75,25 +80,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
-    public static Recette getCurrentRecette(){
-        //Creation d'un valeur par defaut pour le sharedPreferences
-        Set<String> defaultvalueset= new HashSet<>();
-        defaultvalueset.add("");
-
-
-
-        //recuperation de l'indice du jour : je n'y arrive pas. Je prends donc la recette 1 (pour changer)
-
-
-
-        Menu menu= new Menu();
-
-
-        Recette CurrentRecette= menu.livreRecettes.get(1);
-        return CurrentRecette;
-    }
-
-/*
     public Recette getCurrentRecette(){
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
@@ -111,6 +97,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-
- */
+    public void prendrePhoto(View view) {
+        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+    }
 }

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.HashSet;
@@ -23,9 +22,6 @@ public class SemaineActivity extends AppCompatActivity {
     Button semaine2;
     Button semaine3;
     Button semaine4;
-    TextView scoreaffiche;
-    SharedPreferences spPoints;
-    int score;
 
     //creation d'un vecteur pour mettre à jour les boutons à débloquer au fur et à mesure
     public SharedPreferences etatBouton;
@@ -35,9 +31,6 @@ public class SemaineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semaine);
-
-        //initialise le text view du score
-        scoreaffiche=findViewById(R.id.textViewscore);
 
         //on cree en memoire de quoi garder si les boutons sont bloques ou non
         etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
@@ -52,12 +45,6 @@ public class SemaineActivity extends AppCompatActivity {
         Button semaine2 = findViewById(R.id.boutonSemaine2);
         Button semaine3 = findViewById(R.id.boutonSemaine3);
         Button semaine4 = findViewById(R.id.boutonSemaine4);
-
-        //afficher score actuel
-        spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-        score=spPoints.getInt("nombrePointsDejaGagnes",0);
-        String scoredumoment="Votre score actuel est "+score+".";
-        scoreaffiche.setText(scoredumoment);
 
     }
 
@@ -101,5 +88,11 @@ public class SemaineActivity extends AppCompatActivity {
         versRecettesEffectuees.setClass(this, RecettesEffectuees.class);
 
         startActivity(versRecettesEffectuees);
+    }
+
+    public void afficherJoursCourses(View view){
+        Intent messageVersJoursCoursesActivity = new Intent();
+        //messageVersJoursCoursesActivity.setClass(this,JoursCoursesActivity.class);
+        //startActivity(messageVersJoursCoursesActivity);
     }
 }
