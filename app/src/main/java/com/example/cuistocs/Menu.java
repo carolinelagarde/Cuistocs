@@ -279,7 +279,19 @@ public class Menu {
        // }
         return Menu;
     }
+    public Recette getRecetteAvecNumero(int NumeroRecette) {
 
+
+        for (int i = 0; i <= livreRecettes.size(); i++) {
+            Recette RecetteATrouver = livreRecettes.get(i);
+            int numRecette = RecetteATrouver.getNumeroRecette();
+            if (numRecette == NumeroRecette) {
+                return RecetteATrouver;
+            }
+
+        }
+     return null;
+    }
 
 
 }
