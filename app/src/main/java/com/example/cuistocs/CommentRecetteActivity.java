@@ -89,7 +89,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         messageVersAccueilActivity = new Intent();
 
         Intent messageVersAccueilActivity = new Intent();
-        // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
+        messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
 
