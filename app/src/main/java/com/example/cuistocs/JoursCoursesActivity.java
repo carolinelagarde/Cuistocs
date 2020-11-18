@@ -11,6 +11,8 @@ import android.widget.TextView;
 public class JoursCoursesActivity extends AppCompatActivity {
     public TextView AfficherDernierJourCourses;
     public TextView AfficherPremierJourCourses;
+    public int PremierJourSeekbar;
+    public int DernierJourSeekbar;
 
 
     @Override
@@ -25,6 +27,10 @@ public class JoursCoursesActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int PremierJour, boolean b) {
 
+                //prend le numéro du premier jour
+                PremierJourSeekbar=PremierJour;
+
+                //affiche le premier jour à coté de la barre
                 AfficherPremierJourCourses = findViewById(R.id.textViewAfficherPremierJour);
                 AfficherPremierJourCourses.setText(Integer.toString(PremierJour));
             }
@@ -46,6 +52,10 @@ public class JoursCoursesActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int DernierJour, boolean b) {
 
+                //prend le numero du dernier jour
+                DernierJourSeekbar=DernierJour;
+
+                //affiche le dernier jour à coté de la barre
                 AfficherDernierJourCourses = findViewById(R.id.textViewAfficherDernierJour);
                 AfficherDernierJourCourses.setText(Integer.toString(DernierJour));
             }
@@ -65,8 +75,8 @@ public class JoursCoursesActivity extends AppCompatActivity {
     public void validerJoursdeCourse(View view) {
         Intent versListeDeCourses = new Intent();
         versListeDeCourses.setClass(this, ListeDeCoursesActivity.class);
-        versListeDeCourses.putExtra("PremierJourCourses",AfficherPremierJourCourses.getText().toString());
-        versListeDeCourses.putExtra("DernierJourCourses",AfficherDernierJourCourses.getText().toString());
+        versListeDeCourses.putExtra("PremierJourCourses",PremierJourSeekbar);
+        versListeDeCourses.putExtra("DernierJourCourses",DernierJourSeekbar);
         startActivity(versListeDeCourses);
     }
 }
