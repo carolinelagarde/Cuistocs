@@ -3,6 +3,7 @@ package com.example.cuistocs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,11 +46,14 @@ public class AccueilActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
-                        sharedPreferences = getSharedPreferences("lien", MODE_PRIVATE);
+                        sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
                         editor = sharedPreferences.edit();
                         editor.clear();
 
-                        for (int i=0;i<2;i++) {
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        editor=preferences.edit();
+
+                        for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                         }
 
