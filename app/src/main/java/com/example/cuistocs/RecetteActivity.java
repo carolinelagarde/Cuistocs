@@ -178,6 +178,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             Intent versCommentRecetteActivity = new Intent();
             versCommentRecetteActivity.setClass(this, CommentRecetteActivity.class);
             versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
+            versCommentRecetteActivity.putExtra("numero jour", numeroJour);
+            versCommentRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(versCommentRecetteActivity);
 
         }

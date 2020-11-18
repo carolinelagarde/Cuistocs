@@ -21,15 +21,23 @@ import java.util.Vector;
 public class CommentRecetteActivity extends AppCompatActivity {
 
     int numeroRecette;
+    int numeroJour;
+    int numeroSemaine;
     EditText commentaireRecetteEditText;  //la view où l'utiliateur rentre le commentaire de la recette
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
+
+    Intent deRecetteActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
 
+
+        deRecetteActivity = getIntent();
+        numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
+        numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
 
     }
 
@@ -59,7 +67,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     public void partageSMS(View view) {
 
-        recetteEnCours = getCurrentRecette();
+        int indiceJourTot = numeroSemaine*7+numeroJour;
+
+        Menu menu = new Menu();
+        Vector<Recette> livreRecettes = menu.livreRecettes;
+
+        Recette recetteEnCours = livreRecettes.elementAt(numeroRecette);
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
@@ -95,13 +108,13 @@ public class CommentRecetteActivity extends AppCompatActivity {
      */
 
 
-    public Recette getCurrentRecette(){
+    /*
+    public Recette getCurrentRecette(int jour, int semaine){
 
-        SharedPreferences spCalendrierRecettes = getSharedPreferences();
+
         SharedPreferences etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
 
         Set listeJoursDebloques;
-        Set calendrierRecettes;
 
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
@@ -127,6 +140,9 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         return currentRecette;
 
+
     }
+
+     */
 
 }
