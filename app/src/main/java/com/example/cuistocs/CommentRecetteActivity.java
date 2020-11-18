@@ -76,7 +76,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 
         //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences
-        SharedPreferences sp = getSharedPreferences("memonote", Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putFloat("r" + numeroRecette + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
         editor.putString("r" + numeroRecette + "commentaire", commentaireRecette);
