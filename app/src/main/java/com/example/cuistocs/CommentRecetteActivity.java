@@ -54,13 +54,13 @@ public class CommentRecetteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comment_recette);
 
 
-        deRecetteActivity = getIntent();
+        Intent deRecetteActivity = getIntent();
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
         Intent messageVersAccueilActivity;
-        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
+       // recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
         SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
 
 
