@@ -92,7 +92,106 @@ public class Menu {
         livreRecettes.add(new Recette(6,"Salade grecque", 15, lesIngredientsdelaRecette, "1)Lavez et coupez en quatre les tomates cerise. Nettoyez puis taillez le concombre en deux dans la longueur, puis en rondelles. Pelez, dégermez et émincez finement l’oignon rouge. Découpez la feta en cubes. Coupez en deux les olives noires, puis dénoyautez-les. /n 2)Dans un saladier, préparez la vinaigrette en mélangeant ensemble l’huile d’olive et le vinaigre de vin rouge. Saupoudrez d’herbes de Provence et assaisonnez de sel et de poivre, selon votre goût. Émulsionnez bien. /n 3)Ajoutez dans le saladier les olives noires dénoyautées, les cubes de feta, les tomates cerises, les rondelles de concombre et l’oignon rouge émincé. Remuez pour bien répartir la sauce dans toute la salade à la grecque. /n 4)C'est prêt! Servez et dégustez!"));
 
 
+        lesIngredientsdelaRecette=new Vector<>();
 
+        lesIngredientsdelaRecette.add(new Ingredient(125,"grammes","de chamignons blancs"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi paquet","de gnocchis a poêler"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"gousses","d'ail"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","oignon"));
+        lesIngredientsdelaRecette.add(new Ingredient(10,"cL","de crème fraîche semi-épaisse"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"très petit filet","de Paterelle"));
+
+
+        livreRecettes.add(new Recette(11,"Gnocchis & champignons", 30, lesIngredientsdelaRecette,
+                "1. Couper finement l'oignon et l'ail.\n" +
+                        "2. Dans une casserole huilée, faire revenir d'abord les champignons avec un peu de persil .\n" +
+                        "3. Une fois cuits, réserver-les sur une assiette. Cuire ensuite l'oignon puis l'ail ensemble.\n" +
+                        "4. Ajouter les champignons dans la casserole, avec la crème fraîche et la Paterelle. Saler et poivrer.\n" +
+                        "5. Poêler les gnocchis.\n" +
+                        "6. Dresser l'assiette en ajoutant du persil et pour les plus gourmands du parmesan frais."));
+
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(2,"tranches","de pain"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","avocat"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","mozarella"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","tomate"));
+
+
+        livreRecettes.add(new Recette(12,"Croque-monsieur à l'avocat", 15, lesIngredientsdelaRecette,
+                "1. Découpez votre avocat et votre tomate en morceaux. Coupez votre boule de mozzarella en tranches.\n" +
+                        "2. Chauffez votre poêle à feu moyen.\n" +
+                        "3. Beurrez légèrement un côté de vos deux tranches de pain.\n" +
+                        "4. Placez dans un premier temps une tranche dans la poêle.\n" +
+                        "5. Par-dessus, ajoutez l’avocat, la mozzarella et les morceaux de tomate.\n" +
+                        "   Versez un peu d’huile d’olive et assaisonnez enfin de sel et de poivre.\n" +
+                        "   Refermez le tout avec l'autre tranche\n" +
+                        "6. Dès que le premier côté est doré (au bout de 2-3 minutes environ), retournez et laissez cuire 3 minutes de plus."));
+
+
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","escalope de poulet"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","carotte"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","yaourt brassé"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"mL","de lait de coco"));
+        lesIngredientsdelaRecette.add(new Ingredient(70,"g","de riz basmati"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"pot","de pâte de cury vert"));
+        lesIngredientsdelaRecette.add(new Ingredient(2, "cuillères à soupe", "de Nuoc Mam"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"pincée", "de paprika"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "cuillère à café", "de curry en poudre"));
+
+
+        livreRecettes.add(new Recette(13,"Poulet curry coco", 30, lesIngredientsdelaRecette,
+                "1. Couper les escalopes en lamelles et émincer l’oignon. Préparer une julienne de carottes.\n" +
+                        "2. Dans un bol, mélanger le yaourt, nuoc mam, et une cuillerée à café de curry vert.\n" +
+                        "   Badigeonner la viande de ce mélange et la laisser mariner dans un saladier le temps de préparer la suite.\n" +
+                        "3. Dans un wok, faire revenir à feu moyen les oignons émincés et la julienne de carottes avec un filet d'huile d'olive pendant 5 minutes.\n" +
+                        "   Ajouter les fines lamelles de poulet marinées dans le wok et les faire revenir avec les légumes 10 minutes, toujours à feu moyen.\n" +
+                        "4. Pendant ce temps, cuire le riz basmati dans une casserole d’eau bouillante salée. Suivre les instructions du paquet.\n" +
+                        "5. Arroser la viande et les légumes avec le lait de coco, ajouter une pincée de curry et une pincée de paprika et laisser mijoter 2 minutes dans le wok.\n" +
+                        "6. Déposer quelques feuilles de coriandre fraîche ciselées sur le plat. Le poulet curry coco est délicieux avec un bon riz gluant."));
+
+
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(55,"grammes","Quinoa"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"","concombre"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","avocat"));
+        lesIngredientsdelaRecette.add(new Ingredient(50,"grammes","de blanc de poulet"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","yaourt nature epais"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","citron"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "demi cuillère à café", "de vinaigre de vin"));
+        lesIngredientsdelaRecette.add(new Ingredient(2, "feuilles", "de persil"));
+        lesIngredientsdelaRecette.add(new Ingredient(2, "brins", "de ciboulette"));
+        lesIngredientsdelaRecette.add(new Ingredient(2, "feuilles", "de menthe"));
+
+
+        livreRecettes.add(new Recette(14,"Salade de Quinoa au poulet, concombre et avocat", 35, lesIngredientsdelaRecette,
+                ""));
+
+
+        lesIngredientsdelaRecette=new Vector<>();
+
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi pot","de sauce tomate"));
+        lesIngredientsdelaRecette.add(new Ingredient(200,"grammes","de viande hachée"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi sachet","de riz"));
+        lesIngredientsdelaRecette.add(new Ingredient(1," deminboîtes","de haricots rouges"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi boîtes","de maïs"));
+        lesIngredientsdelaRecette.add(new Ingredient(1,"demi","poivron rouge"));
+        lesIngredientsdelaRecette.add(new Ingredient(0, "", "du chili"));
+
+
+        livreRecettes.add(new Recette(15,"Chili con carne", 20, lesIngredientsdelaRecette,
+                "1. couper le poivron en morceaux\n" +
+                        "2. le faire cuire à feu doux pendant 15min\n" +
+                        "3. faire cuire le riz\n" +
+                        "4. quand les poivrons sont cuits, ajouter dans la casserole la viande hachée\n" +
+                        "5. ajouter le maïs\n" +
+                        "6. ajouter les haricots rouges\n" +
+                        "7. ajouter la sauce tomate\n" +
+                        "8. ajouter du chili\n" +
+                        "9. quand le riz est cuit, mélanger le tout"));
 
     }
     public static Vector<Recette> getMenu(){
