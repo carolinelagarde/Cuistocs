@@ -9,8 +9,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class JoursCoursesActivity extends AppCompatActivity {
-    SeekBar barrePremierJour;
-    SeekBar barreDernierJour;
     public TextView AfficherDernierJourCourses;
     public TextView AfficherPremierJourCourses;
 
@@ -20,8 +18,8 @@ public class JoursCoursesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jours_courses2);
 
-        //récupérer le premier jour pour lesquels il faut faire les course
-        barrePremierJour = findViewById(R.id.seekBarPremierJour);
+        //récupérer le premier jour pour lesquels il faut faire les course et l'afficher
+        SeekBar barrePremierJour = findViewById(R.id.seekBarPremierJour);
 
         barrePremierJour.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -41,8 +39,8 @@ public class JoursCoursesActivity extends AppCompatActivity {
             }
         });
 
-        //récupérer le dernier jour pour lesquels il faut faire les course
-        barreDernierJour = findViewById(R.id.seekBarDernierJour);
+        //récupérer le dernier jour pour lesquels il faut faire les course et l'afficher
+        SeekBar barreDernierJour = findViewById(R.id.seekBarDernierJour);
 
         barreDernierJour.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -63,9 +61,10 @@ public class JoursCoursesActivity extends AppCompatActivity {
         });
     }
 
+    //transmettre le premier jour et le dernier jour pour lesquels il faut faire les courses a l'activité liste de courses et passer à cette activité
     public void validerJoursdeCourse(View view) {
         Intent versListeDeCourses = new Intent();
-        versListeDeCourses.setClass(this, ListeDeCourses.class);
+        versListeDeCourses.setClass(this, ListeDeCoursesActivity.class);
         versListeDeCourses.putExtra("PremierJourCourses",AfficherPremierJourCourses.getText().toString());
         versListeDeCourses.putExtra("DernierJourCourses",AfficherDernierJourCourses.getText().toString());
         startActivity(versListeDeCourses);
