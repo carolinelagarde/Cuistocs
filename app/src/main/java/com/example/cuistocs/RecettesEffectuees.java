@@ -53,6 +53,7 @@ public class RecettesEffectuees extends AppCompatActivity {
                 lay.addView(button);
 
             } else {
+                //à changer car les recettes peuvent ne pas être dans le bon ordre
                 break;
             }
         }
