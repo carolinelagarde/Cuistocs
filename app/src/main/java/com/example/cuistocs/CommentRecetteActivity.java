@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 public class CommentRecetteActivity extends AppCompatActivity {
 
@@ -47,9 +48,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
-        editor=spCaracteristiqueRecette.edit();
+        SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
 
-        recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
 
     }
 
@@ -70,7 +70,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
     public void valider(View view) {
-        spCaracteristiqueRecette.
+
         Intent messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
@@ -98,6 +98,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
         startActivity(choixAppSMS);
     }
+
 
     /*
     public static Recette getCurrentRecette(){
@@ -140,26 +141,15 @@ public class CommentRecetteActivity extends AppCompatActivity {
         listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
         int nombreJoursDebloques = listeJoursDebloques.size();
 
-        //recuperation de l'indice du jour sous forme de string
-        String numeroJour = "" + nombreJoursDebloques;
+        Object[] tableauJoursDebloques = listeJoursDebloques.toArray();
 
-        //recuperation de l'indice de la recette (de type int) en recuperant l'indice de la recette correspondant
-        // au jours actuel (sous forme de string) puis en le convertissant en int
-        Integer numeroRecetteEnCours = Integer.valueOf(spCalendrierRecettes.getString(numeroJour, "-1"));
-
-        // recuperation de la recette correspondante en allant chercher la numeroRecetteEnCours-ième
-        // dans le vector de recettes initial (non shffuled) livreRecettes
-        Recette currentRecette = livreRecettes.elementAt(numeroRecetteEnCours);
-
-        return currentRecette;
-
+        return (Recette)tableauJoursDebloques[nombreJoursDebloques];
 
     }
-
-
- */
 
     public void prendrePhoto(View view) {
         btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
     }
+
+     */
 }
