@@ -58,9 +58,6 @@ public class AccueilActivity extends AppCompatActivity {
                         //reset du lien
                         editor.clear();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor=preferences.edit();
-
                         for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                             Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
