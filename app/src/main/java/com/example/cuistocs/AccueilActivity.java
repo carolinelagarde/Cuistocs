@@ -52,7 +52,7 @@ public class AccueilActivity extends AppCompatActivity {
                         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         editor=preferences.edit();
 
-                        for (int i=0;i<2;i++) {
+                        for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                         }
 
