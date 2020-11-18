@@ -246,7 +246,7 @@ public class Menu {
               "1. Pelez les carottes, coupez-les en rondelles, puis faites-les cuire 15 mn à la vapeur. Réduisez-les en très fine purée avec un mixeur. Versez dans un saladier et laissez tiédir.\n" +
                       "2. Préchauffez le four th. 5 (150 °C).\n" +
                       "3. Préparez la béchamel : faites fondre les 40 g de beurre dans une petite casserole. \n Ajoutez la farine, laissez dorer à feu doux en remuant, puis ajoutez le lait. Salez, poivrez, ajoutez le cumin. \n Laissez cuire 10 mn à feu très doux en mélangeant. Hors du feu, ajoutez les portions de Vache-qui-Rit.\n" +
-                      "4. 4. Versez la béchamel dans la purée de carottes. Ajoutez les jaunes d’œufs. Mélangez parfaitement, puis ajoutez la ciboulette ciselée. Montez les blancs en neige. Incorporez-les délicatement à la purée de carotte et versez dans un plat à soufflé légèrement beurré. Faites cuire 25 mn au four et servez sans attendre."));
+                      "4. Versez la béchamel dans la purée de carottes. Ajoutez les jaunes d’œufs. Mélangez parfaitement, puis ajoutez la ciboulette ciselée. Montez les blancs en neige. Incorporez-les délicatement à la purée de carotte et versez dans un plat à soufflé légèrement beurré. Faites cuire 25 mn au four et servez sans attendre."));
 
       lesIngredientsdelaRecette=new Vector<>();
 
