@@ -3,10 +3,12 @@ package com.example.cuistocs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -22,28 +24,36 @@ Vector<Ingredient> lesIngredients;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_afficher_recettes_effectuees);
 
-        ///Récupération de la recette
+        //Views
+        SeekBar barreNbInvites = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
+        barreNbInvites.setOnSeekBarChangeListener(this); //listener barre du nombre d'invités
+        RatingBar rb=findViewById(R.id.Note);
+        TextView ViewTempsDeCuisine = findViewById(R.id.tempsCuisine);
+        LinearLayout ViewRecette = findViewById(R.id.Recette);
+        TextView ViewTitre = findViewById(R.id.Titre);
+        LinearLayout ViewCommentaire=findViewById(R.id.Commentaire);
+
+    //Initialisation du sp
         sp=getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=sp.edit();
+
+        ///Récupération de la recette
         Menu Menu=new Menu();
-        int numeroRecette=sp.getInt("numeroRecette",0);
-        Recette RecetteAAfficher=Menu.getRecetteAvecNumero(numeroRecette);
-        SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
-        barre.setOnSeekBarChangeListener(this); //listener barre du nombre d'invités
+        Intent deRecettesEffectuees=getIntent();
+        String numeroRecette=deRecettesEffectuees.getStringExtra("numeroRecette");
+        Recette RecetteAAfficher=Menu.getRecetteAvecNumero(Integer.valueOf(numeroRecette));
 
 
+        ///Récupération des commentaires et notes
+        Float Note=sp.getFloat("r"+numeroRecette+"note",0);
+        String Commentaire=sp.getString("r"+numeroRecette+"commentaire","non renseigné");
 
-        //ajout des éléments sur le view
-
+        //Recuperation des infos recette
         int tempsDeCuisine = RecetteAAfficher.getTempsdecuisine();
         lesIngredients = RecetteAAfficher.getIngredients();
         String instructions = RecetteAAfficher.getInstructions();
         String Titre = RecetteAAfficher.getTitre();
 
-        //import des view
-        TextView ViewTempsDeCuisine = findViewById(R.id.tempsCuisine);
-        LinearLayout ViewRecette = findViewById(R.id.Recette);
-        TextView ViewTitre = findViewById(R.id.Titre);
 
         //modif des views
         ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
@@ -51,6 +61,10 @@ Vector<Ingredient> lesIngredients;
         ViewInstruction.setText(instructions);
         ViewRecette.addView(ViewInstruction);
         ViewTitre.setText(Titre);
+        rb.setRating(Note);
+        TextView TexteCommentaire=new TextView(this);
+        TexteCommentaire.setText(Commentaire);
+        ViewCommentaire.addView(TexteCommentaire);
 
     }
 
