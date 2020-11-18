@@ -57,7 +57,8 @@ public class Recette {
 
 
 public Recette getRecetteAvecNumero(int NumeroRecette){
-    Vector<Recette> livreRecettes=Menu.livreRecettes;
+        Menu menu=new Menu();
+    Vector<Recette> livreRecettes=menu.livreRecettes;
     Recette RecetteARenvoyer = null;
     for (int i=0;i<livreRecettes.size();i++){
         Recette currentRecette=livreRecettes.get(i);
