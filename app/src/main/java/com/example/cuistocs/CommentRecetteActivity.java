@@ -163,15 +163,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String photoPath=null;
 
      */
+    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+    Button btnPrendrePhoto;
+    ImageView imgAffichePhoto;
+    String photoPath=null;
 
     public void prendrePhoto(View view) {
-        //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-         Button btnPrendrePhoto;
-        ImageView imgAffichePhoto;
-        String photoPath=null;
-
-    public void prendrePhoto(View view) {
-
 
         btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
 
@@ -202,17 +199,19 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-    //retour de l'appareil photo après le startactivityforresult
-    protected void onActivityResult(int requestCode, int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        //vérifie le code de retour et l'état du retour ok
-        if(requestCode==1 && resultCode==RESULT_OK) {
-            //récupérer l'image
-            Bitmap image= BitmapFactory.decodeFile(photoPath);
-            //afficher l'image
-            imgAffichePhoto.setImageBitmap(image);
+        //retour de l'appareil photo après le startactivityforresult
+        protected void onActivityResult(int requestCode,int resultCode,Intent data){
+            super.onActivityResult(requestCode,resultCode,data);
+            //vérifie le code de retour et l'état du retour ok
+            if(requestCode==1 && resultCode==RESULT_OK) {
+                //récupérer l'image
+                Bitmap image= BitmapFactory.decodeFile(photoPath);
+                //afficher l'image
+                imgAffichePhoto.setImageBitmap(image);
+            }
+
         }
 
-    }
+
 
 }
