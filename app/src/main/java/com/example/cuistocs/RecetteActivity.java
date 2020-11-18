@@ -91,7 +91,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         Log.i("NumeroRecette",""+JourAbsoluActuel+"");
 
         Menu test= new Menu();
-        recette = test.livreRecettes.get(Integer.valueOf(numeroRecetteActuel));
+        recette = test.getRecetteAvecNumero(Integer.valueOf(numeroRecetteActuel));
 
         //ajout des éléments
         int tempsDeCuisine = recette.getTempsdecuisine();
