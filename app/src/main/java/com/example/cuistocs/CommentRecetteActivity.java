@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -27,6 +29,9 @@ public class CommentRecetteActivity extends AppCompatActivity {
     SharedPreferences spSetOrdre;
     public SharedPreferences etatBouton;
 
+    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+    private Button btnPrendrePhoto;
+    private ImageView imgAffichePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
 
-
+///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
@@ -92,4 +97,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
+    public void prendrePhoto(View view) {
+        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+    }
 }

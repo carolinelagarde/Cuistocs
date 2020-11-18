@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.Vector;
 
 public class Menu {
-    private static Vector<Recette> livreRecettes;
+    public static Vector<Recette> livreRecettes;
 
 
     public Menu(){

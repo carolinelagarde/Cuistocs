@@ -207,4 +207,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             }
         }
     }
+
+
 }
