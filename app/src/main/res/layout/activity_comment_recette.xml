@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageViewAfficherPhoto"
         android:layout_width="325dp"
         android:layout_height="137dp"
         android:layout_marginTop="101dp"
@@ -77,5 +77,6 @@
         android:text="Je prends ma recette en photo!"
         android:onClick="prendrePhoto"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="UnknownId" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,8 @@ import androidx.core.content.FileProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,6 +42,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
     Set calendrierRecettes;
     SharedPreferences spSetOrdre;
     SharedPreferences spCaracteristiqueRecette;
+    SharedPreferences.Editor editor;
+
+
+    Intent  messageVersAccueilActivity;
     public SharedPreferences etatBouton;
 
 
@@ -54,6 +60,9 @@ public class CommentRecetteActivity extends AppCompatActivity {
         numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
         numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         spCaracteristiqueRecette=getSharedPreferences("fini",Context.MODE_PRIVATE);
+        editor=spCaracteristiqueRecette.edit();
+        Intent messageVersAccueilActivity;
+       // recetteEnCours = getCurrentRecette(); //on recupere la recette en cours
         SharedPreferences.Editor editor = spCaracteristiqueRecette.edit();
 
 
@@ -77,6 +86,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     public void valider(View view) {
 
+        messageVersAccueilActivity = new Intent();
+
         Intent messageVersAccueilActivity = new Intent();
         // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
@@ -85,13 +96,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
-
-        int indiceJourTot = numeroSemaine*7+numeroJour;
-
-        Menu menu = new Menu();
-        Vector<Recette> livreRecettes = menu.livreRecettes;
-
-        Recette recetteEnCours = livreRecettes.elementAt(numeroRecette);
 
         String messageSMS = String.format("Toi aussi découvre cette recette !\n"
                 + recetteEnCours.getTitre() + "\n"
@@ -153,16 +157,21 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
+    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
+    Button btnPrendrePhoto;
+    ImageView imgAffichePhoto;
+    String photoPath=null;
 
      */
+    //on définit l'imageView qui va afficher la photo
+
+    ImageView imgAffichePhoto;
+    String photoPath=null;
+
 
     public void prendrePhoto(View view) {
-        //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-         Button btnPrendrePhoto;
-        ImageView imgAffichePhoto;
-        String photoPath=null;
 
-        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+
 
         //on crée un intent pour ouvri la fenêtre pour prendre la photo
         Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -190,4 +199,21 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
 
     }
+
+        //retour de l'appareil photo après le startactivityforresult
+        protected void onActivityResult(int requestCode,int resultCode,Intent data){
+            imgAffichePhoto=findViewById(R.id.imageViewAfficherPhoto);
+            super.onActivityResult(requestCode,resultCode,data);
+            //vérifie le code de retour et l'état du retour ok
+            if(requestCode==1 && resultCode==RESULT_OK) {
+                //récupérer l'image
+                Bitmap image= BitmapFactory.decodeFile(photoPath);
+                //afficher l'image
+                imgAffichePhoto.setImageBitmap(image);
+            }
+
+        }
+
+
+
 }
