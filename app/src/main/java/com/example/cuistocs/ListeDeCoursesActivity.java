@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,12 +27,14 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
 
         TextView Periode=findViewById(R.id.Periode);
         LinearLayout Liste=findViewById(R.id.Liste);
-        SharedPreferences sp=getSharedPreferences("", Context.MODE_PRIVATE);
+        SharedPreferences sp=getSharedPreferences("lien", Context.MODE_PRIVATE);
 
         Periode.setText(String.format("des recettes %1d à %2d!pour 1 personne",jourDebut,jourFin));
         for (int i=jourDebut;i<=jourFin;i++){
             TextView Titre=new TextView(this);
             Titre.setText(String.format("Recette %1d",Integer.toString(i)));
+            Titre.setTextAppearance(this,android.R.style.TextAppearance_Medium);
+            Titre.setTextColor(Color.parseColor("#AC0404"));
             Liste.addView(Titre);
 
            int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),""));

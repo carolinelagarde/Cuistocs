@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
         <activity android:name=".ListeDeCoursesActivity"></activity>
+        <activity android:name=".JoursCoursesActivity"></activity>
         <activity android:name=".RecettesEffectuees" />
         <activity android:name=".CommentRecetteActivity" />
         <activity android:name=".RecetteActivity" />
@@ -22,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
 
         <service android:name=".notifications.NotificationService">
             <intent-filter>

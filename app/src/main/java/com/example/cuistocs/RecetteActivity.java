@@ -25,11 +25,18 @@ import java.util.Vector;
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     int points;
-    // checker pourquoi il reconnait pas la variable, et push car j'ai modifie l'erreur
+    //Boutons
     Button boutonFini;
     Button boutonPasse;
     Recette recette;
+
+    //Menu pour accéder aux recettes
     Menu test;
+
+    //récupération des recettes terminées : on va l'actualiser en cas de pression sur le bouton "fini"
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     int numeroJour;
     int numeroSemaine;
@@ -90,7 +97,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         livreRecettes.add(new Recette(1, "Omelette ciboulette et mozzarella", 10, lesIngredientsdelaRecette, "1) Coupez la mozzarella en 12 morceaux" + "\n" + "2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement" + "\n" + "3) Faire cuire les oeufs sur une poele pendant deux à trois minutes" + "\n" + "4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
 */
         //recuperation de la recette
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        preferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
         numeroRecetteActuel = preferences.getString(String.valueOf(numeroJour),"1");
         Log.i("NumeroRecette",numeroRecetteActuel);
         Menu test= new Menu();
@@ -156,7 +164,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         Set<String> defaultvalueset = new HashSet<>();
         defaultvalueset.add("");
-        //on dit aussi que la recette est finie
 
 
         Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
@@ -164,13 +171,22 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         editorBouton.commit();
 
         if (view.equals(boutonFini)) {
+            //on indique que la recette est terminée
+            sharedPreferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
+            editor = sharedPreferences.edit();
+            editor.putBoolean("r" + numeroRecette + "finie", true);
+            editor.commit();
+            Log.i("fait","vous avez fini la recette"+ "" +numeroRecette+"");
+
             points += 1;   // si bouton Fini clique : +1 point !
+
+
 
             ///on va enregistrer le fait que la recette a été faite et le score du joueur
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
-            editor.putBoolean("r" + numeroRecette + "finie", true);
+
             editor.apply();
 
 
@@ -211,4 +227,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             }
         }
     }
+
+
 }

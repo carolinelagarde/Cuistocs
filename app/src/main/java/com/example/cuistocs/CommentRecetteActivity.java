@@ -1,22 +1,21 @@
 package com.example.cuistocs;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Vector;
 
 public class CommentRecetteActivity extends AppCompatActivity {
 
@@ -59,12 +58,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     public void valider(View view) {
         Intent messageVersAccueilActivity = new Intent();
-        messageVersAccueilActivity.setClass(this, AccueilActivity.class);
+        // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
 
 
-
+///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
         int indiceJourTot = numeroSemaine*7+numeroJour;
@@ -143,6 +142,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-     */
 
+ */
+
+    public void prendrePhoto(View view) {
+        btnPrendrePhoto=findViewById(R.id.btnPrendrePhoto);
+    }
 }
