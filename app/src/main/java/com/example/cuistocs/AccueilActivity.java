@@ -45,6 +45,7 @@ public class AccueilActivity extends AppCompatActivity {
 
                         sharedPreferences = getSharedPreferences("lien", MODE_PRIVATE);
                         editor = sharedPreferences.edit();
+                        editor.clear();
 
                         for (int i=0;i<2;i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
