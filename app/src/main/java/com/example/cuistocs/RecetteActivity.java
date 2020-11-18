@@ -69,7 +69,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
-
+/*
         //////// accès à la matrice recette de test
         Vector<Ingredient> lesIngredientsdelaRecette = new Vector<Ingredient>();
         Vector<Recette> livreRecettes = new Vector<Recette>();
@@ -82,10 +82,12 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "poivre"));
 
         livreRecettes.add(new Recette(1, "Omelette ciboulette et mozzarella", 10, lesIngredientsdelaRecette, "1) Coupez la mozzarella en 12 morceaux" + "\n" + "2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement" + "\n" + "3) Faire cuire les oeufs sur une poele pendant deux à trois minutes" + "\n" + "4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
-
+*/
+        //recuperation de la recette
 
         // Recette recette=matriceRecette[numeroSemaine][numeroJour];
-        recette = livreRecettes.get(0);
+        recette = CommentRecetteActivity.getCurrentRecette();
+        //ajout des éléments
         int tempsDeCuisine = recette.getTempsdecuisine();
         lesIngredients = recette.getIngredients();
         String instructions = recette.getInstructions();

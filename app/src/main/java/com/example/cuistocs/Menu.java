@@ -1,6 +1,8 @@
 package com.example.cuistocs;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import java.lang.reflect.Array;
 import java.util.Collections;
@@ -8,11 +10,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-public class Menu {
-    private static Vector<Recette> livreRecettes;
 
+
+public class Menu {
+    public static Vector<Recette> livreRecettes;
 
     public Menu(){
+
+
+
         livreRecettes=new Vector<>();
 
         Vector<Ingredient> lesIngredientsdelaRecette=new Vector<>();

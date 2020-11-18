@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -22,11 +23,10 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String commentaireRecette;   //la string associée à ce commentaire
     Recette recetteEnCours;
 
-    Set listeJoursDebloques;
-    Set calendrierRecettes;
-    SharedPreferences spSetOrdre;
+    static Set listeJoursDebloques;
+    static Set calendrierRecettes;
+    static SharedPreferences spSetOrdre;
     public SharedPreferences etatBouton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     public void valider(View view) {
         Intent messageVersAccueilActivity = new Intent();
-        // messageVersAccueilActivity.setClass(this, AccueilActivity.class);
+        messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
     }
 
@@ -75,6 +75,25 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
+    public static Recette getCurrentRecette(){
+        //Creation d'un valeur par defaut pour le sharedPreferences
+        Set<String> defaultvalueset= new HashSet<>();
+        defaultvalueset.add("");
+
+
+
+        //recuperation de l'indice du jour : je n'y arrive pas. Je prends donc la recette 1 (pour changer)
+
+
+        int nombreJoursDebloques = listeJoursDebloques.size();
+        Menu menu= new Menu();
+
+
+        Recette CurrentRecette= menu.livreRecettes.get(1);
+        return CurrentRecette;
+    }
+
+/*
     public Recette getCurrentRecette(){
         //Creation d'un valeur par defaut pour le sharedPreferences
         Set<String> defaultvalueset= new HashSet<>();
@@ -92,4 +111,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
+
+ */
 }
