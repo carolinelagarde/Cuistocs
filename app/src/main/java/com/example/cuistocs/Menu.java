@@ -168,7 +168,12 @@ public class Menu {
 
 
         livreRecettes.add(new Recette(14,"Salade de Quinoa au poulet, concombre et avocat", 35, lesIngredientsdelaRecette,
-                ""));
+                "1. Faire cuire le quinoa comme indiqué sur le paquet (par absorption comme du riz blanc), soit environ 15 min.\n" +
+                        "2. Pendant ce temps, détailler le poulet, les concombres et l'avocat en dés d'1 ou 2 cm (selon votre goût).\n" +
+                        "3. Y ajouter du persil plat et des feuilles de menthe hachés, mélanger sans trop écraser l'avocat.\n" +
+                        "   Ajouter un filet de jus de citron, sel et/ou poivre.\n" +
+                        "4. Préparer la sauce au yaourt en y ajoutant du sel, du poivre, la petite cuillèrede vinaigre et la ciboulette ciselée.\n" +
+                        "5. Servir dans les assiettes un lit de quinoa tiédi ou refroidi selon les goûts et la saison, y déposer dessus le mélange poulet-concombre-avocat. Napper le tout de la sauce au yaourt."));
 
 
         lesIngredientsdelaRecette=new Vector<>();
@@ -179,7 +184,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(1," deminboîtes","de haricots rouges"));
         lesIngredientsdelaRecette.add(new Ingredient(1,"demi boîtes","de maïs"));
         lesIngredientsdelaRecette.add(new Ingredient(1,"demi","poivron rouge"));
-        lesIngredientsdelaRecette.add(new Ingredient(0, "", "du chili"));
+        lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "de chili"));
 
 
         livreRecettes.add(new Recette(15,"Chili con carne", 20, lesIngredientsdelaRecette,
@@ -192,6 +197,8 @@ public class Menu {
                         "7. ajouter la sauce tomate\n" +
                         "8. ajouter du chili\n" +
                         "9. quand le riz est cuit, mélanger le tout"));
+
+
 
     }
     public static Vector<Recette> getMenu(){
