@@ -74,6 +74,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
             Intent messageVersRecetteActivity = new Intent();
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
             messageVersRecetteActivity.putExtra("numero jour", jour);
+            messageVersRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(messageVersRecetteActivity);
         }
     }

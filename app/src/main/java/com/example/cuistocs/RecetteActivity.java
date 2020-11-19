@@ -42,6 +42,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     int numeroSemaine;
     int numeroRecette;
     String numeroRecetteActuel;
+    int JourAbsoluActuel; //il vaut (numeroJour+1)*(numeroSemaine+1)
+
     Vector<Ingredient> lesIngredients;
 
     SharedPreferences etatBouton;
@@ -74,38 +76,24 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         Intent messagedeChoixJoursActivity = getIntent();
 
-        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1); //on recupere l entier nombre de point de l'activité principale
-
-        Intent messagedeSemaineActivity = getIntent();
-        numeroSemaine = messagedeSemaineActivity.getIntExtra("indiceSemaine", -1);
-
+        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1);
+        numeroSemaine = messagedeChoixJoursActivity.getIntExtra("numero semaine", -1);
+        JourAbsoluActuel = (numeroJour+1)*(numeroSemaine+1);
 
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
         barre.setOnSeekBarChangeListener(this);
-/*
-        //////// accès à la matrice recette de test
-        Vector<Ingredient> lesIngredientsdelaRecette = new Vector<Ingredient>();
-        Vector<Recette> livreRecettes = new Vector<Recette>();
 
-        lesIngredientsdelaRecette.add(new Ingredient(25, "g", "mozarella"));
-        lesIngredientsdelaRecette.add(new Ingredient(4, "", "oeufs"));
-        lesIngredientsdelaRecette.add(new Ingredient(1, "bouquet", "ciboulette"));
-        lesIngredientsdelaRecette.add(new Ingredient(2, "cuilleres a soupe", "huile"));
-        lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "sel"));
-        lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "poivre"));
 
-        livreRecettes.add(new Recette(1, "Omelette ciboulette et mozzarella", 10, lesIngredientsdelaRecette, "1) Coupez la mozzarella en 12 morceaux" + "\n" + "2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement" + "\n" + "3) Faire cuire les oeufs sur une poele pendant deux à trois minutes" + "\n" + "4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise essssssssssssaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"));
-*/
         //recuperation de la recette
+        preferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
 
-        preferences = getSharedPreferences("fini", Context.MODE_PRIVATE);
-        numeroRecetteActuel = preferences.getString(String.valueOf(numeroJour),"1");
-        Log.i("NumeroRecette",numeroRecetteActuel);
+        numeroRecetteActuel = preferences.getString(""+JourAbsoluActuel+"","1");
+        Log.i("NumeroRecette",""+JourAbsoluActuel+"");
+
         Menu test= new Menu();
-        recette = test.livreRecettes.get(Integer.valueOf(numeroRecetteActuel)-1);
+        recette = test.getRecetteAvecNumero(Integer.valueOf(numeroRecetteActuel));
 
         //ajout des éléments
-
         int tempsDeCuisine = recette.getTempsdecuisine();
         lesIngredients = recette.getIngredients();
         String instructions = recette.getInstructions();
@@ -171,13 +159,15 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         editorBouton.putString(tag,"boutondébloqué");
         editorBouton.apply();
 
+        //on indique que la recette est terminée
+        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putBoolean("r" + numeroRecette + "finie", true);
+        editor.commit();
+        Log.i("fait","vous avez fini la recette"+" "+ "" + numeroRecette+"");
+
+
         if (view.equals(boutonFini)) {
-            //on indique que la recette est terminée
-            sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
-            editor.putBoolean("r" + numeroRecette + "finie", true);
-            editor.commit();
-            Log.i("fait","vous avez fini la recette"+ "" +numeroRecette+"");
 
             points += 1;   // si bouton Fini clique : +1 point !
 

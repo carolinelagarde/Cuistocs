@@ -10,73 +10,62 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="86dp"
-        android:layout_marginRight="86dp"
-        android:layout_marginBottom="170dp"
-        android:onClick="enregistrer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/boutonValider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPersonName"
+        android:id="@+id/Commentaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="Commente ta recette: "
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btnPrendrePhoto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="102dp" />
 
     <Button
         android:id="@+id/boutonValider"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="461dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
         android:onClick="valider"
         android:text="Valider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/boutonPartager"
+        tools:layout_editor_absoluteX="1dp" />
 
     <Button
         android:id="@+id/boutonPartager"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="509dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
         android:onClick="partageSMS"
         android:text="Partager la recette par SMS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
 
     <ImageView
         android:id="@+id/imageViewAfficherPhoto"
-        android:layout_width="325dp"
-        android:layout_height="137dp"
-        android:layout_marginTop="101dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginRight="43dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/food" />
 
     <Button
         android:id="@+id/btnPrendrePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:layout_marginBottom="8dp"
-        android:text="Je prends ma recette en photo!"
+        android:layout_marginBottom="30dp"
         android:onClick="prendrePhoto"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="UnknownId" />
+        android:text="Je prends ma recette en photo!"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewAfficherPhoto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="UnknownId"
+        tools:layout_editor_absoluteX="55dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

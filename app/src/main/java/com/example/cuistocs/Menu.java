@@ -105,7 +105,7 @@ public class Menu {
 
 
 
-        livreRecettes.add(new Recette(9,"Salade de poulet à la mimolette", 15, lesIngredientsdelaRecette, "1) Plongez les œufs dans une casserole d’eau bouillante et laissez-les cuire 8 mn. Passez-les aussitôt sous l’eau froide, roulez-les pour fendiller la coquille et laissez-les refroidir dans de l’eau froide. \n 2) Faites cuire les filets de poulet incisés et posés bien à plat dans une poêle huilée bien chaude, 3 à 4 mn de chaque côté, jusqu’à ce qu’ils soient dorés. Salez, poivrez, puis emballez-les aussitôt dans un papier alimentaire ou enfermez-les dans une boîte hermétique et laissez-les tiédir. \n 3) Rincez et essorez la salade et la roquette. Émincez finement l’oignon. Taillez la mimolette en fins copeaux. Mélangez le yaourt avec la moutarde, 3 c. à soupe d’huile d’olive, 1 pincée de sel et 1 pincée de poivre moulu, ajustez la consistance avec un peu d’eau pour obtenir une sauce crémeuse mais fluide. Écalez les œufs, coupez-les en quartiers, tranchez les filets de poulet en lanières. \n 4) Présentez les feuilles de salade et la roquette avec les lamelles de poulet, les copeaux de mimolette, les quartiers d’œufs durs, nappez de sauce et parsemez de câpres."));
+        livreRecettes.add(new Recette(7,"Salade de poulet à la mimolette", 15, lesIngredientsdelaRecette, "1) Plongez les œufs dans une casserole d’eau bouillante et laissez-les cuire 8 mn. Passez-les aussitôt sous l’eau froide, roulez-les pour fendiller la coquille et laissez-les refroidir dans de l’eau froide. \n 2) Faites cuire les filets de poulet incisés et posés bien à plat dans une poêle huilée bien chaude, 3 à 4 mn de chaque côté, jusqu’à ce qu’ils soient dorés. Salez, poivrez, puis emballez-les aussitôt dans un papier alimentaire ou enfermez-les dans une boîte hermétique et laissez-les tiédir. \n 3) Rincez et essorez la salade et la roquette. Émincez finement l’oignon. Taillez la mimolette en fins copeaux. Mélangez le yaourt avec la moutarde, 3 c. à soupe d’huile d’olive, 1 pincée de sel et 1 pincée de poivre moulu, ajustez la consistance avec un peu d’eau pour obtenir une sauce crémeuse mais fluide. Écalez les œufs, coupez-les en quartiers, tranchez les filets de poulet en lanières. \n 4) Présentez les feuilles de salade et la roquette avec les lamelles de poulet, les copeaux de mimolette, les quartiers d’œufs durs, nappez de sauce et parsemez de câpres."));
 
         lesIngredientsdelaRecette=new Vector<>();
 
@@ -127,7 +127,7 @@ public class Menu {
 
 
 
-        livreRecettes.add(new Recette(10,"Poivrons et pois chiches au lard fumé", 10, lesIngredientsdelaRecette, "1) Rincez et essuyez les poivrons. Épépinez-les et coupez-les en lanières. Rincez et égouttez les pois chiches. Épluchez et émincez l’oignon. Épluchez et ciselez finement l’ail. \n 2) Dans une cocotte, faites chauffer l’huile, ajoutez l’oignon et les tranches de poitrine fumée coupées en morceaux. Laissez rissoler 3 mn en remuant jusqu’à ce que l’oignon soit translucide. Ajoutez les poivrons, l’origan et l’ail, laissez cuire encore 5 mn en remuant régulièrement. Ajoutez le concentré de tomate, la crème végétale, les pois chiches, les petits pois, 1 pincée de sel et le paprika. Couvrez et laissez mijoter à feu doux pendant 10 mn. \n 3) Servez avec des noix de cajou grillées concassées."));
+        livreRecettes.add(new Recette(8,"Poivrons et pois chiches au lard fumé", 10, lesIngredientsdelaRecette, "1) Rincez et essuyez les poivrons. Épépinez-les et coupez-les en lanières. Rincez et égouttez les pois chiches. Épluchez et émincez l’oignon. Épluchez et ciselez finement l’ail. \n 2) Dans une cocotte, faites chauffer l’huile, ajoutez l’oignon et les tranches de poitrine fumée coupées en morceaux. Laissez rissoler 3 mn en remuant jusqu’à ce que l’oignon soit translucide. Ajoutez les poivrons, l’origan et l’ail, laissez cuire encore 5 mn en remuant régulièrement. Ajoutez le concentré de tomate, la crème végétale, les pois chiches, les petits pois, 1 pincée de sel et le paprika. Couvrez et laissez mijoter à feu doux pendant 10 mn. \n 3) Servez avec des noix de cajou grillées concassées."));
 
         lesIngredientsdelaRecette=new Vector<>();
 
@@ -139,7 +139,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(1,"très petit filet","de Paterelle"));
 
 
-        livreRecettes.add(new Recette(11,"Gnocchis & champignons", 30, lesIngredientsdelaRecette,
+        livreRecettes.add(new Recette(9,"Gnocchis & champignons", 30, lesIngredientsdelaRecette,
                 "1. Couper finement l'oignon et l'ail.\n" +
                         "2. Dans une casserole huilée, faire revenir d'abord les champignons avec un peu de persil .\n" +
                         "3. Une fois cuits, réserver-les sur une assiette. Cuire ensuite l'oignon puis l'ail ensemble.\n" +
@@ -155,7 +155,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(1,"","tomate"));
 
 
-        livreRecettes.add(new Recette(12,"Croque-monsieur à l'avocat", 15, lesIngredientsdelaRecette,
+        livreRecettes.add(new Recette(10,"Croque-monsieur à l'avocat", 15, lesIngredientsdelaRecette,
                 "1. Découpez votre avocat et votre tomate en morceaux. Coupez votre boule de mozzarella en tranches.\n" +
                         "2. Chauffez votre poêle à feu moyen.\n" +
                         "3. Beurrez légèrement un côté de vos deux tranches de pain.\n" +
@@ -179,7 +179,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(1, "cuillère à café", "de curry en poudre"));
 
 
-        livreRecettes.add(new Recette(13,"Poulet curry coco", 30, lesIngredientsdelaRecette,
+        livreRecettes.add(new Recette(11,"Poulet curry coco", 30, lesIngredientsdelaRecette,
                 "1. Couper les escalopes en lamelles et émincer l’oignon. Préparer une julienne de carottes.\n" +
                         "2. Dans un bol, mélanger le yaourt, nuoc mam, et une cuillerée à café de curry vert.\n" +
                         "   Badigeonner la viande de ce mélange et la laisser mariner dans un saladier le temps de préparer la suite.\n" +
@@ -204,7 +204,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(2, "feuilles", "de menthe"));
 
 
-        livreRecettes.add(new Recette(14,"Salade de Quinoa au poulet, concombre et avocat", 35, lesIngredientsdelaRecette,
+        livreRecettes.add(new Recette(12,"Salade de Quinoa au poulet, concombre et avocat", 35, lesIngredientsdelaRecette,
                 "1. Faire cuire le quinoa comme indiqué sur le paquet (par absorption comme du riz blanc), soit environ 15 min.\n" +
                         "2. Pendant ce temps, détailler le poulet, les concombres et l'avocat en dés d'1 ou 2 cm (selon votre goût).\n" +
                         "3. Y ajouter du persil plat et des feuilles de menthe hachés, mélanger sans trop écraser l'avocat.\n" +
@@ -224,7 +224,7 @@ public class Menu {
         lesIngredientsdelaRecette.add(new Ingredient(1, "pincée", "de chili"));
 
 
-        livreRecettes.add(new Recette(15,"Chili con carne", 20, lesIngredientsdelaRecette,
+        livreRecettes.add(new Recette(13,"Chili con carne", 20, lesIngredientsdelaRecette,
                 "1. couper le poivron en morceaux\n" +
                         "2. le faire cuire à feu doux pendant 15min\n" +
                         "3. faire cuire le riz\n" +
@@ -247,7 +247,7 @@ public class Menu {
       lesIngredientsdelaRecette.add(new Ingredient(1,"pincée", "de cumin en poudre"));
 
 
-      livreRecettes.add(new Recette(17,"Soufflés de carotte à la Vache-qui-Rit", 25, lesIngredientsdelaRecette,
+      livreRecettes.add(new Recette(14,"Soufflés de carotte à la Vache-qui-Rit", 25, lesIngredientsdelaRecette,
               "1. Pelez les carottes, coupez-les en rondelles, puis faites-les cuire 15 mn à la vapeur. Réduisez-les en très fine purée avec un mixeur. Versez dans un saladier et laissez tiédir.\n" +
                       "2. Préchauffez le four th. 5 (150 °C).\n" +
                       "3. Préparez la béchamel : faites fondre les 40 g de beurre dans une petite casserole. \n Ajoutez la farine, laissez dorer à feu doux en remuant, puis ajoutez le lait. Salez, poivrez, ajoutez le cumin. \n Laissez cuire 10 mn à feu très doux en mélangeant. Hors du feu, ajoutez les portions de Vache-qui-Rit.\n" +
@@ -263,7 +263,7 @@ public class Menu {
       lesIngredientsdelaRecette.add(new Ingredient(1,"cuillère à café","d'huile d'olive'"));
 
 
-      livreRecettes.add(new Recette(18,"Brouillade feta-coriandre", 5, lesIngredientsdelaRecette,
+      livreRecettes.add(new Recette(15,"Brouillade feta-coriandre", 5, lesIngredientsdelaRecette,
               "1. Émiettez la feta. Rincez, effeuillez et ciselez la coriandre.\n" +
                       "2. Cassez les œufs dans un récipient et battez-les à la fourchette. Ajoutez du sel, du poivre et une pointe de piment d’Espelette.\n" +
                       "3. Faites chauffer le beurre et l’huile d’olive dans une casserole. Ajoutez les œufs et laissez cuire sur feu très doux pendant 5 à 6 mn en remuant avec une cuillère en bois : ils doivent rester crémeux. Hors du feu, incorporez la feta et la coriandre.\n" +
@@ -274,6 +274,7 @@ public class Menu {
 
 
     }
+
     public static Vector<Recette> getMenu(){
         Menu test= new Menu();
         Vector<Recette> Menu=new Vector<>();
@@ -287,19 +288,18 @@ public class Menu {
         return Menu;
     }
     public Recette getRecetteAvecNumero(int NumeroRecette) {
+      Recette recetteNulle=livreRecettes.get(0);
+      for (int i = 0; i < livreRecettes.size(); i++) {
+        Recette RecetteATrouver = livreRecettes.get(i);
 
-
-        for (int i = 0; i <= livreRecettes.size(); i++) {
-            Recette RecetteATrouver = livreRecettes.get(i);
-            int numRecette = RecetteATrouver.getNumeroRecette();
-            if (numRecette == NumeroRecette) {
-                return RecetteATrouver;
-            }
-
+        int numRecette = RecetteATrouver.getNumeroRecette();
+        if (numRecette == NumeroRecette) {
+          return RecetteATrouver;
         }
-     return null;
-    }
 
+      }
+      return recetteNulle;
+    }
 
 }
 

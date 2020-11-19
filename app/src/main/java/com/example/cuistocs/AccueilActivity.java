@@ -57,18 +57,24 @@ public class AccueilActivity extends AppCompatActivity {
 
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
+                        //on reinitialise les données rentrées des recettes
+                        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+                        editor = sharedPreferences.edit();
+                        editor.clear().commit();
+
+                        //on récupère ce qui va nous servir à faire le lien entre le jour et les recettes
                         sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
                         editor = sharedPreferences.edit();
-                        editor.clear();
 
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor=preferences.edit();
+                        //reset du lien
+                        editor.clear();
 
                         for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
+                            Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
                         }
 
-                        editor.commit();
+                        editor.apply();
                         Log.i("définition du set","effectuée");
 
                         Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
