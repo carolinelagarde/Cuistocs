@@ -47,10 +47,12 @@ public class AccueilActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        //garde en mémoire les boutons déjà débloqués sous la forme d'un tag "jourXsemaineY"
                         SharedPreferences spEtatBouton;
 
                         spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorEtatBouton = spEtatBouton.edit();
+                        editorEtatBouton.clear();
 
                         editorEtatBouton.putString("jour0semaine0","boutondébloqué");
                         editorEtatBouton.commit();

@@ -53,15 +53,22 @@ public class SemaineActivity extends AppCompatActivity {
             Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
+        //retient dans quelle semaine on est
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorDate =spDate.edit();
+
+        editorDate.putInt("numeroSemaine",numeroSemaine);
+        editorDate.commit();
+
 
         //passe à l'activité suivante que si les boutons sont débloqués
         SharedPreferences spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         String tag="jour0semaine"+numeroSemaine;
+        Log.i("numerosemaine",Integer.toString(numeroSemaine));
         if (numeroSemaine==0 || spEtatBouton.contains(tag)){
 
             Intent versJour = new Intent();
             versJour.setClass(this, ChoixJoursActivity.class);
-            versJour.putExtra("indiceSemaine", numeroSemaine);
             startActivity(versJour);
 
         }

@@ -41,9 +41,9 @@ public class ChoixJoursActivity extends AppCompatActivity {
         Jour6 = findViewById(R.id.jour6);
         Jour7 = findViewById(R.id.jour7);
 
-        //recupere le numero de la semaine
-        Intent messagedeSemaineActivity = getIntent();
-        numeroSemaine = messagedeSemaineActivity.getIntExtra("indiceSemaine", -1);
+        //recupere le numero de la semaine qui est en mémoire
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        numeroSemaine=spDate.getInt("numeroSemaine",-1);
     }
 
 
@@ -65,16 +65,22 @@ public class ChoixJoursActivity extends AppCompatActivity {
             jour = 6;
         }
 
-        //debloque le jour que si le jour précédent a été développé
+        //retient dans quel jour on est
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorDate=spDate.edit();
+        editorDate.putInt("numeroJour",jour);
+        editorDate.commit();
+
+
+        //debloque et lance le jour que si le jour a été développé
 
         spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
 
         String tag="jour"+jour+"semaine"+numeroSemaine;
         if (jour == 0 || spEtatBouton.contains(tag)) {
             Intent messageVersRecetteActivity = new Intent();
+            Log.i("numerosemaine",Integer.toString(numeroSemaine));
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
-            messageVersRecetteActivity.putExtra("numero jour", jour);
-            messageVersRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(messageVersRecetteActivity);
         }
     }

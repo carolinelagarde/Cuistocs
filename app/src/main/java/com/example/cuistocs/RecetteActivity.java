@@ -69,15 +69,16 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             points = spPoints.getInt("nombrePoints", -1);
         } else { points = 0; }
 
-
-        // recuperation des entiers numeroSemaine et numeroJour qui servent à indexer les recettes dans la matrice des recettes
-
         //on récupère des deux activités précédentes les numéros du jour et de la semaine dans laquelle on est
 
         Intent messagedeChoixJoursActivity = getIntent();
 
-        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1);
-        numeroSemaine = messagedeChoixJoursActivity.getIntExtra("numero semaine", -1);
+        // recuperation des entiers numeroSemaine et numeroJour
+
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        numeroSemaine=spDate.getInt("numeroSemaine",-1);
+        numeroJour=spDate.getInt("numeroJour",-1);
+        Log.i("numerosemaine",Integer.toString(numeroSemaine));
         JourAbsoluActuel = (numeroJour+1)*(numeroSemaine+1);
 
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
@@ -185,8 +186,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             Intent versCommentRecetteActivity = new Intent();
             versCommentRecetteActivity.setClass(this, CommentRecetteActivity.class);
             versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
-            versCommentRecetteActivity.putExtra("numero jour", numeroJour);
-            versCommentRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(versCommentRecetteActivity);
 
         }
