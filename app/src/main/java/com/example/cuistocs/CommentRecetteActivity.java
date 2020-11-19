@@ -92,7 +92,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         float note = rb.getRating();  //on récupère la note que l'utilisateur entre dans la rating bar
         Toast.makeText(this, "note:" + note, Toast.LENGTH_SHORT).show(); //on montre à l'utilisateur la note qu'il a mise
 
-        Commentaire=findViewById(R.id.Commentaire);
+
         commentaireRecette=Commentaire.getText().toString();
 
         //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences

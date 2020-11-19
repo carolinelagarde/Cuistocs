@@ -18,13 +18,16 @@ public class Recette {
     // numéro recette
     private int numeroRecette;
 
+    private boolean vegetarien;
 
-    public Recette(int numeroRecette, String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
+
+    public Recette(boolean vegetarien, int numeroRecette, String titre, int tempsdecuisine, Vector<Ingredient> lesIngredients, String instructions) {
         this.titre = titre;
         this.numeroRecette = numeroRecette;
         this.tempsdecuisine = tempsdecuisine;
         this.lesIngredients = lesIngredients;
         this.instructions = instructions;
+        this.vegetarien = vegetarien;
     }
 
     public Vector<Recette> livreRecettes;
@@ -55,7 +58,8 @@ public class Recette {
         return numeroRecette;
     }
 
-
+    //obtenir boolean vegetarien
+    public boolean isVegetarien() { return vegetarien; }
 
 }
 
