@@ -11,27 +11,27 @@
     <string name="title_activity_mode_emploi">ScrollingActivity</string>
     <string name="large_text">
 
-        "Mode d'emploi de Cuistocs\n\n"
+        "MODE D'EMPLOI DE CUISTOCS\n\n"
 
-        "Bienvenue dans Cuistocs, l\'application qui fera de vous le meileur cuisinier de tous vos potes! \n"
-        "Le but est simple : obtenir le plus de points en 28 jours en réalisant le plus de recettes, et"
-        "partager et comparer votre score obtenu avec vos amis ! \n"
-        "Chaque jour une recette au prix abordable vous est proposée mais tant que vous n\'avez pas"
+        "   Bienvenue dans Cuistocs, l\'application qui fera de vous le meileur cuisinier de tous vos potes! \n\n"
+        "   Le but est simple : obtenir le plus de points en 28 jours en réalisant le plus de recettes, et"
+        "partager et comparer votre score obtenu avec vos amis ! \n\n"
+        "   Chaque jour une recette au prix abordable vous est proposée mais tant que vous n\'avez pas"
         "accédé à la recette et validé en appuyant sur \'Je passe\' ou \'Finie!\', vous n\'avez pas accès"
-        "à la recette du jour suivant. \n Pour obtenir des points, il faut bien sûr avoir réalisé votre"
+        "à la recette du jour suivant. \n\n   Pour obtenir des points, il faut bien sûr avoir réalisé votre"
         "recette après avoir indiqué votre nombre de convives et donc avoir cliqué sur \'Finie\', mais aussi l\'avoir faite dans le temps imparti,"
          "c\'est à dire qu\'après avoir lancé le chronomètre, vous avez le temps"
         "indiqué dans la recette, avec une marge de 10 minutes pour cuisiner (et oui nous sommes plutôt tolérants)."
-        "Vous pouvez suivre votre score en continu car il est affiché sur la page avec les boutons des semaines."
-         "Une fois votre recette finie, vous pouvez noter, commenter et prendre une photo de votre recette mais aussi"
+        "\n\n   Vous pouvez suivre votre score en continu car il est affiché sur la page avec les boutons des semaines."
+         "\n\n   Une fois votre recette finie, vous pouvez noter, commenter et prendre une photo de votre recette mais aussi"
         "l'envoyer à tes amis et ta grand mère par sms. Cette recette est alors disponible dans vos "recettes effectiées""
         "que vous trouverez dans la page avec les boutons des semaines."
-         "Sur cette page, vous pouvez également retouver vos recettes préférées en indiquant si vous recherchez"
+         "\n\n   Sur cette page, vous pouvez également retouver vos recettes préférées en indiquant si vous recherchez"
         "les recettes avec 1, 2, ect , ou 5 étoiles ! \n"
-        "De plus pour vous organiser vous avez accès aux ingrédients des recettes à venir. En effet, en cliquant sur"
+        "\n\n   De plus pour vous organiser vous avez accès aux ingrédients des recettes à venir. En effet, en cliquant sur"
         "le bouton liste de courses de la page avec les boutons de la semaine, vous pouvez choisir les jours"
         "pour lesquels vous voulez acheter les aliments, comme par exemple : du jour 4 au jour 8, et"
-        "vous obtenez alors vos ingrédients nécessaires pour lesquels vous pouvez indiquer le nombre de convives."
+        "vous obtenez alors vos ingrédients nécessaires pour lesquels vous pouvez indiquer le nombre de convives. \n\n   AMUSEZ-VOUS BIEN!!!^"
 
 
 
