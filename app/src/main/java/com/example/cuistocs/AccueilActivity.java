@@ -37,11 +37,11 @@ public class AccueilActivity extends AppCompatActivity {
     public void versConfirmation(View view) {
 
         //demande la confirmation ou non via un alerte dialogue builder
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setTitle("Nouveau Défi");
-        builder.setMessage("Voulez-vous vraiment recommencer le défi ?");
-        builder.setPositiveButton("C'est parti !", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builderRecommencer = new AlertDialog.Builder(this);
+        builderRecommencer.setCancelable(false);
+        builderRecommencer.setTitle("Nouveau Défi");
+        builderRecommencer.setMessage("Voulez-vous vraiment recommencer le défi ?");
+        builderRecommencer.setPositiveButton("C'est parti !", new DialogInterface.OnClickListener() {
 
             //on a cliqué sur recommencer le défi : on initialise toutes les données
                     @Override
@@ -57,48 +57,106 @@ public class AccueilActivity extends AppCompatActivity {
                         editorEtatBouton.putString("jour0semaine0","boutondébloqué");
                         editorEtatBouton.commit();
 
-                        //on créé un ensemble de recettes
-                        Vector<Recette> LivreRecette = Menu.getMenu();
 
-                        //on réinitialise les données des recettes effectuées
-                        SharedPreferences sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.clear().commit();
 
-                        //ce shared preferences permet de faire le lien entre le jour et les recettes :
-                        // à chaque jour est assigné une recette pour tout le défi
-                        sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
-                        editor = sharedPreferences.edit();
+                        //demande si vege ou non dans un builder
+                        AlertDialog.Builder builderVege = new AlertDialog.Builder(builderRecommencer.getContext());
+                        builderVege.setCancelable(false);
+                        builderVege.setTitle("Defi végétarien");
+                        builderVege.setMessage("Veux-tu essayer le mode végétarien ?");
+                        builderVege.setPositiveButton("Oui, je veux sauver la planète", new DialogInterface.OnClickListener() {
 
-                        //réinitialisation du lien
-                        editor.clear();
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                        //création du nouveau lien aléatoire
-                        for (int i=0;i<LivreRecette.size();i++) {
-                            editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
-                            Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
-                        }
-                        editor.apply();
+                                        //on créé un ensemble de recettes
+                                        Vector<Recette> LivreRecette = Menu.getMenuVege();
 
-                        //on passe à l'activité mode d'emploi
-                        Intent versModeEmploi=new Intent(getApplicationContext(), ModeEmploiActivity.class);
-                        startActivity(versModeEmploi);
+                                        //on réinitialise les données des recettes effectuées
+                                        SharedPreferences sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.clear().commit();
+
+                                        //ce shared preferences permet de faire le lien entre le jour et les recettes :
+                                        // à chaque jour est assigné une recette pour tout le défi
+                                        sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
+                                        editor = sharedPreferences.edit();
+
+                                        //réinitialisation du lien
+                                        editor.clear();
+
+                                        //création du nouveau lien aléatoire
+                                        for (int i = 0; i < LivreRecette.size(); i++) {
+                                            editor.putString("" + i + "", "" + LivreRecette.get(i).getNumeroRecette() + "");
+                                            Log.i("recette", sharedPreferences.getString("" + i + "", "erreur"));
+                                        }
+                                        editor.apply();
+
+                                        //on passe à l'activité mode d'emploi
+                                        Intent versModeEmploi = new Intent(getApplicationContext(), ModeEmploiActivity.class);
+                                        startActivity(versModeEmploi);
+                                        finish();
+
+                                    }
+
+                                });
+
+                            builderVege.setNegativeButton("Non, je trie déjà mes déchets", new DialogInterface.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            //on créé un ensemble de recettes
+                                            Vector<Recette> LivreRecette = Menu.getMenu();
+
+                                            //on réinitialise les données des recettes effectuées
+                                            SharedPreferences sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.clear().commit();
+
+                                            //ce shared preferences permet de faire le lien entre le jour et les recettes :
+                                            // à chaque jour est assigné une recette pour tout le défi
+                                            sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
+                                            editor = sharedPreferences.edit();
+
+                                            //réinitialisation du lien
+                                            editor.clear();
+
+                                            //création du nouveau lien aléatoire
+                                            for (int i=0;i<LivreRecette.size();i++) {
+                                                editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
+                                                Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
+                                            }
+                                            editor.apply();
+
+                                            //on passe à l'activité mode d'emploi
+                                            Intent versModeEmploi=new Intent(getApplicationContext(), ModeEmploiActivity.class);
+                                            startActivity(versModeEmploi);
+                                            finish();
+
+                                        }
+                                    });
+
+                        AlertDialog dialogVege = builderVege.create();
+                        dialogVege.show();
+
+
+
+                    }
+                });
+
+                //finalement l'utilisateur clique sur continuer le meme défi : il est envoyé directement à l'activité semaine
+                builderRecommencer.setNegativeButton("Non, je continue le même !", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
+                        startActivity(versSemaine);
                         finish();
                     }
                 });
 
-        //finalement l'utilisateur clique sur continuer le meme défi : il est envoyé directement à l'activité semaine
-        builder.setNegativeButton("Non, je continue le même !", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
-                startActivity(versSemaine);
-                finish();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+                AlertDialog dialogRecommencer = builderRecommencer.create();
+                dialogRecommencer.show();
     }
 
 
