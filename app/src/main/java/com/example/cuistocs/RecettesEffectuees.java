@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -74,6 +75,9 @@ public class RecettesEffectuees extends AppCompatActivity {
                     button.setOnClickListener(this::onClick);
                     button.setTag(Integer.toString(i));
                     layoutScrollView.addView(button);
+                    TextView espaceTextView = new TextView(this);
+                    espaceTextView.setText("");
+                    layoutScrollView.addView(espaceTextView);
                 }
             }
         }
