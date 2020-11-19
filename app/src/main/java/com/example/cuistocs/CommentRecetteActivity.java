@@ -88,6 +88,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
         //Init du shared preferences pour les données de la recette
         spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
+
+        Commentaire = findViewById(R.id.Commentaire);
     }
 
     //fonction pour valider nos entrées
