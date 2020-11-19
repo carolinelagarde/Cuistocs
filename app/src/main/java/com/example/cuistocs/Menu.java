@@ -306,12 +306,10 @@ public class Menu {
       lesIngredientsdelaRecette.add(new Ingredient(1,"entière","pâte brisée"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"entière","tomate"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","herbe de provence"));
-      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillière","moutarde"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"poignée","moutarde"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"cuillière","huile d'olive"));
 
       livreRecettes.add(new Recette(18,"Tarte à la tomate et à la moutarde", 30, lesIngredientsdelaRecette, " Précuire la pâte (percée avec une fourchette) 5 min à 450 degrés farenheit (230°C). \n  Pendant ce temps, couper les tomates en rondelles de 3 mm d'épaisseur. \n Sortir la pâte précuite du four. badigeonner le fond de moutarde de Dijon (la classique fait l'affaire) ... \n en mettre suffisamment pour que le fond en pâte ne se voit plus. Disposer les tranches de tomates. \n faire plusieurs épaisseurs. Saupoudrer d'herbes de Provence + 2 pincées de sel. \n 1 cuillère à soupe d'huile d'olive.  \n Enfourner pour 20 min à 450 farenheit puis couvrir avec papier d'aluminium pour 20 min supplémentaires. \n Après ces 20 min, enlever le papier aluminium et laisser cuire encore 5 min porte du four ouverte. \n  Délicieux avec une salade verte." ));
-
-
 
 
 
