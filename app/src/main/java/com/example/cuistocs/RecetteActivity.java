@@ -174,8 +174,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
         if (view.equals(boutonFini)) {
 
-            points += 1;   // si bouton Fini clique : +1 point !
-
             //on enregistre le temps de chrono et on l'enregistre dans les SharedPreferences au tag avec le nom de la recette et chrono
             long time;
             chrono.stop();
@@ -185,11 +183,23 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             editorCaracteristiqueRecette.putLong("r"+numeroRecette+"chrono",time);
             editorCaracteristiqueRecette.commit();
 
+            // donner les points
+
+            //récupère le nombre de minutes mises pour préparer la recette
+            SharedPreferences spRecette=getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+            Long chronoTime=spRecette.getLong("r"+numeroRecette+"chrono",0);
+            int TempsMis= (int) (chronoTime/60000);
+            //récupère le temps imparti normalement
+            int tempsImparti =recette.getTempsdecuisine()+10;
+            // si bouton Fini est cliqué et le joueur a réalisé la recette dans le temps imparti i.e. le temps donné avec dix minutes de marche : +1 point !
+            if (TempsMis<tempsImparti) {
+                points += 1;
+            }
+
             ///on va enregistrer le fait que la recette a été faite et le score du joueur
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = spPoints.edit();
             editor.putInt("nombrePointsDejaGagnes", points);
-
             editor.apply();
 
 
