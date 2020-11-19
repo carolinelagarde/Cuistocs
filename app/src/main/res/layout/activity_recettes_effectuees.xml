@@ -11,9 +11,11 @@
 
     <ScrollView
         android:id="@+id/scrollViewBoutons"
-        android:layout_width="match_parent"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,20 +30,25 @@
 
     <TextView
         android:id="@+id/textViewRatingB"
-        android:layout_width="409dp"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="monospace"
+        android:textSize="20sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="409dp"
+        android:layout_width="351dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Voici les recettes que vous avez déjà terminées. Refaites-les et servez-vous de vos commentaires pour progressez et comparez le nouvaeau resultat avec l'anciene photo !"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/caniste"
+        android:text="Voici les recettes que vous avez déjà terminees."
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,12 +56,15 @@
         android:id="@+id/filtreNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="140dp"
         android:numStars="5"
         android:rating="0"
+        android:theme="@style/RatingBar"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
