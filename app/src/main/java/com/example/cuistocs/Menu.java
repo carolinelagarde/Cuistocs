@@ -7,11 +7,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
-
+//CETTE CLASSE PERMET DE RETROUVER LES RECETTES ENREGISTREES
 public class Menu {
     public static Vector<Recette> livreRecettes;
 
-
+//Le constructeur contient toutes les recettes
     public Menu(){
         livreRecettes=new Vector<>();
 
@@ -910,6 +910,8 @@ public class Menu {
 
     }
 
+
+//cette methode permet de récupérer le menu
     public static Vector<Recette> getMenu(){
         Menu test= new Menu();
         Vector<Recette> Menu=new Vector<>();
@@ -917,12 +919,11 @@ public class Menu {
             Menu.add(test.livreRecettes.get(i));
         }
         Collections.shuffle(Menu);
-        //for (int i=28;i<Menu.size();i++){
-            //Menu.remove(i);
-       // }
         return Menu;
     }
 
+
+//cette methode permet de récuperer le menu végé
     public static Vector<Recette> getMenuVege() {
       Menu test= new Menu();
       Vector<Recette> MenuVege=new Vector<>();
