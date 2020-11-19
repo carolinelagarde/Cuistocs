@@ -45,9 +45,10 @@ public class RecettesEffectuees extends AppCompatActivity {
               for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
             if (sharedPreferences.getBoolean(name, false)) {
-
+                Menu menu=new Menu();
+                Recette Recette=menu.getRecetteAvecNumero(i);
                 Button button = new Button(getApplicationContext());
-                button.setText("Recette" + " " + ""+i+"");
+                button.setText(Recette.getTitre());
                 button.setOnClickListener(this::onClick);
                 button.setTag(Integer.toString(i));
                 lay.addView(button);
