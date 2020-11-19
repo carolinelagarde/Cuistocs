@@ -43,6 +43,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     //chronomètre du temps de réalisation de la recette
     Chronometer chrono;
 
+    //Menu pour accéder aux recettes
+    Menu test;
+
     //récupération des recettes terminées : on va l'actualiser en cas de pression sur le bouton "fini"
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -75,6 +78,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //affecte les deux boutons
         boutonFini = findViewById(R.id.boutonFini);
         boutonPasse = findViewById(R.id.boutonPasse);
+        chrono=findViewById(R.id.chronometer);
+        chrono.setVisibility(View.INVISIBLE);
 
         /*on affecte à la variable points :
            - 0 si aucun point n'a été marqué
@@ -115,11 +120,13 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         LinearLayout ViewRecette = findViewById(R.id.Recette);
         TextView ViewTitre = findViewById(R.id.Titre);
 
+
         ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
         TextView ViewInstruction = new TextView(this);
         ViewInstruction.setText(instructions);
         ViewRecette.addView(ViewInstruction);
         ViewTitre.setText(Titre);
+
     }
 
     //fonction de la barre pour choisir le nomde d'invités
@@ -253,12 +260,13 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     //bouton lancer le chrono : lance le chrono et fait disparaitre le bouton
     public void LancerChrono(View view) {
-        chrono=findViewById(R.id.chronometer);
+
         chrono.start();
+        chrono.setVisibility(View.VISIBLE);
         chrono.setBase(SystemClock.elapsedRealtime());
 
-        //fait disparaitre le bouton
-        Button boutonchrono=findViewById(R.id.buttonLancerChrono);
+        //fait disparaitre le bouton chrono apres l'avoir lancé
+        Button boutonchrono=(Button)view;
         boutonchrono.setVisibility(GONE);
     }
 }
