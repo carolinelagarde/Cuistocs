@@ -47,7 +47,7 @@ public class SemaineActivity extends AppCompatActivity {
 
         //récupérer le score via le shared preferences
         SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-        int scoreActuel=spPoints.getInt("nombrePointsDejaGagnes",0);
+        int scoreActuel=spPoints.getInt("nombrePoints",0);
 
         //affiche le score actuel
         TextView AfficherScoreActuel=findViewById(R.id.textViewScoreActuel);

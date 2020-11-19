@@ -57,6 +57,9 @@ public class AccueilActivity extends AppCompatActivity {
                         editorEtatBouton.putString("jour0semaine0","boutondébloqué");
                         editorEtatBouton.commit();
 
+                        //on reinitialise
+                        spEtatBouton = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+                        spEtatBouton.edit().clear().commit();
 
 
                         //demande si vege ou non dans un builder

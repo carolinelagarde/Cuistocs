@@ -7,11 +7,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
-
+//CETTE CLASSE PERMET DE RETROUVER LES RECETTES ENREGISTREES
 public class Menu {
     public static Vector<Recette> livreRecettes;
 
-
+//Le constructeur contient toutes les recettes
     public Menu(){
         livreRecettes=new Vector<>();
 
@@ -311,43 +311,54 @@ public class Menu {
 
       livreRecettes.add(new Recette(true, 18,"Tarte à la tomate et à la moutarde", 30, lesIngredientsdelaRecette, " Précuire la pâte (percée avec une fourchette) 5 min à 450 degrés farenheit (230°C). \n  Pendant ce temps, couper les tomates en rondelles de 3 mm d'épaisseur. \n Sortir la pâte précuite du four. badigeonner le fond de moutarde de Dijon (la classique fait l'affaire) ... \n en mettre suffisamment pour que le fond en pâte ne se voit plus. Disposer les tranches de tomates. \n faire plusieurs épaisseurs. Saupoudrer d'herbes de Provence + 2 pincées de sel. \n 1 cuillère à soupe d'huile d'olive.  \n Enfourner pour 20 min à 450 farenheit puis couvrir avec papier d'aluminium pour 20 min supplémentaires. \n Après ces 20 min, enlever le papier aluminium et laisser cuire encore 5 min porte du four ouverte. \n  Délicieux avec une salade verte." ));
 
-//debut recettes doublons pour test
-
       lesIngredientsdelaRecette=new Vector<>();
 
-      lesIngredientsdelaRecette.add(new Ingredient(25,"g","mozarella"));
-      lesIngredientsdelaRecette.add(new Ingredient(4,"","oeufs"));
-      lesIngredientsdelaRecette.add(new Ingredient(1,"bouquet","ciboulette"));
-      lesIngredientsdelaRecette.add(new Ingredient(2,"cuilleres a soupe","huile"));
+      lesIngredientsdelaRecette.add(new Ingredient(25,"g","de comté"));
+      lesIngredientsdelaRecette.add(new Ingredient(8,"","oeufs"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"grosses noix","de beurre"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuilleres a café","de paprika"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","sel"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","poivre"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"filet","d'huile d'olives"));
 
-      livreRecettes.add(new Recette(true, 1,"Omelette ciboulette et mozzarella",10,lesIngredientsdelaRecette,"1) Coupez la mozzarella en 12 morceaux"+"/n"+"2) Cassez les oeufs et fouettez les avec le sel, le poivre et la ciboulette coupée finement"+"/n"+"3) Faire cuire les oeufs sur une poele pendant deux à trois minutes"+"/n"+"4) parsemez les oeufs de mozzarella, couvrez et laissez cuire 7 mn environ, à feu doux, sans y toucher, jusqu’à ce que l’omelette soit juste prise"));
+      livreRecettes.add(new Recette(true, 19,"Brouillade au comté et paprika fumé",10,lesIngredientsdelaRecette,
+              "1. Coupez le comté en cubes. Battez les œufs avec le fromage, le paprika fumé, le sel et le poivre."+"/n"+
+              "2. Faites chauffer l’huile d’olive avec le beurre dans une casserole. Ajoutez les œufs battus et laissez cuire 3 mn à feu moyen en mélangeant constamment, jusqu’à ce que les œufs soient pris sans être secs. Dégustez aussitôt."));
+
 
       lesIngredientsdelaRecette=new Vector<>();
 
 
-      lesIngredientsdelaRecette.add(new Ingredient(1,"","tortilla de blé"));
-      lesIngredientsdelaRecette.add(new Ingredient(4,"","tomates cerises"));
+      lesIngredientsdelaRecette.add(new Ingredient(100,"grammes","de couscous fin"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"bouquet","d'herbes mélangées"));
       lesIngredientsdelaRecette.add(new Ingredient(1,"","champignon de Paris"));
-      lesIngredientsdelaRecette.add(new Ingredient(2,"cuilleres a soupe","huile"));
-      lesIngredientsdelaRecette.add(new Ingredient(5,"","tagliatelles de courgette"));
-      lesIngredientsdelaRecette.add(new Ingredient(1,"boule","mozarella"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","de curcuma"));
+      lesIngredientsdelaRecette.add(new Ingredient(10,"grammes","de beurre"));
 
-      livreRecettes.add(new Recette(true, 2,"Tortizza végétarienne",5,lesIngredientsdelaRecette,"1) Prechauffez le four a 210 degres /n 2) Coupez les tomates-cerises en deux, le champignon en lamelles, et la mozzarella en morceaux. /n"+ "3) Etalez le coulis de tomate sur toute la surface de la tortilla. /n 4) Répartissez-y les tomates-cerises, les lamelles de champignon, les tagliatelles de courgette, les morceaux de mozzarella et le fromage râpé. /n 5) Enfournez 13 min. Servez immédiatement."));
+      livreRecettes.add(new Recette(true, 20,"Couscous express au curcuma et aux herbes",5,lesIngredientsdelaRecette,"1. Faites bouillir 1/2 litre d’eau. /n " +
+              "2. Faites chauffer l’huile d’olive dans une grande casserole. Ajoutez la moitié du beurre, poivrez abondamment et ajoutez le curcuma. Mélangez 1 mn puis ajoutez le couscous et remuez encore 1 mn. Versez l’eau et salez. Couvrez et laissez cuire à feu très doux, 5 mn, en mélangeant de temps en temps. /n"+
+              "3. Rincez les herbes et ciselez-les grossièrement, en éliminant les tiges les plus grosses. /n " +
+              "4. Remuez le couscous pour l’aérer au bout des 5 mn de cuisson, ajoutez le reste de beurre et les herbes, sans cesser de remuer. Servez aussitôt, tiède ou à température ambiante."));
 
       lesIngredientsdelaRecette=new Vector<>();
 
-      lesIngredientsdelaRecette.add(new Ingredient(1,"filet","de saumon"));
-      lesIngredientsdelaRecette.add(new Ingredient(2,"cuillères à soupe","de sauce soja"));
-      lesIngredientsdelaRecette.add(new Ingredient(1,"petite cuillère à café","de sucre"));
-      lesIngredientsdelaRecette.add(new Ingredient(2,"pincées","de poivre"));
-      lesIngredientsdelaRecette.add(new Ingredient(8,"grammes","de beurre"));
-      lesIngredientsdelaRecette.add(new Ingredient(70,"grammes","de riz"));
+      lesIngredientsdelaRecette.add(new Ingredient(4,"","oeufs"));
+      lesIngredientsdelaRecette.add(new Ingredient(50,"grammes","de pousses d'épinards"));
+      lesIngredientsdelaRecette.add(new Ingredient(2,"branches","de persil"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"","petits suisses"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillères à café","de miel"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillères à soupe","de graines de courges"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillères à soupe","de vinaigre de cidre"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillères à soupe","d'huile"));
 
-      livreRecettes.add(new Recette(false, 3,"Saumon Teriyaki",20,lesIngredientsdelaRecette, "1) Mélanger le soja, le sucre, et si vous avez, une touche de gingemmbre. /n 2)Mettre le saumon, avec quelques incisions dans un plat creux, verser la marinade dessus et laisser mariner 15 minutes. /n 3) Faire bouillir de l'eau pour le riz. 4)Verser le riz dans une casserole. /n 5)Verser la marinade dans une autre casserole avec le beurre, à feu doux, et mélanger jusqu'à avoir une sauce homogène. En même temps, faire cuire le saumon à la poêle 3 minutes de chaque côté. /n  6)Saler, poivrer. C'est prêt! Servir le saumon avec le riz et la sauce."));
 
 
+      livreRecettes.add(new Recette(true, 21,"Salade d’épinards au petit-suisse, graines de courge et œufs mollets",15,lesIngredientsdelaRecette, "1. Faites bouillir une casserole d’eau et plongez les œufs 6 mn. Sortez-les immédiatement et tapez-les pour les fendre, laissez-les refroidir dans un grand bol d’eau glacée. /n " +
+              "2. Rincez les feuilles d’épinards et le persil, ciselez le persil, placez-les dans un saladier. /n" +
+              "3. Mélangez les petits-suisses avec l’huile d’olive, le vinaigre, le miel, 1 pincée de sel et 1 pincée de poivre noir. Versez la sauce sur les feuilles d’épinards encore humides et le persil, puis mélangez. /n" +
+              " 4. Répartissez dans les assiettes les feuilles d’épinards, 1 œuf mollet écalé et parsemez de graines de courge."));
+
+      //recettes encore à modifier
       lesIngredientsdelaRecette=new Vector<>();
 
       lesIngredientsdelaRecette.add(new Ingredient(3,"parts","de pâte à pizza"));
@@ -910,6 +921,8 @@ public class Menu {
 
     }
 
+
+//cette methode permet de récupérer le menu
     public static Vector<Recette> getMenu(){
         Menu test= new Menu();
         Vector<Recette> Menu=new Vector<>();
@@ -917,12 +930,11 @@ public class Menu {
             Menu.add(test.livreRecettes.get(i));
         }
         Collections.shuffle(Menu);
-        //for (int i=28;i<Menu.size();i++){
-            //Menu.remove(i);
-       // }
         return Menu;
     }
 
+
+//cette methode permet de récuperer le menu végé
     public static Vector<Recette> getMenuVege() {
       Menu test= new Menu();
       Vector<Recette> MenuVege=new Vector<>();
