@@ -40,7 +40,7 @@ public class RecettesEffectuees extends AppCompatActivity {
     }
 
     public void actualiser(View view) {
-
+        afficher();
     }
 
 
