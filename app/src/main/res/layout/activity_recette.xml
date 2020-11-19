@@ -8,13 +8,15 @@
 
     <Chronometer
         android:id="@+id/chronometer"
-        android:layout_width="121dp"
-        android:layout_height="34dp"
+        android:layout_width="115dp"
+        android:layout_height="44dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
         android:layout_marginBottom="557dp"
         android:background="#000000"
         android:gravity="center"
@@ -22,6 +24,7 @@
         android:textColor="#1aff00"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +32,7 @@
         android:id="@+id/seekBar"
         android:layout_width="204dp"
         android:layout_height="34dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:max="10"
@@ -41,7 +44,7 @@
         android:id="@+id/NbInvites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -105,7 +108,7 @@
 
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="95dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_recent_history"
@@ -117,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="65dp"
         android:text="Invités"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -168,7 +171,6 @@
         android:id="@+id/Titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -205,13 +207,11 @@
 
     <Button
         android:id="@+id/buttonLancerChrono"
-        android:layout_width="155dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="142dp"
+        android:layout_height="50dp"
         android:onClick="LancerChrono"
         android:text="Lancer le chrono"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/boutonFini"
-        app:layout_constraintStart_toEndOf="@+id/boutonPasse" />
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="565dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

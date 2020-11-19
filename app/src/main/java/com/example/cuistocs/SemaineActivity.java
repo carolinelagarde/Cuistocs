@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +32,14 @@ public class SemaineActivity extends AppCompatActivity {
         semaine2 = findViewById(R.id.boutonSemaine2);
         semaine3 = findViewById(R.id.boutonSemaine3);
         semaine4 = findViewById(R.id.boutonSemaine4);
+
+        //affiche le score actuel
+        TextView AfficherScoreActuel=findViewById(R.id.textViewScoreActuel);
+        //récupérer le score
+        SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+        int scoreActuel=spPoints.getInt("nombrePointsDejaGagnes",0);
+        AfficherScoreActuel.setText("Votre score actuel est de "+scoreActuel+" points.");
+
 
     }
 

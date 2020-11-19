@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -41,14 +42,48 @@ public class ChoixJoursActivity extends AppCompatActivity {
         Jour6 = findViewById(R.id.jour6);
         Jour7 = findViewById(R.id.jour7);
 
+
         //recupere le numero de la semaine qui est en mémoire
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         numeroSemaine=spDate.getInt("numeroSemaine",-1);
-    }
+
+        //grisage des boutons comment améliorer ce code pour éviter les répétitions ? comment faire pour R.id.Jour+int ?
+        spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+        String tag="jour"+1+"semaine"+numeroSemaine;
+            if (!(spEtatBouton.contains(tag))){
+                Jour1.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }
+            tag="jour"+2+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour2.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+        tag="jour"+3+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour3.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+        tag="jour"+4+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour4.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+         tag="jour"+5+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour5.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+         tag="jour"+6+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour6.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+        tag="jour"+7+"semaine"+numeroSemaine;
+        if (!(spEtatBouton.contains(tag))){
+            Jour7.setBackgroundColor(Color.parseColor("#ACA3A3"));
+        }
+        }
+
 
 
     public void allerVersRecetteActivity(View view) {
 
+        Button boutonClique=(Button)view;
         if (view.equals(Jour1)) {
             jour = 0;
         } else if (view.equals(Jour2)) {
@@ -82,6 +117,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
             Log.i("numerosemaine",Integer.toString(numeroSemaine));
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
             startActivity(messageVersRecetteActivity);
+
         }
     }
 }
