@@ -75,8 +75,11 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         //Recuperation des données
         Intent deRecetteActivity = getIntent();
-        numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
-        numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
+        //numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
+        //numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        numeroJour=spDate.getInt("numeroJour",-1);
+        numeroSemaine=spDate.getInt("numeroSemaine",-1);
         numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
         //Init du sp

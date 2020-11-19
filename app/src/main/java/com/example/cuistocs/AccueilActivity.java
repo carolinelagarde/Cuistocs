@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
@@ -22,15 +23,16 @@ public class AccueilActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
 
+
     }
 
     public void versSemaine(View view) {
+
         Intent versSemaine=new Intent();
         versSemaine.setClass(this,SemaineActivity.class);
         startActivity(versSemaine);
@@ -44,6 +46,17 @@ public class AccueilActivity extends AppCompatActivity {
         builder.setPositiveButton("C'est parti !", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        //garde en mémoire les boutons déjà débloqués sous la forme d'un tag "jourXsemaineY"
+                        SharedPreferences spEtatBouton;
+
+                        spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorEtatBouton = spEtatBouton.edit();
+                        editorEtatBouton.clear();
+
+                        editorEtatBouton.putString("jour0semaine0","boutondébloqué");
+                        editorEtatBouton.commit();
+
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
                         //on reinitialise les données rentrées des recettes
