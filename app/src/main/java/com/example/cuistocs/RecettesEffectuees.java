@@ -65,16 +65,21 @@ public class RecettesEffectuees extends AppCompatActivity {
         for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
             noteMinimale = rbFiltreNote.getRating();
+            //ajout texte pour le filtre de la note des recettes
+            TextView textViewRb = findViewById(R.id.textViewRatingB);
+            textViewRb.setText("Filtrer garder les recettes ayant au moins " + noteMinimale + " étoiles");
             if (sharedPreferences.getBoolean(name, false)) {
 
                 float note = sharedPreferences.getFloat("r"+i+"note", -1);
 
                 if (note>=noteMinimale) {
+                    //ajout bouton
                     Button button = new Button(getApplicationContext());
                     button.setText("Recette" + " " + ""+i+"");
                     button.setOnClickListener(this::onClick);
                     button.setTag(Integer.toString(i));
                     layoutScrollView.addView(button);
+                    //ajout textview vide pour permettre le scrolling de la scrollview
                     TextView espaceTextView = new TextView(this);
                     espaceTextView.setText("");
                     layoutScrollView.addView(espaceTextView);
