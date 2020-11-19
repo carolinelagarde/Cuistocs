@@ -61,16 +61,18 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recette);
 
-        //affecte les deux boutons
+        //affecte les deux boutons et le chrono
         boutonFini = findViewById(R.id.boutonFini);
         boutonPasse = findViewById(R.id.boutonPasse);
+        chrono=findViewById(R.id.chronometer);
+        chrono.setVisibility(View.INVISIBLE);
 
 
         /*on affecte à la variable points :
            - 0 si aucun point n'a été marqué
            - le nombre de points mémorisés en sharedPreferences si des points on deja ete marques
          */
-        SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
+        spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
         if (spPoints.contains("nombrePoints")) {
             points = spPoints.getInt("nombrePoints", -1);
         } else { points = 0; }
@@ -247,10 +249,11 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
     //bouton lancer le chrono : lance le chrono et fait disparaitre le bouton
     public void LancerChrono(View view) {
-        chrono=findViewById(R.id.chronometer);
+
         chrono.start();
+        chrono.setVisibility(View.VISIBLE);
         chrono.setBase(SystemClock.elapsedRealtime());
-        Button boutonchrono=findViewById(R.id.buttonLancerChrono);
+        Button boutonchrono=(Button)view;
         boutonchrono.setVisibility(GONE);
     }
 }
