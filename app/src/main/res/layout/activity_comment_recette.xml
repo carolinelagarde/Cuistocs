@@ -16,19 +16,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <EditText
-        android:id="@+id/Commentaire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:hint="Commente ta recette: "
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnPrendrePhoto"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="102dp" />
-
     <Button
         android:id="@+id/boutonValider"
         android:layout_width="match_parent"
@@ -70,4 +57,14 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="UnknownId"
         tools:layout_editor_absoluteX="55dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="46dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
