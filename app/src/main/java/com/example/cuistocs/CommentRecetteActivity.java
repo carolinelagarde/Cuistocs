@@ -119,7 +119,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         editor.putFloat("r" + Integer.toString(numeroRecette) + "note", note);
 
         //on enregistre aussi le commentaire de l'utilisateur pour cette recette
-        Commentaire=findViewById(R.id.Commentaire);
         commentaireRecette=Commentaire.getText().toString();
         editor.putString("r" + Integer.toString(numeroRecette) + "commentaire", commentaireRecette);
         editor.apply();
