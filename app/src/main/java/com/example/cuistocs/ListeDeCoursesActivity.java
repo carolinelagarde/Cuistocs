@@ -57,7 +57,7 @@ public void construction() {
 
         //récupération du titre et du texte
         TextView Titre=new TextView(this);
-        Titre.setText(String.format("Recette %1d",i));
+        Titre.setText(String.format("Ingrédients du jour %1d",i));
         Titre.setTextAppearance(getApplicationContext(),android.R.style.TextAppearance_Medium);
         Titre.setTextColor(Color.parseColor("#AC0404"));
         Liste.addView(Titre);
@@ -113,7 +113,7 @@ public void construction() {
 
         //on affiche le nombre de personnes
         TextView nombrepersonnes=new TextView(getApplicationContext());
-        nombrepersonnes.setText("Pour un nombre de convives égal à : "+nombre);
+        nombrepersonnes.setText("Pour "+ nombre +" convives");
         nombrepersonnes.setTextAppearance(getApplicationContext(),android.R.style.TextAppearance_Medium);
         Liste.addView(nombrepersonnes);
 
