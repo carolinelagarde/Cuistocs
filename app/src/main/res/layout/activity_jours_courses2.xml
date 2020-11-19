@@ -6,109 +6,96 @@
     android:layout_height="match_parent"
     tools:context=".JoursCoursesActivity">
 
-    <SeekBar
-        android:id="@+id/seekBarDernierJour"
-        android:layout_width="312dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="242dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginRight="49dp"
-        android:layout_marginBottom="343dp"
-        android:max="28"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textViewChoixnbJoursCourses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:text="Choisissez votre période de jours pour faire les courses !"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/caniste"
+        android:text="Choisissez votre période \n         de jours  pour  \n       faire les courses !"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPremierJour"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/textViewPremierJour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginBottom="492dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="monospace"
         android:text="Je fais des courses du jour :"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarPremierJour"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarDernierJour"
+        android:layout_width="312dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="80dp"
+        android:max="28"
+        app:layout_constraintBottom_toTopOf="@+id/buttonValideJoursdeCourse"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <SeekBar
         android:id="@+id/seekBarPremierJour"
         android:layout_width="312dp"
         android:layout_height="18dp"
-        android:layout_marginStart="49dp"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="141dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="444dp"
+        android:layout_marginBottom="70dp"
         android:max="28"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/textViewDernierJour"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/textViewDernierJour"
-        android:layout_width="wrap_content"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="191dp"
-        android:layout_marginBottom="393dp"
-        android:text="au jour :"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="monospace"
+        android:text="Au jour :"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarDernierJour"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonValideJoursdeCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="378dp"
+        android:layout_marginBottom="65dp"
+        android:fontFamily="monospace"
         android:onClick="validerJoursdeCourse"
         android:text="Je valide les jours"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"
+        app:backgroundTint="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/textViewAfficherPremierJour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="291dp"
-        android:layout_marginLeft="291dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="488dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarPremierJour"
+        app:layout_constraintStart_toEndOf="@+id/textViewPremierJour" />
 
     <TextView
         android:id="@+id/textViewAfficherDernierJour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="291dp"
-        android:layout_marginLeft="291dp"
-        android:layout_marginTop="194dp"
-        android:layout_marginBottom="390dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBarDernierJour"
+        app:layout_constraintStart_toEndOf="@+id/textViewDernierJour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
