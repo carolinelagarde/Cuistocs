@@ -2,6 +2,9 @@ package com.example.cuistocs;
 
 import java.util.Vector;
 
+
+// CETTE CLASSE DEFINI LES RECETTES. CHAQUE RECETTE EST CARACTERISEE PAR UN NUMERO, SON TITRE, LE TEMPS DE PREPARATION, LE VECTEUR DES INGREDIENTS, INSTRUCTIONS.
+
 public class Recette {
     //titre
     private String titre;
@@ -17,6 +20,7 @@ public class Recette {
 
     // numéro recette
     private int numeroRecette;
+
 
     private boolean vegetarien;
 
