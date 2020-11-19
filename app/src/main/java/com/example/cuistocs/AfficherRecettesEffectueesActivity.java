@@ -33,7 +33,7 @@ Vector<Ingredient> lesIngredients;
         TextView ViewTitre = findViewById(R.id.Titre);
         LinearLayout ViewCommentaire=findViewById(R.id.Commentaire);
 
-    //Initialisation du sp
+        //Initialisation du sp
         sp=getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=sp.edit();
 
@@ -42,6 +42,12 @@ Vector<Ingredient> lesIngredients;
         Intent deRecettesEffectuees=getIntent();
         String numeroRecette=deRecettesEffectuees.getStringExtra("numeroRecette");
         Recette RecetteAAfficher=Menu.getRecetteAvecNumero(Integer.valueOf(numeroRecette));
+
+        //afficher le temps la derniere fois mis pour réaliser la recette
+        TextView afficheTempsmis=findViewById(R.id.textViewAfficheTemps);
+        Long chronoTime=sp.getLong("r"+numeroRecette+"chrono",0);
+        int TempsMis= (int) (chronoTime/60000);
+        afficheTempsmis.setText("Réalisée en "+TempsMis+" min la dernière fois.");
 
 
         ///Récupération des commentaires et notes
