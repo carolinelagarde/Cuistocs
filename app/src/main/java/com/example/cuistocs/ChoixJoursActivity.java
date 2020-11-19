@@ -73,7 +73,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                     Jour2.setBackgroundColor(Color.parseColor("#ACA3A3"));
                 }else{
                     BoutonJourActuelGrise=true;
-                    Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    Jour2.setBackgroundColor(Color.parseColor("#4CAF50"));
                 }
             }
 
@@ -83,7 +83,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                 Jour3.setBackgroundColor(Color.parseColor("#ACA3A3"));
             }else{
                 BoutonJourActuelGrise=true;
-                Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                Jour3.setBackgroundColor(Color.parseColor("#4CAF50"));
             }
         }
         tag="jour"+4+"semaine"+numeroSemaine;
@@ -92,7 +92,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                 Jour4.setBackgroundColor(Color.parseColor("#ACA3A3"));
             }else{
                 BoutonJourActuelGrise=true;
-                Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                Jour4.setBackgroundColor(Color.parseColor("#4CAF50"));
             }
         }
          tag="jour"+5+"semaine"+numeroSemaine;
@@ -101,7 +101,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                 Jour5.setBackgroundColor(Color.parseColor("#ACA3A3"));
             }else{
                 BoutonJourActuelGrise=true;
-                Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                Jour5.setBackgroundColor(Color.parseColor("#4CAF50"));
             }
         }
          tag="jour"+6+"semaine"+numeroSemaine;
@@ -110,7 +110,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                 Jour6.setBackgroundColor(Color.parseColor("#ACA3A3"));
             }else{
                 BoutonJourActuelGrise=true;
-                Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                Jour6.setBackgroundColor(Color.parseColor("#4CAF50"));
             }
         }
         tag="jour"+7+"semaine"+numeroSemaine;
@@ -119,7 +119,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
                 Jour7.setBackgroundColor(Color.parseColor("#ACA3A3"));
             }else{
                 BoutonJourActuelGrise=true;
-                Jour1.setBackgroundColor(Color.parseColor("#4CAF50"));
+                Jour7.setBackgroundColor(Color.parseColor("#4CAF50"));
             }
         }
         }

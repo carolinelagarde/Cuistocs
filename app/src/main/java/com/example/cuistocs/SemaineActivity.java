@@ -28,6 +28,10 @@ public class SemaineActivity extends AppCompatActivity {
     Button semaine3;
     Button semaine4;
 
+    //sp etat bouton
+    SharedPreferences spCouleurBouton;
+
+
 
 
     @Override
@@ -48,7 +52,37 @@ public class SemaineActivity extends AppCompatActivity {
         //affiche le score actuel
         TextView AfficherScoreActuel=findViewById(R.id.textViewScoreActuel);
         AfficherScoreActuel.setText("Votre score actuel est de "+scoreActuel+" points.");
-    }
+
+        //Coloration des boutons
+
+        String tag;
+        spCouleurBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
+
+        tag="jour0semaine0";
+        if (spCouleurBouton.contains(tag)){
+
+                semaine1.setBackgroundColor(Color.parseColor("#DC0909"));
+           }
+        tag="jour0semaine1";
+        if ((spCouleurBouton.contains(tag))){
+
+
+                semaine2.setBackgroundColor(Color.parseColor("#DC0909"));
+            }
+        tag="jour0semaine2";
+        if ((spCouleurBouton.contains(tag))) {
+
+
+                semaine3.setBackgroundColor(Color.parseColor("#DC0909"));
+            }
+        tag="jour0semaine3";
+        if ((spCouleurBouton.contains(tag))) {
+
+
+                semaine4.setBackgroundColor(Color.parseColor("#DC0909"));
+            }
+        }
+
 
     //fonction appelée lorsqu'on clique sur un des boutons semaine
     public void ouvrirSemaine(View view) {
@@ -81,55 +115,22 @@ public class SemaineActivity extends AppCompatActivity {
             Intent versJour = new Intent();
             versJour.setClass(this, ChoixJoursActivity.class);
             startActivity(versJour);
-        }
 
-        //Coloration des boutons
-        Boolean BoutonSemaineActuelleGrise=false
-        if (!(spEtatBouton.contains(tag))){
-            if (BoutonSemaineActuelleGrise) {
-                semaine1.setBackgroundColor(Color.parseColor("#ACA3A3"));
-            }else{
-                BoutonSemaineActuelleGrise=true;
-                semaine1.setBackgroundColor(Color.parseColor("#4CAF50"));
-            }
+        }}
 
-            if (!(spEtatBouton.contains(tag))){
-                if (BoutonSemaineActuelleGrise) {
-                    semaine2.setBackgroundColor(Color.parseColor("#ACA3A3"));
-                }else{
-                    BoutonSemaineActuelleGrise=true;
-                    semaine2.setBackgroundColor(Color.parseColor("#4CAF50"));
-                }
 
-           if (!(spEtatBouton.contains(tag))){
-                    if (BoutonSemaineActuelleGrise) {
-                        semaine3.setBackgroundColor(Color.parseColor("#ACA3A3"));
-                    }else{
-                        BoutonSemaineActuelleGrise=true;
-                        semaine3.setBackgroundColor(Color.parseColor("#4CAF50"));
-                    }
 
-            if (!(spEtatBouton.contains(tag))){
-                        if (BoutonSemaineActuelleGrise) {
-                            semaine4.setBackgroundColor(Color.parseColor("#ACA3A3"));
-                        }else{
-                            BoutonSemaineActuelleGrise=true;
-                            semaine4.setBackgroundColor(Color.parseColor("#4CAF50"));
-                        }
+               //fonction appelée si on clique sur le bouton recettes effectuées : envoie vers l'activité recettes effectuées
+               public void ouvrirRecettesEffectuees (View view){
+                   Intent versRecettesEffectuees = new Intent();
+                   versRecettesEffectuees.setClass(this, RecettesEffectuees.class);
+                   startActivity(versRecettesEffectuees);
+               }
+
+               //fonction appelée si on clique sur le bouton liste de courses : envoie vers l'activité liste de courses
+               public void afficherJoursCourses (View view){
+                   Intent messageVersJoursCoursesActivity = new Intent();
+                   messageVersJoursCoursesActivity.setClass(this, JoursCoursesActivity.class);
+                   startActivity(messageVersJoursCoursesActivity);
+               }
     }
-
-
-    //fonction appelée si on clique sur le bouton recettes effectuées : envoie vers l'activité recettes effectuées
-    public void ouvrirRecettesEffectuees(View view) {
-        Intent versRecettesEffectuees = new Intent();
-        versRecettesEffectuees.setClass(this, RecettesEffectuees.class);
-        startActivity(versRecettesEffectuees);
-    }
-
-    //fonction appelée si on clique sur le bouton liste de courses : envoie vers l'activité liste de courses
-    public void afficherJoursCourses(View view){
-        Intent messageVersJoursCoursesActivity = new Intent();
-        messageVersJoursCoursesActivity.setClass(this,JoursCoursesActivity.class);
-        startActivity(messageVersJoursCoursesActivity);
-    }
-}
