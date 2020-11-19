@@ -12,25 +12,35 @@
         android:roundIcon="@mipmap/mon_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
-        <activity
-            android:name=".ModeEmploiActivity"
-            android:label="@string/title_activity_mode_emploi"
-            android:theme="@style/Theme.Cuistocs.NoActionBar"></activity>
-        <activity android:name=".AfficherRecettesEffectueesActivity" />
-        <activity android:name=".ListeDeCoursesActivity" />
-        <activity android:name=".JoursCoursesActivity" />
-        <activity android:name=".RecettesEffectuees" />
-        <activity android:name=".CommentRecetteActivity" />
-        <activity android:name=".RecetteActivity" />
-        <activity android:name=".ChoixJoursActivity" />
-        <activity android:name=".SemaineActivity" />
-        <activity android:name=".AccueilActivity">
+
+        //On bloque le mode paysage dans toutes les activités
+
+        <activity android:name=".AfficherRecettesEffectueesActivity"
+            android:screenOrientation="portrait" ></activity>
+        <activity android:name=".ListeDeCoursesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".JoursCoursesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RecettesEffectuees"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CommentRecetteActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RecetteActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ChoixJoursActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SemaineActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AccueilActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        //on déclare le provider qui va permettre d'accéder au fichier externe
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -39,8 +49,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/provider_paths"/>
         </provider>
+
 
         <service android:name=".notifications.NotificationService">
             <intent-filter>
