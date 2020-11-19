@@ -24,6 +24,7 @@ import java.util.Set;
 import java.util.Vector;
 
 
+
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 
     int points;
