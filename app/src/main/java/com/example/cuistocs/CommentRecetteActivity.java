@@ -110,6 +110,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent messageVersAccueilActivity = new Intent();
         messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
+        finish(); // lorsque qu'on retourne a l'accueil, on ne peut plus revenir a l'écran commentaire
     }
 
 
