@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,7 +27,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
 
     int numeroSemaine;
 
-    public SharedPreferences etatBouton;
+    SharedPreferences spEtatBouton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +41,14 @@ public class ChoixJoursActivity extends AppCompatActivity {
         Jour6 = findViewById(R.id.jour6);
         Jour7 = findViewById(R.id.jour7);
 
-        //recupere le numero de la semaine
-        Intent messagedeSemaineActivity = getIntent();
-        numeroSemaine = messagedeSemaineActivity.getIntExtra("indiceSemaine", -1);
+        //recupere le numero de la semaine qui est en mémoire
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        numeroSemaine=spDate.getInt("numeroSemaine",-1);
     }
 
 
     public void allerVersRecetteActivity(View view) {
+
         if (view.equals(Jour1)) {
             jour = 0;
         } else if (view.equals(Jour2)) {
@@ -66,26 +65,23 @@ public class ChoixJoursActivity extends AppCompatActivity {
             jour = 6;
         }
 
-        //debloque le jour que si le jour précédent a été développé
+        //retient dans quel jour on est
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorDate=spDate.edit();
+        editorDate.putInt("numeroJour",jour);
+        editorDate.commit();
 
-        Set<String> defaultvalueset = new HashSet<>();
-        defaultvalueset.add("");
 
-        etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = etatBouton.edit();
-        Set<String> boutonDebloqueSet = etatBouton.getStringSet("boutonDebloque",defaultvalueset);
+        //debloque et lance le jour que si le jour a été développé
 
-        boutonDebloqueSet.add("jour1semaine0");
-        editor.putStringSet("boutonDebloque", boutonDebloqueSet);
-        editor.commit();
+        spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
 
-        if (jour == 0 | boutonDebloqueSet.contains("jour"+(jour-1)+"semaine" +numeroSemaine)) {
+        String tag="jour"+jour+"semaine"+numeroSemaine;
+        if (jour == 0 || spEtatBouton.contains(tag)) {
             Intent messageVersRecetteActivity = new Intent();
+            Log.i("numerosemaine",Integer.toString(numeroSemaine));
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
-            messageVersRecetteActivity.putExtra("numero jour", jour);
-            messageVersRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(messageVersRecetteActivity);
-
         }
     }
 }
