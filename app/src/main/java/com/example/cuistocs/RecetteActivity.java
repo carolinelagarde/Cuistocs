@@ -255,6 +255,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
                 startActivity(versEcranSemaine);
                 finish();
             }
+
         }
     }
 
@@ -269,4 +270,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         Button boutonchrono=(Button)view;
         boutonchrono.setVisibility(GONE);
     }
+
+
 }
