@@ -118,6 +118,7 @@ public class SemaineActivity extends AppCompatActivity {
                         }
     }
 
+
     //fonction appelée si on clique sur le bouton recettes effectuées : envoie vers l'activité recettes effectuées
     public void ouvrirRecettesEffectuees(View view) {
         Intent versRecettesEffectuees = new Intent();
