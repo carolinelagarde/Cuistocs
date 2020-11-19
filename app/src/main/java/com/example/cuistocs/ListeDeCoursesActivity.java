@@ -10,13 +10,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.List;
 import java.util.Vector;
 
 public class ListeDeCoursesActivity extends AppCompatActivity {
-
+    public int nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,9 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
         SharedPreferences sp=getSharedPreferences("lien", Context.MODE_PRIVATE);
 
         Periode.setText(String.format("des recettes %1d à %2d!  pour 1 personne",jourDebut,jourFin));
+
         for (int i=jourDebut;i<=jourFin;i++){
+            //récupération du titre et du texte
             TextView Titre=new TextView(this);
             Titre.setText(String.format("Recette %1d",i));
             Titre.setTextAppearance(this,android.R.style.TextAppearance_Medium);
@@ -42,20 +45,24 @@ public class ListeDeCoursesActivity extends AppCompatActivity {
            int RecetteNumber=Integer.valueOf(sp.getString(Integer.toString(i),"0"));
            Menu menu = new Menu();
            Recette RecetteEnCours=menu.getRecetteAvecNumero(RecetteNumber);
-           Vector<Ingredient> Ingredients=RecetteEnCours.getIngredients();
-           for (int index=0;index<Ingredients.size();index++){
-               Ingredient Ingredient=Ingredients.get(index);
-               String titreIngredient=Ingredient.getIngredient();
-               int Quantite=Ingredient.getQuantité(1);
-               String Unite=Ingredient.getUnite();
 
-               TextView ListeDuJour=new TextView(this);
-               ListeDuJour.setText(Integer.toString(Quantite)+" "+Unite+" "+titreIngredient);
-               Liste.addView(ListeDuJour);
+           Vector<Ingredient> Ingredients=RecetteEnCours.getIngredients();
+            for (int index=0;index<Ingredients.size();index++){
+                Ingredient Ingredient=Ingredients.get(index);
+                String titreIngredient=Ingredient.getIngredient();
+                int Quantite=Ingredient.getQuantité(1)*nombre;
+                String Unite=Ingredient.getUnite();
+
+                TextView ListeDuJour=new TextView(getApplicationContext());
+                ListeDuJour.setText(Integer.toString(Quantite)+" "+Unite+" "+titreIngredient);
+                Liste.addView(ListeDuJour);
 
             }
+
         }
     }
+
+
 
     public void commanderPepin(View view) {
         String url = "https://impact.cs-campus.fr/pepin";

@@ -3,6 +3,7 @@ package com.example.cuistocs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
@@ -44,6 +45,13 @@ public class JoursCoursesActivity extends AppCompatActivity {
 
             }
         });
+
+        //on set le nombre d'invités à A par défaut via un sharedpreferences
+        SharedPreferences invites= getSharedPreferences("nombreinvites",MODE_PRIVATE);
+        SharedPreferences.Editor editor= invites.edit();
+        for (int i=PremierJourSeekbar;i<=DernierJourSeekbar;i++){
+            editor.putInt("j"+i,1);
+        }
 
         //récupérer le dernier jour pour lesquels il faut faire les course et l'afficher
         SeekBar barreDernierJour = findViewById(R.id.seekBarDernierJour);
