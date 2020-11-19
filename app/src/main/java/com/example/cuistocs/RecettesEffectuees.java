@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -21,36 +22,52 @@ public class RecettesEffectuees extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     LinearLayout carteLayout;
+    LinearLayout layoutScrollView;
+
+    RatingBar rbFiltreNote;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recettes_effectuees);
-
+        rbFiltreNote = findViewById(R.id.filtreNote);
+        layoutScrollView = findViewById(R.id.layoutScrollView);
         afficher();
 
-        }
+    }
+
+    public void actualiser(View view) {
+
+    }
 
 
 
     public void afficher() {
-        LinearLayout lay = findViewById(R.id.recetteseffectuees);
-        lay.removeAllViews();
+        /*LinearLayout lay = findViewById(R.id.recetteseffectuees);
+        lay.removeAllViews(); */
         //on récupère les recettes finies dans le fichier associé
+
         sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+        layoutScrollView.removeAllViews();
 
 
-
-              for (int i=1;i<30;i++) {
+        for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
             if (sharedPreferences.getBoolean(name, false)) {
 
-                Button button = new Button(getApplicationContext());
-                button.setText("Recette" + " " + ""+i+"");
-                button.setOnClickListener(this::onClick);
-                button.setTag(Integer.toString(i));
-                lay.addView(button);
+                float note = sharedPreferences.getFloat("r"+i+"note", -1);
+                float noteMinimale = rbFiltreNote.getRating();
+
+                if (note>=noteMinimale) {
+                    Button button = new Button(getApplicationContext());
+                    button.setText("Recette" + " " + ""+i+"");
+                    button.setOnClickListener(this::onClick);
+                    button.setTag(Integer.toString(i));
+                    layoutScrollView.addView(button);
+                }
             }
         }
     }
