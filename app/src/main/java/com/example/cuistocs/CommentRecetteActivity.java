@@ -98,8 +98,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         enregistrer(rb);
 
         //on retourne à l'acitvité semaine une fois que l'utilisateur a rentré le commentaire et la note
-        Intent messageVersSemaineActivity = new Intent();
-        messageVersSemaineActivity.setClass(this, SemaineActivity.class);
+        Intent messageVersSemaineActivity = new Intent(getApplicationContext(),SemaineActivity.class);
         startActivity(messageVersSemaineActivity);
 
         //on ne peut pas revenir a l'écran commentaire apres

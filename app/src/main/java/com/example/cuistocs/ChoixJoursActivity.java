@@ -49,6 +49,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
         Jour5 = findViewById(R.id.jour5);
         Jour6 = findViewById(R.id.jour6);
         Jour7 = findViewById(R.id.jour7);
+        Boolean BoutonJourActuelGrise=false;
 
 
         //récupère le numéro de la semaine qui est en mémoire
@@ -58,32 +59,61 @@ public class ChoixJoursActivity extends AppCompatActivity {
         //grisage des boutons comment améliorer ce code pour éviter les répétitions ? comment faire pour R.id.Jour+int ?
         spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         String tag="jour"+1+"semaine"+numeroSemaine;
-            if (!(spEtatBouton.contains(tag))){
+        if (!(spEtatBouton.contains(tag)) ){
+            if (BoutonJourActuelGrise) {
                 Jour1.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
             }
-            tag="jour"+2+"semaine"+numeroSemaine;
-        if (!(spEtatBouton.contains(tag))){
-            Jour2.setBackgroundColor(Color.parseColor("#ACA3A3"));
         }
+                tag="jour"+2+"semaine"+numeroSemaine;
+            if (!(spEtatBouton.contains(tag)) ){
+                if (BoutonJourActuelGrise) {
+                    Jour2.setBackgroundColor(Color.parseColor("#ACA3A3"));
+                }else{
+                    BoutonJourActuelGrise=true;
+                }
+            }
+
         tag="jour"+3+"semaine"+numeroSemaine;
         if (!(spEtatBouton.contains(tag))){
-            Jour3.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            if (BoutonJourActuelGrise) {
+                Jour3.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
+            }
         }
         tag="jour"+4+"semaine"+numeroSemaine;
         if (!(spEtatBouton.contains(tag))){
-            Jour4.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            if (BoutonJourActuelGrise) {
+                Jour4.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
+            }
         }
          tag="jour"+5+"semaine"+numeroSemaine;
         if (!(spEtatBouton.contains(tag))){
-            Jour5.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            if (BoutonJourActuelGrise) {
+                Jour5.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
+            }
         }
          tag="jour"+6+"semaine"+numeroSemaine;
         if (!(spEtatBouton.contains(tag))){
-            Jour6.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            if (BoutonJourActuelGrise) {
+                Jour6.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
+            }
         }
         tag="jour"+7+"semaine"+numeroSemaine;
         if (!(spEtatBouton.contains(tag))){
-            Jour7.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            if (BoutonJourActuelGrise) {
+                Jour7.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonJourActuelGrise=true;
+            }
         }
         }
 
