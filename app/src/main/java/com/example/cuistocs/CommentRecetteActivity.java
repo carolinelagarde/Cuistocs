@@ -33,6 +33,7 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -114,7 +115,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
     }
 
 
-///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
+    ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
         Intent deRecetteActivity = getIntent();
@@ -125,10 +126,17 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Menu menu = new Menu();
         Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
 
-        String messageSMS = String.format("Toi aussi découvre cette recette !\n"
-                + recetteEnCours.getTitre() + "\n"
-                + recetteEnCours.getIngredients() + "\n"
-                + recetteEnCours.getTempsdecuisine() + "\n"
+        Vector<Ingredient> Vecteuringredients = recetteEnCours.getIngredients();
+        String corps = "";
+        for (int i=0; i<Vecteuringredients.size();i++) {
+            corps= corps + Vecteuringredients.get(i).getQuantité(1) +" " + Vecteuringredients.get(i).getUnite() + " " + Vecteuringredients.get(i).getIngredient() + "\n";
+        }
+
+        String messageSMS = String.format("Toi aussi découvre cette recette !\nLes quantités sont pour une personne. \n "
+                + "Elle s'appelle " + recetteEnCours.getTitre() + "\n"
+                + corps + "\n"
+                + "Temps de préparation :" + recetteEnCours.getTempsdecuisine() + "minutes \n \n"
+                + "Instructions : \n "
                 + recetteEnCours.getInstructions() + "\n");
         Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
         versAppSMS.setData(Uri.parse("smsto:"));
@@ -185,10 +193,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-    Button btnPrendrePhoto;
-    ImageView imgAffichePhoto;
-    String photoPath=null;
 
      */
     //on définit l'imageView qui va afficher la photo
@@ -196,6 +200,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
     ImageView imgAffichePhoto;
     String photoPath=null;
 
+
+    private StorageReference storageRef;
 
     public void prendrePhoto(View view) {
 

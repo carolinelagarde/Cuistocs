@@ -1,18 +1,22 @@
 package com.example.cuistocs;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Vector;
+
+
 
 public class AfficherRecettesEffectueesActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 SharedPreferences sp;
@@ -103,4 +107,23 @@ Vector<Ingredient> lesIngredients;
 
     }
 
+   /* public void openFileChooser(View view) {
+        Intent intent=new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    Uri mImageUri;
+
+    ImageView imageViewRecette=findViewById(R.id.imageViewRecette);
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==1 && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+            mImageUri=data.getData();
+            //Picasso.with(this).load(mImageUri).into(imageViewRecette);
+            imageViewRecette.setImageURI(mImageUri);
+        }
+    } */
 }

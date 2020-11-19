@@ -63,6 +63,7 @@
         android:layout_marginBottom="30dp"
         android:onClick="prendrePhoto"
         android:text="Je prends ma recette en photo!"
+        app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintBottom_toTopOf="@+id/imageViewAfficherPhoto"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
