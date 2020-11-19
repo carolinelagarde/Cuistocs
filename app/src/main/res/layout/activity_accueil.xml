@@ -10,13 +10,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="16dp"
-        android:text="Bienvenue sur Cuistocs !"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/caniste"
+        android:text="Bienvenue sur \n     Cuistocs !"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="74dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,7 +38,9 @@
         android:layout_marginBottom="60dp"
         android:onClick="versConfirmation"
         android:text="Je commence le défi !"
+        android:fontFamily="monospace"
         app:backgroundTint="#AC0404"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -46,9 +50,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        android:text="Je continue mon défi"
+        android:fontFamily="monospace"
         android:onClick="versSemaine"
-        app:backgroundTint="#9F9B9B"
+        android:text="Je continue mon défi"
+        app:backgroundTint="@android:color/black"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
