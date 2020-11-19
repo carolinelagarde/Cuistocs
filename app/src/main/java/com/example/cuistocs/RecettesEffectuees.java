@@ -25,6 +25,7 @@ public class RecettesEffectuees extends AppCompatActivity {
     LinearLayout layoutScrollView;
 
     RatingBar rbFiltreNote;
+    float noteMinimale;
 
 
 
@@ -35,14 +36,22 @@ public class RecettesEffectuees extends AppCompatActivity {
         setContentView(R.layout.activity_recettes_effectuees);
         rbFiltreNote = findViewById(R.id.filtreNote);
         layoutScrollView = findViewById(R.id.layoutScrollView);
+        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+        noteMinimale = rbFiltreNote.getRating();
         afficher();
-
+        listenerForRatingBar();
     }
 
-    public void actualiser(View view) {
-        afficher();
-    }
 
+    public void listenerForRatingBar() {
+        rbFiltreNote.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                noteMinimale = rating;
+                afficher();
+            }
+        });
+    }
 
 
     public void afficher() {
@@ -50,16 +59,14 @@ public class RecettesEffectuees extends AppCompatActivity {
         lay.removeAllViews(); */
         //on récupère les recettes finies dans le fichier associé
 
-        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         layoutScrollView.removeAllViews();
-
 
         for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
+            noteMinimale = rbFiltreNote.getRating();
             if (sharedPreferences.getBoolean(name, false)) {
 
                 float note = sharedPreferences.getFloat("r"+i+"note", -1);
-                float noteMinimale = rbFiltreNote.getRating();
 
                 if (note>=noteMinimale) {
                     Button button = new Button(getApplicationContext());
