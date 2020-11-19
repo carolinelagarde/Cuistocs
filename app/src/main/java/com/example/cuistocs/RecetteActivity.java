@@ -7,11 +7,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewDebug;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -29,6 +31,8 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     Button boutonFini;
     Button boutonPasse;
     Recette recette;
+
+    Chronometer chrono;
 
     //Menu pour accéder aux recettes
     Menu test;
@@ -172,7 +176,14 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
             points += 1;   // si bouton Fini clique : +1 point !
 
-
+            //on enregistre le temps de chrono et on l'enregistre dans les SharedPreferences au tag avec le nom de la recette et chrono
+            long time;
+            chrono.stop();
+            time=SystemClock.elapsedRealtime() - chrono.getBase();;
+            SharedPreferences spCaracteristiqueRecette=getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editorCaracteristiqueRecette=spCaracteristiqueRecette.edit();
+            editorCaracteristiqueRecette.putLong("r"+numeroRecette+"chrono",time);
+            editorCaracteristiqueRecette.commit();
 
             ///on va enregistrer le fait que la recette a été faite et le score du joueur
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
@@ -219,4 +230,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
 
+    public void LancerChrono(View view) {
+        chrono=findViewById(R.id.chronometer);
+        chrono.start();
+        chrono.setBase(SystemClock.elapsedRealtime());
+    }
 }
