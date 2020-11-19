@@ -75,8 +75,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         //Recuperation des données
         Intent deRecetteActivity = getIntent();
-        //numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
-        //numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         numeroJour=spDate.getInt("numeroJour",-1);
         numeroSemaine=spDate.getInt("numeroSemaine",-1);
@@ -85,11 +83,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         //Init du sp
         spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
-
-
-
-
-
     }
 
     public void enregistrer(View view) {   //on récupère la note que l'utilisateur entre dans la rating bar
