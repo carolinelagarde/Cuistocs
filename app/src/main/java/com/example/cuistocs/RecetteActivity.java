@@ -215,6 +215,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         ///le joueur n'a pas fait la recette
         if (view.equals(boutonPasse)) {
 
+            //on arrete le chrono
+            chrono.stop();
+
             ///on enregistre le fait que le score du joueur n'a pas changé et que l'a recette n'a pas été faite
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = spPoints.edit();
