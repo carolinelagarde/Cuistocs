@@ -15,8 +15,12 @@ import android.widget.Button;
 import java.util.HashSet;
 import java.util.Set;
 
+//CETTE ACTIVITÉ PERMET D'ACCEDER AUX BOUTONS JOURS QUI SONT DÉBLOQUÉS OU NON SELON
+//L'AVANCEMENT DE L'UTILISATEUR
+//ON ACCEDE AINSI AUX DIFFERENTES RECETTES
 public class ChoixJoursActivity extends AppCompatActivity {
 
+    //nom des boutons
     Button Jour1;
     Button Jour2;
     Button Jour3;
@@ -24,16 +28,20 @@ public class ChoixJoursActivity extends AppCompatActivity {
     Button Jour5;
     Button Jour6;
     Button Jour7;
+
+    //numero de la semaine cliquée et du jour cliqué
+    int numeroSemaine;
     int jour;
 
-    int numeroSemaine;
-
+    //shared preferences qui garde en mémoire les boutons débloqués
     SharedPreferences spEtatBouton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_jours);
+
+        //affecte les boutons
         Jour1 = findViewById(R.id.jour1);
         Jour2 = findViewById(R.id.jour2);
         Jour3 = findViewById(R.id.jour3);
@@ -43,7 +51,7 @@ public class ChoixJoursActivity extends AppCompatActivity {
         Jour7 = findViewById(R.id.jour7);
 
 
-        //recupere le numero de la semaine qui est en mémoire
+        //récupère le numéro de la semaine qui est en mémoire
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         numeroSemaine=spDate.getInt("numeroSemaine",-1);
 
@@ -81,8 +89,10 @@ public class ChoixJoursActivity extends AppCompatActivity {
 
 
 
+        //fonction appelée quand on clique sur un bouton jour
     public void allerVersRecetteActivity(View view) {
 
+        //affecte le numéro du jour cliqué à jour
         Button boutonClique=(Button)view;
         if (view.equals(Jour1)) {
             jour = 0;
@@ -100,24 +110,20 @@ public class ChoixJoursActivity extends AppCompatActivity {
             jour = 6;
         }
 
-        //retient dans quel jour on est
+        //garde en mémoire dans quel jour on est
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         SharedPreferences.Editor editorDate=spDate.edit();
         editorDate.putInt("numeroJour",jour);
         editorDate.commit();
 
-
-        //debloque et lance le jour que si le jour a été développé
-
+        //debloque et mène à la recette que si le jour a été développé, i.e si c'est le 1er jour d'une semaine
+        //car le bouton semaine à déjà été développé ou si le bouton est marqué comme débloqué dans la mémoire
         spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
-
         String tag="jour"+jour+"semaine"+numeroSemaine;
         if (jour == 0 || spEtatBouton.contains(tag)) {
             Intent messageVersRecetteActivity = new Intent();
-            Log.i("numerosemaine",Integer.toString(numeroSemaine));
             messageVersRecetteActivity.setClass(this, RecetteActivity.class);
             startActivity(messageVersRecetteActivity);
-
         }
     }
 }

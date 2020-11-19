@@ -16,21 +16,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+//CETTE ACTIVITÉ EST LA PAGE D'ACCUEIL DE L'APPLICATION QUI PERMET DE REINITIALISER LE DEFI OU DE LE CONTINUER
 public class AccueilActivity extends AppCompatActivity {
-    //lien entre le jour et la recette
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accueil);
-
-
     }
 
+    //fonction du bouton "je continue mon défi" qui envoie directement à l'activité semaine
     public void versSemaine(View view) {
 
         Intent versSemaine=new Intent();
@@ -38,59 +33,65 @@ public class AccueilActivity extends AppCompatActivity {
         startActivity(versSemaine);
     }
 
+    //fonction du bouton "je commence le défi" : comme sa réinitialise le défi, demande confirmation
     public void versConfirmation(View view) {
+
+        //demande la confirmation ou non via un alerte dialogue builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setTitle("Nouveau Défi");
         builder.setMessage("Voulez-vous vraiment recommencer le défi ?");
         builder.setPositiveButton("C'est parti !", new DialogInterface.OnClickListener() {
+
+            //on a cliqué sur recommencer le défi : on initialise toutes les données
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        //garde en mémoire les boutons déjà débloqués sous la forme d'un tag "jourXsemaineY"
+                        //ce shared preferences garde en mémoire les boutons déjà débloqués sous la forme d'un tag "jourXsemaineY"
                         SharedPreferences spEtatBouton;
-
                         spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorEtatBouton = spEtatBouton.edit();
-                        editorEtatBouton.clear();
 
+                        //on réinitialise : tous les boutons sont initialement bloqués sauf le bouton du 1er jour
+                        editorEtatBouton.clear();
                         editorEtatBouton.putString("jour0semaine0","boutondébloqué");
                         editorEtatBouton.commit();
 
+                        //on créé un ensemble de recettes
                         Vector<Recette> LivreRecette = Menu.getMenu();
 
-                        //on reinitialise les données rentrées des recettes
-                        sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
-                        editor = sharedPreferences.edit();
+                        //on réinitialise les données des recettes effectuées
+                        SharedPreferences sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.clear().commit();
 
-                        //on récupère ce qui va nous servir à faire le lien entre le jour et les recettes
+                        //ce shared preferences permet de faire le lien entre le jour et les recettes :
+                        // à chaque jour est assigné une recette pour tout le défi
                         sharedPreferences = getSharedPreferences("lien", Context.MODE_PRIVATE);
                         editor = sharedPreferences.edit();
 
-                        //reset du lien
+                        //réinitialisation du lien
                         editor.clear();
 
+                        //création du nouveau lien aléatoire
                         for (int i=0;i<LivreRecette.size();i++) {
                             editor.putString(""+i+"",""+LivreRecette.get(i).getNumeroRecette()+"");
                             Log.i("recette",sharedPreferences.getString(""+i+"","erreur"));
                         }
-
                         editor.apply();
-                        Log.i("définition du set","effectuée");
 
+                        //on passe à l'activité mode d'emploi
                         Intent versModeEmploi=new Intent(getApplicationContext(), ModeEmploiActivity.class);
-                        Log.i("click","bouton cliqué");
                         startActivity(versModeEmploi);
                         finish();
-
                     }
                 });
+
+        //finalement l'utilisateur clique sur continuer le meme défi : il est envoyé directement à l'activité semaine
         builder.setNegativeButton("Non, je continue le même !", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
-                Log.i("click","bouton cliqué");
                 startActivity(versSemaine);
                 finish();
             }

@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
+//CETTE PAGE DONNE LE MODE D'EMPLOI DU DEFI DE L'APPLICATION LORSQU'IL EST INITIALISÉ
 public class ModeEmploiActivity extends AppCompatActivity {
 
     @Override
@@ -25,6 +26,8 @@ public class ModeEmploiActivity extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+
+            //le bouton permet d'aller à l'activité semaine
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
