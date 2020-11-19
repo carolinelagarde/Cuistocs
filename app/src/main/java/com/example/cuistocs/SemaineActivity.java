@@ -14,9 +14,14 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Set;
 
+//CETTE ACTIVITÉ PERMET D'ACCÉDER AUX BOUTONS JOURS A PARTIR DES 4 SEMAINES POSSIBLES, D'ACCEDER A LA
+//LISTE DES COURSES ET AUX RECETTES EFFECTUEES
 public class SemaineActivity extends AppCompatActivity {
 
+    //le numero de la semaine sur lequel on clique
     int numeroSemaine;
+
+    //noms des 4 boutons semaine
     Button semaine1;
     Button semaine2;
     Button semaine3;
@@ -28,69 +33,63 @@ public class SemaineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semaine);
 
+        //donne les noms aux boutons
         semaine1 = findViewById(R.id.boutonSemaine1);
         semaine2 = findViewById(R.id.boutonSemaine2);
         semaine3 = findViewById(R.id.boutonSemaine3);
         semaine4 = findViewById(R.id.boutonSemaine4);
 
-        //affiche le score actuel
-        TextView AfficherScoreActuel=findViewById(R.id.textViewScoreActuel);
-        //récupérer le score
+        //récupérer le score via le shared preferences
         SharedPreferences spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
         int scoreActuel=spPoints.getInt("nombrePointsDejaGagnes",0);
+
+        //affiche le score actuel
+        TextView AfficherScoreActuel=findViewById(R.id.textViewScoreActuel);
         AfficherScoreActuel.setText("Votre score actuel est de "+scoreActuel+" points.");
-
-
     }
 
+    //fonction appelée lorsqu'on clique sur un des boutons semaine
     public void ouvrirSemaine(View view) {
 
         if (view.equals(semaine1)) {
             numeroSemaine = 0;
-            Log.i("boutonSemaineClique", "semaine 1 selectionnee");
         }
         else if (view.equals(semaine2)) {
             numeroSemaine = 1;
-            Log.i("boutonSemaineClique", "semaine 2 selectionnee");
         }
         else if (view.equals(semaine3)) {
             numeroSemaine = 2;
-            Log.i("boutonSemaineClique", "semaine 3 selectionnee");
         }
         else if (view.equals(semaine4)) {
             numeroSemaine = 3;
-            Log.i("boutonSemaineClique", "semaine 4 selectionnee");
         }
 
-        //retient dans quelle semaine on est
+        //garde en mémoire la semaine cliquée
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         SharedPreferences.Editor editorDate =spDate.edit();
-
         editorDate.putInt("numeroSemaine",numeroSemaine);
         editorDate.commit();
 
 
-        //passe à l'activité suivante que si les boutons sont débloqués
+        //passe à l'activité qui affiche larecette uniquement si le bouton semaine est débloqué, i.e si c'est la première
+        //semaine ou si le dernier jour de la semaine précédente est débloqué
         SharedPreferences spEtatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         String tag="jour0semaine"+numeroSemaine;
-        Log.i("numerosemaine",Integer.toString(numeroSemaine));
         if (numeroSemaine==0 || spEtatBouton.contains(tag)){
-
             Intent versJour = new Intent();
             versJour.setClass(this, ChoixJoursActivity.class);
             startActivity(versJour);
-
         }
-
     }
 
+    //fonction appelée si on clique sur le bouton recettes effectuées : envoie vers l'activité recettes effectuées
     public void ouvrirRecettesEffectuees(View view) {
         Intent versRecettesEffectuees = new Intent();
         versRecettesEffectuees.setClass(this, RecettesEffectuees.class);
-
         startActivity(versRecettesEffectuees);
     }
 
+    //fonction appelée si on clique sur le bouton liste de courses : envoie vers l'activité liste de courses
     public void afficherJoursCourses(View view){
         Intent messageVersJoursCoursesActivity = new Intent();
         messageVersJoursCoursesActivity.setClass(this,JoursCoursesActivity.class);
