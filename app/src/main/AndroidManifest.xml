@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/mon_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
-        <activity android:name=".AfficherRecettesEffectueesActivity"></activity>
+        <activity
+            android:name=".ModeEmploiActivity"
+            android:label="@string/title_activity_mode_emploi"
+            android:theme="@style/Theme.Cuistocs.NoActionBar"></activity>
+        <activity android:name=".AfficherRecettesEffectueesActivity" />
         <activity android:name=".ListeDeCoursesActivity" />
         <activity android:name=".JoursCoursesActivity" />
         <activity android:name=".RecettesEffectuees" />
@@ -28,8 +32,6 @@
             </intent-filter>
         </activity>
 
-        //on déclare le provider qui va permettre d'accéder au fichier externe
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.cuistocs.provider"
@@ -37,9 +39,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-
 
         <service android:name=".notifications.NotificationService">
             <intent-filter>
