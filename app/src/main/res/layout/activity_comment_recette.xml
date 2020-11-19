@@ -8,38 +8,50 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:theme="@style/RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="88dp"
+        android:theme="@style/RatingBar"
         app:layout_constraintBottom_toTopOf="@+id/boutonValider"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/boutonValider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="413dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="monospace"
         android:onClick="valider"
         android:text="Valider"
-        app:layout_constraintBottom_toTopOf="@+id/boutonPartager"
-        tools:layout_editor_absoluteX="1dp" />
+        app:backgroundTint="#4CAF50"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/boutonPartager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="monospace"
         android:onClick="partageSMS"
         android:text="Partager la recette par SMS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
+        app:icon="@android:drawable/stat_notify_chat"
+        app:layout_constraintBottom_toTopOf="@+id/boutonValider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewAfficherPhoto"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/food" />
@@ -48,23 +60,28 @@
         android:id="@+id/btnPrendrePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="monospace"
         android:onClick="prendrePhoto"
         android:text="Je prends ma recette en photo!"
         app:backgroundTint="@android:color/holo_red_dark"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/imageViewAfficherPhoto"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:ignore="UnknownId"
-        tools:layout_editor_absoluteX="55dp" />
+        tools:ignore="UnknownId" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/Commentaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
+        android:hint="Insère un commentaire ici !"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="46dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
