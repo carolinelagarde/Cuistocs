@@ -41,24 +41,31 @@ import com.google.firebase.storage.UploadTask;
 import com.google.firebase.storage.StorageTask.SnapshotBase;
 import java.lang.Object;
 
+//CETTE ACTIVITÉ PERMET DE COMMENTER, NOTER, PRENDRE UNE PHOTO DE SA RECETTE, ET L'ENVOYER PAR SMS
+// PUIS ON EST RENVOYÉ A L'ACTIVITÉ SEMAINE
 public class CommentRecetteActivity extends AppCompatActivity {
 
+    //numero de la semaine juste réalisée
     int numeroRecette;
+
+    //numero du jour et de la semaine de la recette
     int numeroJour;
     int numeroSemaine;
-    EditText Commentaire; //la view où l'utiliateur rentre le commentaire de la recette
-    String commentaireRecette;   //la string associée à ce commentaire
 
+    //la view où l'utiliateur rentre le commentaire de la recette
+    EditText Commentaire;
 
+    //la string associée à ce commentaire
+    String commentaireRecette;
+
+    //la mémoire
     SharedPreferences spCaracteristiqueRecette;
     SharedPreferences.Editor editor;
+
+    //donner sa note
     RatingBar rb;
 
-    Intent  messageVersAccueilActivity;
-
-
-
-
+    //de quoi stocker les photos
     FirebaseStorage storage;
     StorageReference storageReference;
 
@@ -67,77 +74,81 @@ public class CommentRecetteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_recette);
 
-
         //on crée un Firebasestorage qui servira à enregistrer la photo prise et on récupère la référence de stockage
         storage=FirebaseStorage.getInstance();
         storageReference=storage.getReference();
 
-
-
-        //Recuperation des données
-        Intent deRecetteActivity = getIntent();
+        //Recuperation des données : jour, semaine et numero de recette
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         numeroJour=spDate.getInt("numeroJour",-1);
         numeroSemaine=spDate.getInt("numeroSemaine",-1);
+        Intent deRecetteActivity = getIntent();
         numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
-        //Init du sp
+        //Init du shared preferences pour les données de la recette
         spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
     }
 
-    public void enregistrer(View view) {   //on récupère la note que l'utilisateur entre dans la rating bar
-        RatingBar rb = findViewById(R.id.ratingBar);
-
-        float note = rb.getRating();  //on récupère la note que l'utilisateur entre dans la rating bar
-        Toast.makeText(this, "note:" + note, Toast.LENGTH_SHORT).show(); //on montre à l'utilisateur la note qu'il a mise
-
-        Commentaire=findViewById(R.id.Commentaire);
-        commentaireRecette=Commentaire.getText().toString();
-
-        //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences
-
-        editor.putFloat("r" + Integer.toString(numeroRecette) + "note", note); //on met dans shared preferences la note avec l'étiquette correspondant au numero de recette
-        editor.putString("r" + Integer.toString(numeroRecette) + "commentaire", commentaireRecette);
-        editor.apply();
-
-    }
-
+    //fonction pour valider nos entrées
     public void valider(View view) {
+
+        //enregistre la note et le commentaire (voir fonction ci-dessous)
         rb=findViewById(R.id.ratingBar);
         enregistrer(rb);
-        messageVersAccueilActivity = new Intent();
 
-        Intent messageVersAccueilActivity = new Intent();
-        messageVersAccueilActivity.setClass(this, AccueilActivity.class);
-        startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
-        finish(); // lorsque qu'on retourne a l'accueil, on ne peut plus revenir a l'écran commentaire
+        //on retourne à l'acitvité semaine une fois que l'utilisateur a rentré le commentaire et la note
+        Intent messageVersSemaineActivity = new Intent();
+        messageVersSemaineActivity.setClass(this, SemaineActivity.class);
+        startActivity(messageVersSemaineActivity);
+
+        //on ne peut pas revenir a l'écran commentaire apres
+        finish();
     }
 
+    //fonction d'enregistrer la note et le commentaire
+    public void enregistrer(View view) {
+
+        //on récupère la note que l'utilisateur entre dans la rating bar
+        float note = rb.getRating();
+
+        //on montre à l'utilisateur la note qu'il a mise
+        Toast.makeText(this, "note:" + note, Toast.LENGTH_SHORT).show();
+
+        //on enregistre la note que l'utilisateur a associé à sa recette grace à un sharedPrefrences
+        editor.putFloat("r" + Integer.toString(numeroRecette) + "note", note);
+
+        //on enregistre aussi le commentaire de l'utilisateur pour cette recette
+        Commentaire=findViewById(R.id.Commentaire);
+        commentaireRecette=Commentaire.getText().toString();
+        editor.putString("r" + Integer.toString(numeroRecette) + "commentaire", commentaireRecette);
+        editor.apply();
+    }
 
     ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
+        //récupère numéro de la semaine puis la recette
         Intent deRecetteActivity = getIntent();
-
-        //default value à -1 pour faciliter le debut si debug il y a. il faudra la definir à 0 apres
-         numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
+        numeroRecette= deRecetteActivity.getIntExtra("numero recette", -1);
 
         Menu menu = new Menu();
         Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
 
+        //créé le sms
         Vector<Ingredient> Vecteuringredients = recetteEnCours.getIngredients();
         String corps = "";
         for (int i=0; i<Vecteuringredients.size();i++) {
             corps= corps + Vecteuringredients.get(i).getQuantité(1) +" " + Vecteuringredients.get(i).getUnite() + " " + Vecteuringredients.get(i).getIngredient() + "\n";
         }
-
         String messageSMS = String.format("Toi aussi découvre cette recette !\nLes quantités sont pour une personne. \n "
                 + "Elle s'appelle " + recetteEnCours.getTitre() + "\n"
                 + corps + "\n"
                 + "Temps de préparation :" + recetteEnCours.getTempsdecuisine() + "minutes \n \n"
                 + "Instructions : \n "
                 + recetteEnCours.getInstructions() + "\n");
+
+        //on envoie le sms
         Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
         versAppSMS.setData(Uri.parse("smsto:"));
         versAppSMS.putExtra("sms_body", messageSMS);
@@ -145,67 +156,12 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
-
-    /*
-    public static Recette getCurrentRecette(){
-        //Creation d'un valeur par defaut pour le sharedPreferences
-        Set<String> defaultvalueset= new HashSet<>();
-        defaultvalueset.add("");
-
-
-
-        //recuperation de l'indice du jour : je n'y arrive pas. Je prends donc la recette 1 (pour changer)
-
-
-
-        Menu menu= new Menu();
-
-
-        Recette CurrentRecette= menu.livreRecettes.get(1);
-        return CurrentRecette;
-    }
-
-     */
-
-
-    /*
-    public Recette getCurrentRecette(int jour, int semaine){
-
-
-        SharedPreferences etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
-
-        Set listeJoursDebloques;
-
-        //Creation d'un valeur par defaut pour le sharedPreferences
-        Set<String> defaultvalueset= new HashSet<>();
-        defaultvalueset.add("");
-
-        Menu menu = new Menu();
-        Vector<Recette> livreRecettes = menu.livreRecettes;
-
-        //recuperation de nombre de jours debloqués (donne une liste, et on recupere la taille de la liste des jours debloques)
-        listeJoursDebloques = etatBouton.getStringSet("boutonDebloque", defaultvalueset);
-        int nombreJoursDebloques = listeJoursDebloques.size();
-
-        Object[] tableauJoursDebloques = listeJoursDebloques.toArray();
-
-        return (Recette)tableauJoursDebloques[nombreJoursDebloques];
-
-    }
-
-
-     */
     //on définit l'imageView qui va afficher la photo
-
     ImageView imgAffichePhoto;
     String photoPath=null;
 
-
-    private StorageReference storageRef;
-
+    //fonction de prendre la photo
     public void prendrePhoto(View view) {
-
-
 
         //on crée un intent pour ouvri la fenêtre pour prendre la photo
         Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -254,16 +210,14 @@ public class CommentRecetteActivity extends AppCompatActivity {
             catch(IOException e){
                 e.printStackTrace();
             }
-
         }
-
-
     }
 
         //retour de l'appareil photo après le startactivityforresult
         protected void onActivityResult(int requestCode,int resultCode,Intent data){
             imgAffichePhoto=findViewById(R.id.imageViewAfficherPhoto);
             super.onActivityResult(requestCode,resultCode,data);
+
             //vérifie le code de retour et l'état du retour ok
             if(requestCode==1 && resultCode==RESULT_OK) {
                 //récupérer l'image
@@ -275,12 +229,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
                // Intent messageVersAfficherRecettesEffectueesActivity= new Intent(this, AfficherRecettesEffectueesActivity.class);
                 //messageVersAfficherRecettesEffectueesActivity.putExtra("BitmapImage", image);
             }
-
         }
-
-
-
-
     }
 
 
