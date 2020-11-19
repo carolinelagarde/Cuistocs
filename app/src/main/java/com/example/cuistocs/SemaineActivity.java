@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +27,7 @@ public class SemaineActivity extends AppCompatActivity {
     Button semaine2;
     Button semaine3;
     Button semaine4;
+
 
 
     @Override
@@ -80,6 +82,40 @@ public class SemaineActivity extends AppCompatActivity {
             versJour.setClass(this, ChoixJoursActivity.class);
             startActivity(versJour);
         }
+
+        //Coloration des boutons
+        Boolean BoutonSemaineActuelleGrise=false
+        if (!(spEtatBouton.contains(tag))){
+            if (BoutonSemaineActuelleGrise) {
+                semaine1.setBackgroundColor(Color.parseColor("#ACA3A3"));
+            }else{
+                BoutonSemaineActuelleGrise=true;
+                semaine1.setBackgroundColor(Color.parseColor("#4CAF50"));
+            }
+
+            if (!(spEtatBouton.contains(tag))){
+                if (BoutonSemaineActuelleGrise) {
+                    semaine2.setBackgroundColor(Color.parseColor("#ACA3A3"));
+                }else{
+                    BoutonSemaineActuelleGrise=true;
+                    semaine2.setBackgroundColor(Color.parseColor("#4CAF50"));
+                }
+
+           if (!(spEtatBouton.contains(tag))){
+                    if (BoutonSemaineActuelleGrise) {
+                        semaine3.setBackgroundColor(Color.parseColor("#ACA3A3"));
+                    }else{
+                        BoutonSemaineActuelleGrise=true;
+                        semaine3.setBackgroundColor(Color.parseColor("#4CAF50"));
+                    }
+
+            if (!(spEtatBouton.contains(tag))){
+                        if (BoutonSemaineActuelleGrise) {
+                            semaine4.setBackgroundColor(Color.parseColor("#ACA3A3"));
+                        }else{
+                            BoutonSemaineActuelleGrise=true;
+                            semaine4.setBackgroundColor(Color.parseColor("#4CAF50"));
+                        }
     }
 
     //fonction appelée si on clique sur le bouton recettes effectuées : envoie vers l'activité recettes effectuées
