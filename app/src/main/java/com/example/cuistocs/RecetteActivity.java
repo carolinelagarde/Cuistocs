@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
+import static android.view.View.GONE;
 
 
 public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
@@ -244,9 +245,12 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
     }
 
 
+    //bouton lancer le chrono : lance le chrono et fait disparaitre le bouton
     public void LancerChrono(View view) {
         chrono=findViewById(R.id.chronometer);
         chrono.start();
         chrono.setBase(SystemClock.elapsedRealtime());
+        Button boutonchrono=findViewById(R.id.buttonLancerChrono);
+        boutonchrono.setVisibility(GONE);
     }
 }
