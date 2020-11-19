@@ -211,13 +211,13 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             // si bouton Fini est cliqué et le joueur a réalisé la recette dans le temps imparti i.e.
             // le temps donné avec dix minutes de marche : +1 point !
             if (TempsMis<tempsImparti) {
-                points += 1;
+                points++;
             }
 
             //on enregistre le fait que la recette a été faite et le score du joueur
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = spPoints.edit();
-            editor.putInt("nombrePointsDejaGagnes", points);
+            editor.putInt("nombrePoints", points);
             editor.apply();
 
             //on veut aller à l'activité qui permet de commenter la recette, en transmettant à cette
