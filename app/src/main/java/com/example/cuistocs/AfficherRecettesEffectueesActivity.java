@@ -22,7 +22,7 @@ public class AfficherRecettesEffectueesActivity extends AppCompatActivity implem
 SharedPreferences sp;
 SharedPreferences.Editor editor;
 Vector<Ingredient> lesIngredients;
-
+TextView ViewInstruction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

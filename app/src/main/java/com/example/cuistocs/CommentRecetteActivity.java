@@ -1,5 +1,7 @@
 package com.example.cuistocs;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -23,8 +25,13 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
@@ -144,7 +151,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent choixAppSMS = Intent.createChooser(versAppSMS, "Partager la recette avec :");
         startActivity(choixAppSMS);
     }
-
 
     /*
     public static Recette getCurrentRecette(){
@@ -279,8 +285,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         }
 
 
-
-
-    }
+}
 
 

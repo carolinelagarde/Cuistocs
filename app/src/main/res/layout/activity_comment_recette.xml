@@ -69,4 +69,5 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="UnknownId"
         tools:layout_editor_absoluteX="55dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
