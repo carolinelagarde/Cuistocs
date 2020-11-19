@@ -74,8 +74,10 @@ public class RecettesEffectuees extends AppCompatActivity {
 
                 if (note>=noteMinimale) {
                     //ajout bouton
+                    Menu menu=new Menu();
+                    Recette Recette=menu.getRecetteAvecNumero(i);
                     Button button = new Button(getApplicationContext());
-                    button.setText("Recette" + " " + ""+i+"");
+                    button.setText(Recette.getTitre());
                     button.setOnClickListener(this::onClick);
                     button.setTag(Integer.toString(i));
                     layoutScrollView.addView(button);
@@ -84,13 +86,7 @@ public class RecettesEffectuees extends AppCompatActivity {
                     espaceTextView.setText("");
                     layoutScrollView.addView(espaceTextView);
                 }
-                Menu menu=new Menu();
-                Recette Recette=menu.getRecetteAvecNumero(i);
-                Button button = new Button(getApplicationContext());
-                button.setText(Recette.getTitre());
-                button.setOnClickListener(this::onClick);
-                button.setTag(Integer.toString(i));
-                lay.addView(button);
+
             }
         }
     }
