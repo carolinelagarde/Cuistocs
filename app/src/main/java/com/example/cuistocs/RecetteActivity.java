@@ -161,14 +161,15 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //on veut débloquer le bouton du jour suivant
         etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorBouton = etatBouton.edit();
-
-        Set<String> defaultvalueset = new HashSet<>();
-        defaultvalueset.add("");
-
-
-        Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
-        boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
-        editorBouton.commit();
+        String tag;
+        if (numeroJour==6) {
+            tag="jour0semaine"+(numeroSemaine+1);
+        }
+        else {
+            tag="jour"+(numeroJour+1)+"semaine"+numeroSemaine;
+        }
+        editorBouton.putString(tag,"boutondébloqué");
+        editorBouton.apply();
 
         if (view.equals(boutonFini)) {
             //on indique que la recette est terminée
