@@ -33,6 +33,7 @@ import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -205,6 +206,8 @@ public class CommentRecetteActivity extends AppCompatActivity {
     String photoPath=null;
 
 
+    private StorageReference storageRef;
+
     public void prendrePhoto(View view) {
 
 
@@ -228,28 +231,28 @@ public class CommentRecetteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
 
 
-                //on upload la photo dans firebase
-                final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Uploading...");
-                progressDialog.show();
 
-                StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
-                ref.putFile(Uri.parse(photoPath))
-                       // .addOnSuccessListener(new OnSuccessListener() {
-                            //public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                              //  progressDialog.dismiss();
-                           // }
-                      // })
-                        .addOnFailureListener(new OnFailureListener() {
-                            public void onFailure(Exception e) {
-                                progressDialog.dismiss();
+
+
+                storageRef = FirebaseStorage.getInstance().getReference();
+                StorageReference storagephotoPrise=storageRef.child("photo"+time+"jpg");
+
+                storagephotoPrise.putFile(photoUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                // Get a URL to the uploaded content
+                                Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
+                                while(!uri.isComplete());
+                                Uri url = uri.getResult();
+
                             }
                         })
-                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                                        .getTotalByteCount());
-                                progressDialog.setMessage("Uploaded" + (int)progress + "%");
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(Exception exception) {
+                                // Handle unsuccessful uploads
+                                // ...
                             }
                         });
             }
