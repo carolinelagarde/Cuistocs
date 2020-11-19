@@ -270,6 +270,47 @@ public class Menu {
                       "4. Mélangez jusqu’à ce que le fromage ait fondu et servez bien chaud."));
 
 
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(2,"entier","pomme de terre"));
+      lesIngredientsdelaRecette.add(new Ingredient(25,"grammes","roquefort"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"centilitres","lait"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"poignée","fromage rapé"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"entier","oeuf"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"verre","lait"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillière","crème fraiche"));
+
+
+
+      livreRecettes.add(new Recette(16,"Tarte aux pommes de terre et au roquefort ", 45, lesIngredientsdelaRecette, "Préchauffer le four à 200°C. \n Mettre les pommes de terre lavées mais non épluchées dans une casserole d'eau froide avec du sel. \n faire bouillir 10 mn, égoutter, couper en rondelles. \n Disposer les rondelles de pomme de terre sur la pâte en les faisant se chevaucher. \n Emietter le roquefort par dessus, saupoudrer de gruyère râpé. Dans un bol, mélanger l'oeuf battu, le lait et la crème. \n Verser cet appareil sur la tarte, poivrer à convenance. \n Mettre au four 25 à 30 min. \n Servir tiède avec une salade." ));
+
+
+
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(150,"grammes","de riste d'aubergine"));
+      lesIngredientsdelaRecette.add(new Ingredient(5,"centillitres","creme liquide"));
+      lesIngredientsdelaRecette.add(new Ingredient(3,"centilitres","lait"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"poignée","fromage rapé"));
+      lesIngredientsdelaRecette.add(new Ingredient(3,"plaques","pâtes à lasagne"));
+
+
+
+      livreRecettes.add(new Recette(17,"Lasagnes au riste d'aubergines", 30, lesIngredientsdelaRecette, "Dans un saladier, versez le riste d'aubergines, ajoutez le lait et la crème. \n Mélangez jusqu'à homogénéisation du mélange. \n Dans un plat, appliquez succesivement une plaque de lasagne et du mélange. \n N'oubliez pas d'en ajouter au dessus ! Tout au dessus, ajoutez le fromage. \n Placez au four préchauffé à 180 degrés pendant environ 30 minutes" ));
+
+
+
+
+      lesIngredientsdelaRecette=new Vector<>();
+
+      lesIngredientsdelaRecette.add(new Ingredient(1,"entière","pâte brisée"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"entière","tomate"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"pincée","herbe de provence"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"poignée","moutarde"));
+      lesIngredientsdelaRecette.add(new Ingredient(1,"cuillière","huile d'olive"));
+
+      livreRecettes.add(new Recette(18,"Tarte à la tomate et à la moutarde", 30, lesIngredientsdelaRecette, " Précuire la pâte (percée avec une fourchette) 5 min à 450 degrés farenheit (230°C). \n  Pendant ce temps, couper les tomates en rondelles de 3 mm d'épaisseur. \n Sortir la pâte précuite du four. badigeonner le fond de moutarde de Dijon (la classique fait l'affaire) ... \n en mettre suffisamment pour que le fond en pâte ne se voit plus. Disposer les tranches de tomates. \n faire plusieurs épaisseurs. Saupoudrer d'herbes de Provence + 2 pincées de sel. \n 1 cuillère à soupe d'huile d'olive.  \n Enfourner pour 20 min à 450 farenheit puis couvrir avec papier d'aluminium pour 20 min supplémentaires. \n Après ces 20 min, enlever le papier aluminium et laisser cuire encore 5 min porte du four ouverte. \n  Délicieux avec une salade verte." ));
+
 
 
 

@@ -76,8 +76,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
         //Recuperation des données
         Intent deRecetteActivity = getIntent();
-        //numeroJour = deRecetteActivity.getIntExtra("numero jour", -1);
-        //numeroSemaine = deRecetteActivity.getIntExtra("numero semaine", -1);
         SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
         numeroJour=spDate.getInt("numeroJour",-1);
         numeroSemaine=spDate.getInt("numeroSemaine",-1);
@@ -86,11 +84,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
         //Init du sp
         spCaracteristiqueRecette = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         editor=spCaracteristiqueRecette.edit();
-
-
-
-
-
     }
 
     public void enregistrer(View view) {   //on récupère la note que l'utilisateur entre dans la rating bar
@@ -118,12 +111,7 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent messageVersAccueilActivity = new Intent();
         messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
-        uploadPicture();
-    }
-
-
-
-    private void uploadPicture() {
+        finish(); // lorsque qu'on retourne a l'accueil, on ne peut plus revenir a l'écran commentaire
     }
 
 
@@ -138,10 +126,17 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Menu menu = new Menu();
         Recette recetteEnCours = menu.livreRecettes.get(numeroRecette);
 
-        String messageSMS = String.format("Toi aussi découvre cette recette !\n"
-                + recetteEnCours.getTitre() + "\n"
-                + recetteEnCours.getIngredients() + "\n"
-                + recetteEnCours.getTempsdecuisine() + "\n"
+        Vector<Ingredient> Vecteuringredients = recetteEnCours.getIngredients();
+        String corps = "";
+        for (int i=0; i<Vecteuringredients.size();i++) {
+            corps= corps + Vecteuringredients.get(i).getQuantité(1) +" " + Vecteuringredients.get(i).getUnite() + " " + Vecteuringredients.get(i).getIngredient() + "\n";
+        }
+
+        String messageSMS = String.format("Toi aussi découvre cette recette !\nLes quantités sont pour une personne. \n "
+                + "Elle s'appelle " + recetteEnCours.getTitre() + "\n"
+                + corps + "\n"
+                + "Temps de préparation :" + recetteEnCours.getTempsdecuisine() + "minutes \n \n"
+                + "Instructions : \n "
                 + recetteEnCours.getInstructions() + "\n");
         Intent versAppSMS = new Intent(Intent.ACTION_SENDTO);
         versAppSMS.setData(Uri.parse("smsto:"));
@@ -231,28 +226,28 @@ public class CommentRecetteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
 
 
+                //on upload la photo dans firebase
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setTitle("Uploading...");
+                progressDialog.show();
 
-
-
-                storageRef = FirebaseStorage.getInstance().getReference();
-                StorageReference storagephotoPrise=storageRef.child("photo"+time+"jpg");
-
-                storagephotoPrise.putFile(photoUri)
-                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // Get a URL to the uploaded content
-                                Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
-                                while(!uri.isComplete());
-                                Uri url = uri.getResult();
-
+                StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+                ref.putFile(Uri.parse(photoPath))
+                       // .addOnSuccessListener(new OnSuccessListener() {
+                            //public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                              //  progressDialog.dismiss();
+                           // }
+                      // })
+                        .addOnFailureListener(new OnFailureListener() {
+                            public void onFailure(Exception e) {
+                                progressDialog.dismiss();
                             }
                         })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(Exception exception) {
-                                // Handle unsuccessful uploads
-                                // ...
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+                                        .getTotalByteCount());
+                                progressDialog.setMessage("Uploaded" + (int)progress + "%");
                             }
                         });
             }

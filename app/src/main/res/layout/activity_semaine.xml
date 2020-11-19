@@ -19,7 +19,7 @@
         android:layout_marginBottom="363dp"
         android:fontFamily="monospace"
         android:onClick="ouvrirSemaine"
-        android:text="@string/semaine_1"
+        android:text="semaine 1"
         android:textSize="18sp"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="315dp"
         android:fontFamily="monospace"
         android:onClick="ouvrirSemaine"
-        android:text="@string/semaine_2"
+        android:text="semaine 2"
         android:textSize="18sp"
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +59,7 @@
         android:layout_marginBottom="267dp"
         android:fontFamily="monospace"
         android:onClick="ouvrirSemaine"
-        android:text="@string/semaine_3"
+        android:text="semaine 3"
         android:textSize="18sp"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
         android:layout_marginBottom="219dp"
         android:fontFamily="monospace"
         android:onClick="ouvrirSemaine"
-        android:text="@string/semaine_4"
+        android:text="semaine 4"
         android:textSize="18sp"
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -127,6 +127,18 @@
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewScoreActuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/boutonVersRecettesFinies"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonSemaine4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

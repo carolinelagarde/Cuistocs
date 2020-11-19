@@ -6,11 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".RecetteActivity">
 
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="115dp"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
+        android:layout_marginBottom="557dp"
+        android:background="#000000"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#1aff00"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="204dp"
         android:layout_height="34dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:max="10"
@@ -22,7 +44,7 @@
         android:id="@+id/NbInvites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
@@ -36,9 +58,9 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
         android:onClick="finRecette"
         android:text="Finie!"
-        android:fontFamily="monospace"
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -50,9 +72,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="monospace"
         android:onClick="finRecette"
         android:text="Je passe"
-        android:fontFamily="monospace"
         app:backgroundTint="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,7 +108,7 @@
 
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="95dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_recent_history"
@@ -98,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="65dp"
         android:text="Invités"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -121,11 +143,11 @@
 
         android:layout_width="282dp"
         android:layout_height="143dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:id="@+id/Ingredients"
@@ -149,7 +171,6 @@
         android:id="@+id/Titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -157,6 +178,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="266dp"
         android:layout_height="199dp"
         android:layout_marginStart="25dp"
@@ -182,5 +204,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/food" />
+
+    <Button
+        android:id="@+id/buttonLancerChrono"
+        android:layout_width="142dp"
+        android:layout_height="50dp"
+        android:onClick="LancerChrono"
+        android:text="Lancer le chrono"
+        tools:layout_editor_absoluteX="284dp"
+        tools:layout_editor_absoluteY="565dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
