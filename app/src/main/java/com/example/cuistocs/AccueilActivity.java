@@ -79,9 +79,9 @@ public class AccueilActivity extends AppCompatActivity {
                         editor.apply();
                         Log.i("définition du set","effectuée");
 
-                        Intent versSemaine=new Intent(getApplicationContext(), SemaineActivity.class);
+                        Intent versModeEmploi=new Intent(getApplicationContext(), ModeEmploiActivity.class);
                         Log.i("click","bouton cliqué");
-                        startActivity(versSemaine);
+                        startActivity(versModeEmploi);
                         finish();
 
                     }
