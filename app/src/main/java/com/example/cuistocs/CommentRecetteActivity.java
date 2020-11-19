@@ -117,10 +117,16 @@ public class CommentRecetteActivity extends AppCompatActivity {
         Intent messageVersAccueilActivity = new Intent();
         messageVersAccueilActivity.setClass(this, AccueilActivity.class);
         startActivity(messageVersAccueilActivity);   //on retourne à l'acitvité principale une fois que l'utilisateur a rentré le commentaire et la note
+        uploadPicture();
     }
 
 
-///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
+
+    private void uploadPicture() {
+    }
+
+
+    ///l'utilisateur peut partager la recette par sms s'il l'a bien aimée
     public void partageSMS(View view) {
 
         Intent deRecetteActivity = getIntent();
@@ -191,10 +197,6 @@ public class CommentRecetteActivity extends AppCompatActivity {
 
     }
 
-    //on définit le bouton qui va aller ver l'appareil photo et l'imageView qui va afficher la photo
-    Button btnPrendrePhoto;
-    ImageView imgAffichePhoto;
-    String photoPath=null;
 
      */
     //on définit l'imageView qui va afficher la photo
