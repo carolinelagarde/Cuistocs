@@ -1,5 +1,5 @@
 package com.example.cuistocs;
-
+//CETTE CLASSE PERMET D'IDENTIFIER LES INGREDIENTS DES RECETTES EN PRECISANT L'INGREDIENT, L'UNITE ET LA QUANTITE
 public class Ingredient {
     //donne les quantités
     private int quantite;
