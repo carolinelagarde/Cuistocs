@@ -69,15 +69,16 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             points = spPoints.getInt("nombrePoints", -1);
         } else { points = 0; }
 
-
-        // recuperation des entiers numeroSemaine et numeroJour qui servent à indexer les recettes dans la matrice des recettes
-
         //on récupère des deux activités précédentes les numéros du jour et de la semaine dans laquelle on est
 
         Intent messagedeChoixJoursActivity = getIntent();
 
-        numeroJour = messagedeChoixJoursActivity.getIntExtra("numero jour", -1);
-        numeroSemaine = messagedeChoixJoursActivity.getIntExtra("numero semaine", -1);
+        // recuperation des entiers numeroSemaine et numeroJour
+
+        SharedPreferences spDate=getSharedPreferences("date",Context.MODE_PRIVATE);
+        numeroSemaine=spDate.getInt("numeroSemaine",-1);
+        numeroJour=spDate.getInt("numeroJour",-1);
+        Log.i("numerosemaine",Integer.toString(numeroSemaine));
         JourAbsoluActuel = (numeroJour+1)*(numeroSemaine+1);
 
         SeekBar barre = findViewById(R.id.seekBar); // barre de choix du nombre d'invités
@@ -149,14 +150,15 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //on veut débloquer le bouton du jour suivant
         etatBouton = getSharedPreferences("etatBouton", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorBouton = etatBouton.edit();
-
-        Set<String> defaultvalueset = new HashSet<>();
-        defaultvalueset.add("");
-
-
-        Set<String> boutonDebloqueSet= etatBouton.getStringSet("boutonDebloque",defaultvalueset);
-        boutonDebloqueSet.add("jour"+numeroJour+"semaine"+numeroSemaine);
-        editorBouton.commit();
+        String tag;
+        if (numeroJour==6) {
+            tag="jour0semaine"+(numeroSemaine+1);
+        }
+        else {
+            tag="jour"+(numeroJour+1)+"semaine"+numeroSemaine;
+        }
+        editorBouton.putString(tag,"boutondébloqué");
+        editorBouton.apply();
 
         //on indique que la recette est terminée
         sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
@@ -184,8 +186,6 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
             Intent versCommentRecetteActivity = new Intent();
             versCommentRecetteActivity.setClass(this, CommentRecetteActivity.class);
             versCommentRecetteActivity.putExtra("numero recette", recette.getNumeroRecette());
-            versCommentRecetteActivity.putExtra("numero jour", numeroJour);
-            versCommentRecetteActivity.putExtra("numero semaine", numeroSemaine);
             startActivity(versCommentRecetteActivity);
 
         }
