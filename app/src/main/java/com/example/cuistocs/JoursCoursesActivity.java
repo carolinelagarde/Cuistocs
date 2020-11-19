@@ -16,7 +16,6 @@ public class JoursCoursesActivity extends AppCompatActivity {
     //définition des premiers et derniers jours
     public int PremierJourSeekbar;
     public int DernierJourSeekbar;
-    public SeekBar barrePremierJour;
 
     //affiche le jour qui correspond à la selection
     public TextView AfficherDernierJourCourses;
@@ -34,7 +33,7 @@ public class JoursCoursesActivity extends AppCompatActivity {
         //récupérer le dernier jour pour lesquels il faut faire les course et l'afficher
         SeekBar barreDernierJour = findViewById(R.id.seekBarDernierJour);
         //récupérer le premier jour pour lesquels il faut faire les course et l'afficher
-        barrePremierJour = findViewById(R.id.seekBarPremierJour);
+        SeekBar barrePremierJour = findViewById(R.id.seekBarPremierJour);
 
         //affichage de la barre
         barrePremierJour.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -90,6 +89,9 @@ public class JoursCoursesActivity extends AppCompatActivity {
 
     //transmettre le premier jour et le dernier jour pour lesquels il faut faire les courses a l'activité liste de courses et passer à cette activité
     public void validerJoursdeCourse(View view) {
+
+        //Si les jours de courses sont incohérents : le premier jour demandé est supèrieur au dernier jour,
+        // on bloque le bouton valider
         if (PremierJourSeekbar>DernierJourSeekbar) {
             Toast.makeText(getApplicationContext(), "Attention, vos jours ne sont pas cohérents !", Toast.LENGTH_SHORT).show();
         }
