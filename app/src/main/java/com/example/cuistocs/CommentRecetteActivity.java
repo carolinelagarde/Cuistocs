@@ -223,17 +223,18 @@ public class CommentRecetteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
 
 
+                //on upload la photo dans firebase
                 final ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setTitle("Uploading...");
                 progressDialog.show();
 
                 StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
                 ref.putFile(Uri.parse(photoPath))
-                        //.addOnSuccessListener(new OnSuccessListener() {
+                       // .addOnSuccessListener(new OnSuccessListener() {
                             //public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                               //  progressDialog.dismiss();
                            // }
-                      //  })
+                      // })
                         .addOnFailureListener(new OnFailureListener() {
                             public void onFailure(Exception e) {
                                 progressDialog.dismiss();
