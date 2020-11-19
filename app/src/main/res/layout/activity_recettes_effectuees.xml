@@ -11,9 +11,10 @@
 
     <ScrollView
         android:id="@+id/scrollViewBoutons"
-        android:layout_width="match_parent"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,20 +29,20 @@
 
     <TextView
         android:id="@+id/textViewRatingB"
-        android:layout_width="409dp"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="69dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="409dp"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Voici les recettes que vous avez déjà terminées. Refaites-les et servez-vous de vos commentaires pour progressez et comparez le nouvaeau resultat avec l'anciene photo !"
+        android:layout_marginTop="14dp"
+        android:text="Voici les recettes que vous avez déjà terminées. Refaites-les et servez-vous de vos commentaires pour progresser puis comparez le nouveau résultat avec l'ancienne photo !"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,11 +50,10 @@
         android:id="@+id/filtreNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="87dp"
+        android:layout_marginTop="91dp"
         android:numStars="5"
         android:rating="0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
