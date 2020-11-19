@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -61,18 +63,20 @@ public class RecettesEffectuees extends AppCompatActivity {
         //on récupère les recettes finies dans le fichier associé
 
         layoutScrollView.removeAllViews();
+        int parite = 0;
 
         for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
             noteMinimale = rbFiltreNote.getRating();
             //ajout texte pour le filtre de la note des recettes
             TextView textViewRb = findViewById(R.id.textViewRatingB);
-            textViewRb.setText("Filtrer garder les recettes ayant au moins " + noteMinimale + " étoiles");
+            textViewRb.setText("Afficher les recettes ayant au moins " + noteMinimale + " étoiles");
             if (sharedPreferences.getBoolean(name, false)) {
 
                 float note = sharedPreferences.getFloat("r"+i+"note", -1);
 
                 if (note>=noteMinimale) {
+                    parite++;
                     //ajout bouton
                     Menu menu=new Menu();
                     Recette Recette=menu.getRecetteAvecNumero(i);
@@ -80,7 +84,17 @@ public class RecettesEffectuees extends AppCompatActivity {
                     button.setText(Recette.getTitre());
                     button.setOnClickListener(this::onClick);
                     button.setTag(Integer.toString(i));
+
                     layoutScrollView.addView(button);
+
+                    /*
+                    if (parite%2 == 1) { button.setBackgroundColor(0xCC0000);
+                    } else { button.setBackgroundColor(Color.BLACK ); }
+
+                     */
+                    button.setBackgroundColor(Color.BLACK);
+                    button.setTextColor(Color.WHITE);
+
                     //ajout textview vide pour permettre le scrolling de la scrollview
                     TextView espaceTextView = new TextView(this);
                     espaceTextView.setText("");
