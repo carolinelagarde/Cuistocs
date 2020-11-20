@@ -81,6 +81,9 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         chrono=findViewById(R.id.chronometer);
         chrono.setVisibility(View.INVISIBLE);
 
+        //affecte le bouton qui lance le chrono
+        Button boutonChrono = findViewById(R.id.buttonLancerChrono);
+
         /*on affecte à la variable points :
            - 0 si aucun point n'a été marqué
            - le nombre de points mémorisés en sharedPreferences si des points on deja ete marques
@@ -96,7 +99,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         numeroJour=spDate.getInt("numeroJour",-1);
 
         //calcul du jour absolu i.e entre 1 et 28
-        JourAbsoluActuel = (numeroJour+1)*(numeroSemaine+1);
+        JourAbsoluActuel = numeroSemaine*7+numeroJour+1;
 
         //choix du nombre de convives pour la recette
         SeekBar barre = findViewById(R.id.seekBar);
@@ -236,9 +239,10 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
 
             ///on enregistre le fait que le score du joueur n'a pas changé et que l'a recette n'a pas été faite
             spPoints = getSharedPreferences("scoreActuel", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = spPoints.edit();
-            editor.putInt("nombrePointsDejaGagnes", points);
-            editor.putBoolean("r" + numeroRecette + "finie", false);
+            SharedPreferences.Editor editorScore = spPoints.edit();
+            editorScore.putInt("nombrePointsDejaGagnes", points);
+            editorScore.apply();
+            editor.putBoolean("r" + numeroRecette + "finie", true);
             editor.apply();
 
             // si on n'est pas au dernier jour de la semaine, ca nous ramène a l'écran des jours
@@ -269,6 +273,7 @@ public class RecetteActivity extends AppCompatActivity implements SeekBar.OnSeek
         //fait disparaitre le bouton chrono apres l'avoir lancé
         Button boutonchrono=(Button)view;
         boutonchrono.setVisibility(GONE);
+
     }
 
 
