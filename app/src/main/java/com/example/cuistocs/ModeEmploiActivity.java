@@ -16,8 +16,6 @@ import android.view.View;
 public class ModeEmploiActivity extends AppCompatActivity {
 
     @Override
-
-//CETTE ACTIVITE
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mode_emploi);
