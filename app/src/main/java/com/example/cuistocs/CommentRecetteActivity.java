@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.firebase.storage.StorageTask.SnapshotBase;
 import java.lang.Object;
+
+import android.provider.MediaStore.Images.Media;
 
 //CETTE ACTIVITÉ PERMET DE COMMENTER, NOTER, PRENDRE UNE PHOTO DE SA RECETTE, ET L'ENVOYER PAR SMS
 // PUIS ON EST RENVOYÉ A L'ACTIVITÉ SEMAINE
@@ -156,80 +159,51 @@ public class CommentRecetteActivity extends AppCompatActivity {
         startActivity(choixAppSMS);
     }
 
-    //on définit l'imageView qui va afficher la photo
-    ImageView imgAffichePhoto;
+//on définit l'imageView qui va afficher la photo  
+ImageView imgAffichePhoto;
     String photoPath=null;
-
-    //fonction de prendre la photo
+    String time;
+    private StorageReference storageRef;
     public void prendrePhoto(View view) {
-
-        //on crée un intent pour ouvri la fenêtre pour prendre la photo
+        //on crée un intent pour ouvri la fenêtre pour prendre la photo 
         Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        if(intent.resolveActivity(getPackageManager())!= null) { //on vérifie que l'intent peut être crée
-            //création d'un fichier pour la photo
-            String time=new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); //on aura la date précise de la photo
+        if(intent.resolveActivity(getPackageManager())!= null) {
+            //on vérifie que l'intent peut être crée 
+            // création d'un fichier pour la photo 
+            time=new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            //on aura la date précise de la photo 
             File photoDir=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
             try {
-                File photoFile = File.createTempFile("photo" + time, ".jpg", photoDir);
-                //on enregistre le chemin complet
+                File photoFile = File.createTempFile("photo" + numeroRecette, ".jpg", photoDir);
+                //on enregistre le chemin complet 
                 photoPath = photoFile.getAbsolutePath();
-                //crée l'URI
+                //crée l'URI 
                 Uri photoUri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", photoFile);
-                //transfert uri vers l'intent pour enregistrer la photo dans un fichier temporaire
+                //transfert uri vers l'intent pour enregistrer la photo dans un fichier temporaire 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                //on ouvre l'activité par rapport à l'intent
+                //on ouvre l'activité par rapport à l'intent 
                 startActivityForResult(intent, 1);
-
-
-                //on upload la photo dans firebase
-                final ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Uploading...");
-                progressDialog.show();
-
-                StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
-                ref.putFile(Uri.parse(photoPath))
-                       // .addOnSuccessListener(new OnSuccessListener() {
-                            //public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                              //  progressDialog.dismiss();
-                           // }
-                      // })
-                        .addOnFailureListener(new OnFailureListener() {
-                            public void onFailure(Exception e) {
-                                progressDialog.dismiss();
-                            }
-                        })
-                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                                        .getTotalByteCount());
-                                progressDialog.setMessage("Uploaded" + (int)progress + "%");
-                            }
-                        });
             }
             catch(IOException e){
                 e.printStackTrace();
             }
         }
     }
+    //retour de l'appareil photo après le startactivityforresult 
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+        imgAffichePhoto=findViewById(R.id.imageViewAfficherPhoto);
+        super.onActivityResult(requestCode,resultCode,data);
+        //vérifie le code de retour et l'état du retour ok 
+        if(requestCode==1 && resultCode==RESULT_OK) {
+            //récupérer l'image 
+            Bitmap image= BitmapFactory.decodeFile(photoPath);
+            //afficher l'image 
+            imgAffichePhoto.setImageBitmap(image);
+            Uri photoUri=FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", new File(photoPath));
+            storageRef = FirebaseStorage.getInstance().getReference("photosRecettes");
+            StorageReference storagephotoPrise=storageRef.child("photo"+ numeroRecette +".jpg");
+            storagephotoPrise.putFile(photoUri);
 
-        //retour de l'appareil photo après le startactivityforresult
-        protected void onActivityResult(int requestCode,int resultCode,Intent data){
-            imgAffichePhoto=findViewById(R.id.imageViewAfficherPhoto);
-            super.onActivityResult(requestCode,resultCode,data);
-
-            //vérifie le code de retour et l'état du retour ok
-            if(requestCode==1 && resultCode==RESULT_OK) {
-                //récupérer l'image
-                Bitmap image= BitmapFactory.decodeFile(photoPath);
-                //afficher l'image
-                imgAffichePhoto.setImageBitmap(image);
-
-                //pour transférer l'image à l'activité où on voit les recettes faites
-               // Intent messageVersAfficherRecettesEffectueesActivity= new Intent(this, AfficherRecettesEffectueesActivity.class);
-                //messageVersAfficherRecettesEffectueesActivity.putExtra("BitmapImage", image);
-            }
         }
     }
-
-
+}

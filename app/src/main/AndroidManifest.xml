@@ -3,6 +3,7 @@
     package="com.example.cuistocs">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,10 +13,11 @@
         android:roundIcon="@mipmap/mon_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuistocs">
+        <activity android:name=".FinalActivity"></activity>
         <activity
             android:name=".ModeEmploiActivity"
             android:label="@string/title_activity_mode_emploi"
-            android:theme="@style/Theme.Cuistocs.NoActionBar"></activity>
+            android:theme="@style/Theme.Cuistocs.NoActionBar" />
         <activity
             android:name=".AfficherRecettesEffectueesActivity"
             android:screenOrientation="portrait" />
@@ -59,7 +61,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
 
         <service android:name=".notifications.NotificationService">
             <intent-filter>
