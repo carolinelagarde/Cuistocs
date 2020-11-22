@@ -18,15 +18,22 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.Set;
-
+//CETTE CLASSE PERMET D'AFFICHER LES RECETTES EFFECTUEES.
 public class RecettesEffectuees extends AppCompatActivity {
+
 //liste les recettes effectuées et permet de les réafficher
+
+    //on va récupérer "caracteristiquesRecettes"
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
+
+    //on utilise un linearLayout
     LinearLayout carteLayout;
     LinearLayout layoutScrollView;
 
+
+    //on définit une note minimale d'affichage
     RatingBar rbFiltreNote;
     float noteMinimale;
 
@@ -36,11 +43,17 @@ public class RecettesEffectuees extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //on définit ici les variables précédement déclarées
+
         setContentView(R.layout.activity_recettes_effectuees);
         rbFiltreNote = findViewById(R.id.filtreNote);
         layoutScrollView = findViewById(R.id.layoutScrollView);
         sharedPreferences = getSharedPreferences("caracteristiquesRecette", Context.MODE_PRIVATE);
         noteMinimale = rbFiltreNote.getRating();
+
+        //la methode afficher permet d'afficher les recettes effectuées
+
         afficher();
         listenerForRatingBar();
     }
@@ -51,6 +64,7 @@ public class RecettesEffectuees extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 noteMinimale = rating;
+                //on met à jour en cas de changement de note miniamle voulue
                 afficher();
             }
         });
@@ -58,9 +72,6 @@ public class RecettesEffectuees extends AppCompatActivity {
 
 
     public void afficher() {
-        /*LinearLayout lay = findViewById(R.id.recetteseffectuees);
-        lay.removeAllViews(); */
-        //on récupère les recettes finies dans le fichier associé
 
         layoutScrollView.removeAllViews();
         int parite = 0;
@@ -68,13 +79,15 @@ public class RecettesEffectuees extends AppCompatActivity {
         for (int i=1;i<30;i++) {
             String name = "r"+""+i+ ""+"finie";
             noteMinimale = rbFiltreNote.getRating();
+
             //ajout texte pour le filtre de la note des recettes
             TextView textViewRb = findViewById(R.id.textViewRatingB);
             textViewRb.setText("Afficher les recettes ayant au moins " + noteMinimale + " étoiles");
             if (sharedPreferences.getBoolean(name, false)) {
-
+                //récupération de la note
                 float note = sharedPreferences.getFloat("r"+i+"note", -1);
 
+                //contrainte de note
                 if (note>=noteMinimale) {
                     parite++;
                     //ajout bouton
@@ -87,11 +100,6 @@ public class RecettesEffectuees extends AppCompatActivity {
 
                     layoutScrollView.addView(button);
 
-                    /*
-                    if (parite%2 == 1) { button.setBackgroundColor(0xCC0000);
-                    } else { button.setBackgroundColor(Color.BLACK ); }
-
-                     */
                     button.setBackgroundColor(Color.BLACK);
                     button.setTextColor(Color.WHITE);
 
@@ -105,12 +113,16 @@ public class RecettesEffectuees extends AppCompatActivity {
         }
     }
     public void onClick(View view) {
+        //permet d'afficher la recette choisie
         Button boutonClique = (Button)view;
+
         //On passe vers l'affichage des recettes
         Intent versAfficherRecettesEffectuees = new Intent();
         versAfficherRecettesEffectuees.setClass(this, AfficherRecettesEffectueesActivity.class);
+
         //on transfere les données de la recette séléctionnée
         Button buttonClique= (Button)view;
+
         String numeroRecette=buttonClique.getTag().toString();
         versAfficherRecettesEffectuees.putExtra("numeroRecette",numeroRecette);
         startActivity(versAfficherRecettesEffectuees);

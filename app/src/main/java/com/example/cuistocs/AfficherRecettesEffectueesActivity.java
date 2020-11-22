@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Vector;
 
 
+//ON AFFICHE ICI LA RECETTE DEJA EFFECTUEE AVEC SA NOTE ET SON COMMENTAIRE
 
 public class AfficherRecettesEffectueesActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
 SharedPreferences sp;
@@ -65,7 +66,7 @@ TextView ViewInstruction;
         String Titre = RecetteAAfficher.getTitre();
 
 
-        //modif des views
+        //affichage des instructions, du titre, du  commentaire et de la note
         ViewTempsDeCuisine.setText(Integer.toString(tempsDeCuisine));
         TextView ViewInstruction = new TextView(this);
         ViewInstruction.setText(instructions);
@@ -86,6 +87,8 @@ TextView ViewInstruction;
         LinearLayout ListeIngredients=findViewById(R.id.Ingredients);
         ListeIngredients.removeAllViewsInLayout();
         for (int i = 0; i< lesIngredients.size(); i++){
+
+            //on affiche ici les ingrédients un par un
             Ingredient ingredient= lesIngredients.get(i);
             String Quantite;
             Quantite = Integer.toString(ingredient.getQuantité(progress));
